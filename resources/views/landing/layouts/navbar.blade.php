@@ -1,4 +1,4 @@
-<header class="w-full bg-white border-b border-slate-100 sticky top-0 z-50 transition-all duration-200" x-data="{ mobileMenuOpen: false }">
+<header class="w-full bg-white border-b border-slate-100 sticky top-0 z-50 transition-all duration-200">
     <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
@@ -29,15 +29,17 @@
             <!-- Mobile Hamburger Button -->
             <div class="flex md:hidden">
                 <button
-                    @click="mobileMenuOpen = !mobileMenuOpen"
+                    id="mobile-menu-btn"
                     type="button"
                     class="p-2 rounded-lg text-slate-600 hover:text-slate-900 hover:bg-slate-100 focus:outline-none"
                     aria-label="Toggle Menu"
                 >
-                    <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Icon burger -->
+                    <svg id="icon-burger" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Icon close (silang) -->
+                    <svg id="icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                     </svg>
                 </button>
@@ -47,9 +49,8 @@
 
     <!-- Mobile Navigation Menu -->
     <div
-        x-show="mobileMenuOpen"
-        x-cloak
-        class="md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg"
+        id="mobile-menu"
+        class="hidden md:hidden border-t border-slate-100 bg-white px-4 pt-3 pb-5 space-y-2 shadow-lg"
     >
         <a href="{{ url('/') }}" class="block px-3 py-2 rounded-lg text-base font-semibold text-blue-600 bg-blue-50">Beranda</a>
         <a href="#lowongan" class="block px-3 py-2 rounded-lg text-base font-medium text-slate-700 hover:bg-slate-50">Lowongan PKL</a>
@@ -68,3 +69,4 @@
         </div>
     </div>
 </header>
+
