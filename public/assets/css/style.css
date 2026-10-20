@@ -1,0 +1,41 @@
+/* ==========================================================================
+   Project UKK - Custom Styles
+   Folder: public/assets/css/style.css
+   Gunakan file ini jika styling tidak mencukupi hanya dengan utility inline Tailwind.
+   ========================================================================== */
+
+/* Font Urbanist untuk Heading Hero sesuai spesifikasi Figma */
+.font-urbanist {
+    font-family: 'Urbanist', sans-serif;
+}
+
+/* Animasi Marquee (Slider Berjalan Halus dari Kanan ke Kiri) */
+@keyframes marqueeScroll {
+    0% {
+        transform: translateX(0%);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animate-marquee {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+    animation: marqueeScroll 25s linear infinite;
+}
+
+/* Jeda animasi saat kursor diarahkan ke card */
+.animate-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* Aksesibilitas bagi pengguna dengan preferensi reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+        animation: none;
+        overflow-x: auto;
+    }
+}
+
