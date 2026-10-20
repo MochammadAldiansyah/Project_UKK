@@ -1,5 +1,5 @@
-<header class="w-full bg-white border-b border-slate-100 sticky top-0 z-50 transition-all duration-200">
-    <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+<header class="w-full bg-white border-b border-slate-100 sticky shadow-sm top-0 z-50 transition-all duration-200">
+    <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
         <div class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="flex items-center gap-2 group">
@@ -20,7 +20,7 @@
 
             <!-- Action Buttons -->
             <div class="hidden md:flex items-center gap-4">
-            
+
                     <a href="{{ route('register') }}"
                         class="text-sm font-medium text-slate-600  bg-[#F5F3FF] rounded-lg hover:text-blue-600 transition-colors px-3 py-2">
                         Daftar

@@ -2,18 +2,29 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section id="hero" class="relative overflow-hidden bg-white pt-[21px] pb-12 lg:pb-16">
-        <!-- Container: 1280px x 594px according to Figma specification -->
+    <section id="hero" class="relative overflow-hidden bg-white pt-10 lg:pt-[121px] pb-12 lg:pb-[118px]">
+        <!-- Circle Kuning (Sesuai Pallet Figma Foto 1: Width 317px, Height 317px, Top dinaikkan ke 80px, Left -109px, Radius 9999px, #F9BD22 20%, Layer Blur 64) -->
         <div
-            class="w-full max-w-[1280px] min-h-[594px] mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-6">
+            class="hero-circle-yellow pointer-events-none absolute w-[317px] h-[317px] top-[80px] left-[-109px] rounded-full bg-[#F9BD22]/20 blur-[64px] z-0">
+        </div>
 
-            <!-- Text Left Column (#text-left) -->
-            <div class="w-full lg:max-w-[703px] flex flex-col justify-center text-left z-10 py-4 lg:py-0">
+        <!-- Circle Biru / Gradasi Pojok Kanan Atas (Dibuat Lebih Lebar & Jelas Terlihat: Width 650px, Height 650px, Top -140px, Right -100px, Blur 80px) -->
+        <div
+            class="hero-circle-blue pointer-events-none absolute w-[550px] h-[550px] lg:w-[650px] lg:h-[650px] -top-[140px] right-[-100px] rounded-full bg-[#C7DCFE]/70 blur-[80px] z-0">
+        </div>
+
+        <!-- Container: Sesuai spesifikasi Figma (Frame 1512px, Container 1280px, Left Gap 117px, Right Gap 115px) -->
+        <div
+            class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px] flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-8 relative z-10">
+
+            <!-- Text Left Column (#text-left: Sesuai Figma, fleksibel agar proporsional dan tidak memakan ruang gambar) -->
+            <div
+                class="w-full lg:w-auto lg:max-w-[540px] xl:max-w-[620px] 2xl:max-w-[703px] lg:h-[351px] flex flex-col justify-between text-left z-10 py-2 lg:py-0 shrink-0">
                 <!-- Title & Body (#title & body) -->
-                <div class="space-y-6">
-                    <!-- Heading (Sesuai Figma: Urbanist ExtraBold 800, Size 56px, Line height 120%, Color #333333, Max-Width 703px) -->
+                <div class="space-y-4 sm:space-y-6">
+                    <!-- Heading (Sesuai Figma: Urbanist ExtraBold 800, Size 56px, Line height 120%, Color #333333) -->
                     <h1
-                        class="font-urbanist text-4xl sm:text-5xl lg:text-[56px] font-extrabold text-[#333333] leading-[1.2] tracking-normal max-w-[703px]">
+                        class="font-urbanist text-4xl sm:text-[56px] lg:text-[56px] font-bold text-[#333333] leading-[1.2] tracking-normal max-w-[703px]">
                         Temukan tempat PKL impianmu dalam satu platform.
                     </h1>
 
@@ -25,9 +36,9 @@
                 </div>
 
                 <!-- CTA Button (_CTA) -->
-                <div class="mt-8 sm:mt-9">
+                <div class="pt-6 lg:pt-8">
                     <a href="#lowongan"
-                        class="inline-flex items-center gap-3 px-7 py-3.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-medium text-base rounded-xl shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-200 group cursor-pointer">
+                        class="inline-flex items-center gap-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-base rounded-xl shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-200 group cursor-pointer">
                         <span>Cari Lowongan PKL</span>
                         <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 16 16"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -38,12 +49,12 @@
                 </div>
             </div>
 
-            <!-- Right Illustration Column (Illus) -->
-            <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end">
-                <div class="relative w-full max-w-[540px] lg:max-w-[664px]">
+            <!-- Right Illustration Column (Illus - Dibuat Besar, Proporsional, dan Dominan di Mac/Desktop) -->
+            <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end z-10 min-w-0">
+                <div class="relative w-full max-w-[500px] sm:max-w-[540px] lg:max-w-none lg:w-[480px] xl:w-[540px] 2xl:w-[620px] flex items-center justify-center lg:justify-end">
                     <img src="{{ asset('assets/image/hero.svg') }}" alt="Ilustrasi Siswa PKL dalam satu platform"
                         width="664" height="594"
-                        class="w-full h-auto max-h-[594px] object-contain select-none pointer-events-none drop-shadow-sm"
+                        class="w-full h-auto max-h-[580px] lg:max-h-[640px] object-contain select-none pointer-events-none drop-shadow-sm scale-100 lg:scale-[1.22] xl:scale-[1.30] origin-center lg:origin-right transition-transform duration-300"
                         loading="eager" fetchpriority="high" />
                 </div>
             </div>
@@ -52,8 +63,9 @@
     </section>
 
     <!-- Section: Telah Dipercayai Oleh (Brand Perusahaan Mitra) -->
-    <section id="perusahaan" class="relative overflow-hidden bg-white py-10 sm:py-14 border-b border-slate-100">
-        <div class="w-full max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="perusahaan"
+        class="relative overflow-hidden bg-white pt-2 sm:pt-4 pb-14 sm:pb-20 border-b border-slate-100">
+        <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
             <!-- Badge / Label: TELAH DIPERCAYAI OLEH -->
             <div class="flex mb-8">
                 <span
@@ -82,37 +94,37 @@
                     <!-- Card: DAIHATSU -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="DAIHATSU" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="DAIHATSU" class="h-full object-contain">
                     </div>
 
                     <!-- Card: HummaTech -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="HummaTech" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="HummaTech" class="h-full object-contain">
                     </div>
 
                     <!-- Card: favehotels -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="favehotels" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="favehotels" class="h-full object-contain">
                     </div>
 
                     <!-- Card: GARUDA SPARK -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="GARUDA SPARK" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="GARUDA SPARK" class="h-full object-contain">
                     </div>
 
                     <!-- Card: JAPFA -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="JAPFA" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="JAPFA" class="h-full object-contain">
                     </div>
 
                     <!-- Card: Mitra Perusahaan -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="Mitra Perusahaan"
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="Mitra Perusahaan"
                             class="h-full object-contain">
                     </div>
                 </div>
@@ -122,37 +134,37 @@
                     <!-- Card: DAIHATSU -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="DAIHATSU" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="DAIHATSU" class="h-full object-contain">
                     </div>
 
                     <!-- Card: HummaTech -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="HummaTech" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="HummaTech" class="h-full object-contain">
                     </div>
 
                     <!-- Card: favehotels -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="favehotels" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="favehotels" class="h-full object-contain">
                     </div>
 
                     <!-- Card: GARUDA SPARK -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="GARUDA SPARK" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="GARUDA SPARK" class="h-full object-contain">
                     </div>
 
                     <!-- Card: JAPFA -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="JAPFA" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="JAPFA" class="h-full object-contain">
                     </div>
 
                     <!-- Card: Mitra Perusahaan -->
                     <div
                         class="w-[225px] h-[123px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="Mitra Perusahaan"
+                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="Mitra Perusahaan"
                             class="h-full object-contain">
                     </div>
                 </div>

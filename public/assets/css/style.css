@@ -9,6 +9,34 @@
     font-family: 'Urbanist', sans-serif;
 }
 
+/* Circle Gradasi Kuning (Hero Section - Sesuai Figma Pallet Foto 1) */
+.hero-circle-yellow {
+    position: absolute;
+    width: 317px;
+    height: 317px;
+    top: 80px; /* Dinaikkan dari 160px ke 80px agar pas sejajar dengan judul */
+    left: -109px;
+    border-radius: 9999px;
+    background-color: rgba(249, 189, 34, 0.20); /* #F9BD22 20% */
+    filter: blur(64px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Circle Gradasi Biru Pojok Kanan Atas (Hero Section - Dibuat Lebih Lebar & Jelas Terlihat) */
+.hero-circle-blue {
+    position: absolute;
+    width: 650px;
+    height: 650px;
+    top: -140px;
+    right: -190px;
+    border-radius: 9999px;
+    background-color: rgba(199, 218, 234, 0.50); /* Sky Blue lembut & jelas terlihat */
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+}
+
 /* Animasi Marquee (Slider Berjalan Halus dari Kanan ke Kiri) */
 @keyframes marqueeScroll {
     0% {
