@@ -22,7 +22,7 @@
 
 </head>
 
-<body class="font-sans antialiased bg-white text-slate-800">
+<body class="font-sans antialiased bg-white text-slate-800 overflow-x-hidden">
     <div class="min-h-screen bg-white">
         @if (!request()->is('login') && !request()->is('register'))
             @include('landing.layouts.navbar')

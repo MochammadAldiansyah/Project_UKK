@@ -1,12 +1,12 @@
 <header class="w-full bg-white border-b border-slate-100 sticky shadow-sm top-0 z-50 transition-all duration-200">
+
+    <!-- Desktop Navigation -->
     <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
         <div class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="flex items-center gap-2 group">
                 <img src="{{ asset('assets/image/Logo.png') }}" alt="logo">
             </a>
-
-            <!-- Desktop Navigation -->
             <nav class="hidden md:flex items-center gap-8">
                 <a href="{{ url('/') }}"
                     class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors">Beranda</a>
@@ -22,12 +22,12 @@
             <div class="hidden md:flex items-center gap-4">
 
                     <a href="{{ route('register') }}"
-                        class="text-sm font-medium text-slate-600  bg-[#F5F3FF] rounded-lg hover:text-blue-600 transition-colors px-3 py-2">
+                        class="text-sm font-semibold text-[#2563EB]  bg-[#F5F3FF] rounded-lg hover:text-blue-600 transition-colors px-3 py-2">
                         Daftar
                     </a>
 
                 <a href="{{ route('login') }}"
-                    class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-lg shadow-sm hover:shadow transition-all duration-200">
+                    class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow transition-all duration-200">
                     Login
                 </a>
             </div>
@@ -68,7 +68,7 @@
         <div class="pt-4 border-t border-slate-100 flex flex-col gap-2">
 
             <a href="{{ route('register') }}"
-                class="w-full text-center py-2.5 text-sm font-medium text-slate-700 hover:bg-slate-50 rounded-lg border bg-[#F5F3FF]">
+                class="w-full text-center py-2.5 text-sm font-medium text-[#2563EB] hover:bg-slate-50 rounded-lg border bg-[#F5F3FF]">
                 Daftar
             </a>
 
