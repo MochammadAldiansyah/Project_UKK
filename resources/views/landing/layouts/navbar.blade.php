@@ -1,8 +1,8 @@
-<header class="w-full bg-white border-b border-slate-100 sticky shadow-sm top-0 z-50 transition-all duration-200">
+<header id="main-header" class="w-full bg-white border-b border-slate-100 sticky top-0 z-50">
 
-    <!-- Desktop Navigation -->
-    <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
-        <div class="flex items-center justify-between h-20">
+    <!-- Navbar Container (Animasi smooth menjadi floating pill saat scroll) -->
+    <div id="navbar-container" class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
+        <div id="navbar-inner" class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="flex items-center gap-2 group">
                 <img src="{{ asset('assets/image/Logo.png') }}" alt="logo">

@@ -20,6 +20,9 @@
     <!-- External Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
+    <!-- Vite (Hot Module Replacement & Live Reload Otomatis Saat Save Code) -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+
 </head>
 
 <body class="font-sans antialiased bg-white text-slate-800 overflow-x-hidden">
@@ -33,6 +36,11 @@
             @yield('content')
         </main>
     </div>
+
+    <!-- Lenis Smooth Scroll Library (CDN) -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
+    <!-- Main JavaScript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
 </body>
 

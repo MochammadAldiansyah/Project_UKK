@@ -50,7 +50,7 @@
 
             <!-- Right Illustration Column (Illus - Dibuat Besar, Proporsional, dan Dominan di Mac/Desktop) -->
             <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end z-10 min-w-0">
-                <div class="relative w-full max-w-[500px] sm:max-w-[540px] lg:max-w-none lg:w-[480px] xl:w-[540px] 2xl:w-[620px] flex items-center justify-center lg:justify-end">
+                <div class="relative w-full max-w-[500px] sm:max-w-[700px] lg:max-w-none lg:w-[480px] xl:w-[350px] 2xl:w-[370px] flex items-center justify-center lg:justify-end">
                     <img src="{{ asset('assets/image/hero.svg') }}" alt="Ilustrasi Siswa PKL dalam satu platform"
                         width="664" height="594"
                         class="w-full h-auto max-h-[580px] lg:max-h-[640px] object-contain select-none pointer-events-none drop-shadow-sm scale-100 lg:scale-[1.22] xl:scale-[1.30] origin-center lg:origin-right transition-transform duration-300"
@@ -196,7 +196,7 @@
                     <!-- Icon Container -->
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                       <img src="{{ asset('assets/image/icon/kacapembesar.svg') }}" alt="">
+                       <img src="{{ asset('assets/image/icon/kacapembesar.svg') }}" alt="kaca pembesar" class="select-none">
                     </div>
 
                     <!-- Title -->
@@ -216,7 +216,7 @@
                     <!-- Icon Container -->
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                       <img src="{{ asset('assets/image/icon/buku.svg') }}" alt="">
+                       <img src="{{ asset('assets/image/icon/buku.svg') }}" alt="buku" class="select-none">
                     </div>
 
                     <!-- Title -->
@@ -236,7 +236,7 @@
                     <!-- Icon Container -->
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                       <img src="{{ asset('assets/image/icon/kontak.svg') }}" alt="">
+                       <img src="{{ asset('assets/image/icon/kontak.svg') }}" alt="kontak" class="select-none">
                     </div>
 
                     <!-- Title -->
@@ -260,7 +260,7 @@
 
         <!-- Dekorasi Circle Biru Kanan Atas (Manual Sesuai Pallet Figma: Width 425px, Height 425px, #DEE8FC 75%, masuk ke section keunggulan portal PKL sedikit) -->
         <div
-            class="pointer-events-none absolute w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] lg:w-[425px] lg:h-[425px] -top-[140px] sm:-top-[170px] lg:-top-[190px] right-[-100px] sm:right-[-80px] lg:right-[-60px] rounded-full bg-[#DEE8FC]/75 z-0">
+            class="pointer-events-none absolute w-[300px] h-[300px] sm:w-[360px] sm:h-[360px] lg:w-[425px] lg:h-[425px] -top-[50px] sm:-top-[60px] lg:-top-[80px] right-[-100px] sm:right-[-80px] lg:right-[-100px] rounded-full bg-[#DEE8FC]/75 z-0">
         </div>
 
         <!-- Dekorasi Circle Biru Kiri Bawah (Manual Sesuai Pallet Figma: Width 425px, Height 425px, #DEE8FC 75%) -->
@@ -310,9 +310,7 @@
                         <div class="flex items-center justify-between mb-4">
                             <!-- Icon Code -->
                             <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75 22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3-4.5 16.5" />
-                                </svg>
+                               <img src="{{ asset('assets/image/icon/code.svg') }}" alt="">
                             </div>
 
                             <!-- Location / Mode Badge -->
@@ -344,7 +342,7 @@
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <!-- Quota -->
                         <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                             </svg>
@@ -367,10 +365,7 @@
                         <div class="flex items-center justify-between mb-4">
                             <!-- Icon Palette / Design -->
                             <div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="m9.53 16.122 9.356-9.356a2.25 2.25 0 0 0-3.182-3.182l-9.356 9.356a4.5 4.5 0 0 0-1.127 1.834L4.5 19.5l4.726-.721a4.5 4.5 0 0 0 1.834-1.127Z" />
-                                </svg>
+                                <img src="{{ asset('assets/image/icon/pallet.svg') }}" alt="">
                             </div>
 
                             <!-- Location / Mode Badge -->
@@ -402,7 +397,7 @@
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <!-- Quota -->
                         <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                             </svg>
@@ -425,10 +420,7 @@
                         <div class="flex items-center justify-between mb-4">
                             <!-- Icon Calculator / Accounting -->
                             <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6H2.25m0 0v-.75C2.25 4.092 3.092 3.25 4.125 3.25h15.75c1.033 0 1.875.842 1.875 1.875v.75m-19.5 0h19.5m-19.5 0v12c0 1.033.842 1.875 1.875 1.875h15.75c1.033 0 1.875-.842 1.875-1.875v-12m-13.5 6h7.5m-7.5 3h4.5" />
-                                </svg>
+                                <img src="{{ asset('assets/image/icon/money.svg') }}" alt="">
                             </div>
 
                             <!-- Location / Mode Badge -->
@@ -460,7 +452,7 @@
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <!-- Quota -->
                         <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                             </svg>

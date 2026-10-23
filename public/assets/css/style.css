@@ -67,3 +67,93 @@
     }
 }
 
+/* ==========================================================================
+   Lenis Smooth Scroll Styles
+   ========================================================================== */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* ==========================================================================
+   Floating Pill Navbar Transition & Styling on Scroll
+   ========================================================================== */
+#main-header {
+    transition: background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                padding-top 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#navbar-container {
+    transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#navbar-inner {
+    transition: height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* State Navbar Saat Scroll ke Bawah (Pill Mode) */
+#main-header.is-scrolled {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    padding-top: 0.85rem;
+    pointer-events: none;
+}
+
+#main-header.is-scrolled #navbar-container {
+    pointer-events: auto;
+    width: 92%;
+    max-width: 1040px;
+    border-radius: 9999px;
+    background-color: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.06), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+#main-header.is-scrolled #navbar-inner {
+    height: 3.75rem; /* 60px */
+}
+
+/* Mobile dropdown positioning saat navbar dalam mode floating pill */
+#main-header.is-scrolled #mobile-menu {
+    pointer-events: auto;
+    margin-top: 0.6rem;
+    border-radius: 1.25rem;
+    border: 1px solid rgba(226, 232, 240, 0.85);
+    box-shadow: 0 15px 30px -5px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    width: 92%;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
