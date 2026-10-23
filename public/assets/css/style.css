@@ -94,6 +94,7 @@ html.lenis body {
 /* ==========================================================================
    Floating Pill Navbar Transition & Styling on Scroll
    ========================================================================== */
+#main-navbar,
 #main-header {
     background-color: transparent !important;
     border-color: transparent !important;
@@ -120,16 +121,19 @@ html.lenis body {
 }
 
 /* Saat menu burger terbuka di bagian atas halaman (unscrolled) */
+#main-navbar.menu-is-open:not(.is-scrolled) #navbar-container,
 #main-header.menu-is-open:not(.is-scrolled) #navbar-container {
     background-color: rgba(255, 255, 255, 0.98);
 }
 
 /* State Navbar Saat Scroll ke Bawah (Pill Mode) */
+#main-navbar.is-scrolled,
 #main-header.is-scrolled {
     padding-top: 0.85rem;
     pointer-events: none;
 }
 
+#main-navbar.is-scrolled #navbar-container,
 #main-header.is-scrolled #navbar-container {
     pointer-events: auto;
     width: 92%;
@@ -144,6 +148,7 @@ html.lenis body {
     padding-right: 1.5rem;
 }
 
+#main-navbar.is-scrolled #navbar-inner,
 #main-header.is-scrolled #navbar-inner {
     height: 3.75rem; /* 60px */
 }
@@ -244,12 +249,14 @@ html.lenis body {
 }
 
 /* Morphing halus dropdown menu saat navbar berubah menjadi floating pill saat scroll */
+#main-navbar.is-scrolled #mobile-menu-wrapper,
 #main-header.is-scrolled #mobile-menu-wrapper {
     width: 92%;
     max-width: 480px;
     margin-top: 0.6rem;
 }
 
+#main-navbar.is-scrolled #mobile-menu,
 #main-header.is-scrolled #mobile-menu {
     border-radius: 1.5rem;
     border: 1px solid rgba(226, 232, 240, 0.9);

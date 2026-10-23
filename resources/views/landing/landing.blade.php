@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section id="hero" class="relative overflow-hidden bg-white pt-10 lg:pt-[121px] pb-12 lg:pb-[118px]">
+    <section id="hero" class="relative overflow-hidden bg-white pt-[120px] lg:pt-[201px] pb-12 lg:pb-[118px]">
         <!-- Circle Kuning (Sesuai Pallet Figma Foto 1: Width 317px, Height 317px, Top dinaikkan ke 80px, Left -109px, Radius 9999px, #F9BD22 20%, Layer Blur 64) -->
         <div
             class="hero-circle-yellow pointer-events-none absolute w-[317px] h-[317px] top-[80px] left-[-109px] rounded-full bg-[#F9BD22]/20 blur-[64px] z-0">
@@ -309,8 +309,8 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <!-- Icon Code -->
-                            <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-bold text-sm">
-                               <img src="{{ asset('assets/image/icon/code.svg') }}" alt="">
+                            <div class="w-10 h-10 rounded-xl bg-[#DBE1FF] text-blue-600 flex items-center justify-center font-bold text-sm">
+                               <img src="{{ asset('assets/image/icon/code.svg') }}" alt="code_icon" class="select-none">
                             </div>
 
                             <!-- Location / Mode Badge -->
@@ -364,8 +364,8 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <!-- Icon Palette / Design -->
-                            <div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/pallet.svg') }}" alt="">
+                            <div class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
+                                <img src="{{ asset('assets/image/icon/pallet.svg') }}" alt="pallet_icon" class="select-none">
                             </div>
 
                             <!-- Location / Mode Badge -->
@@ -419,8 +419,8 @@
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <!-- Icon Calculator / Accounting -->
-                            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/money.svg') }}" alt="">
+                            <div class="w-10 h-10 rounded-xl bg-[#CCFFD9] text-emerald-600 flex items-center justify-center">
+                                <img src="{{ asset('assets/image/icon/money.svg') }}" alt="money_icon" class="select-none">
                             </div>
 
                             <!-- Location / Mode Badge -->

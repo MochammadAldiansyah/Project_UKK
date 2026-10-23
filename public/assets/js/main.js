@@ -2,7 +2,7 @@
 // Inisialisasi Mobile Burger Menu Dropdown Super Smooth
 // ==========================================================================
 function initMobileMenu() {
-    const header = document.getElementById('main-header');
+    const header = document.getElementById('main-navbar') || document.getElementById('main-header');
     const menuBtn = document.getElementById('mobile-menu-btn');
     const menuWrapper = document.getElementById('mobile-menu-wrapper');
     const iconBurger = document.getElementById('icon-burger');
@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (targetElement) {
                         e.preventDefault();
                         lenis.scrollTo(targetElement, {
-                            offset: -20,
+                            offset: -85,
                             duration: 1.3,
                         });
                     }
@@ -117,10 +117,10 @@ document.addEventListener('DOMContentLoaded', function () {
 // Animasi Navbar Mengecil Menjadi Floating Pill Saat Scroll
 // ==========================================================================
 function initNavbarScroll() {
-    const header = document.getElementById('main-header');
+    const header = document.getElementById('main-navbar') || document.getElementById('main-header');
     if (!header) return;
 
-    const scrollThreshold = 35; // Jarak scroll (px) sebelum navbar berubah menjadi pill
+    const scrollThreshold = 20; // Jarak scroll (px) sebelum navbar berubah menjadi pill
 
     function updateNavbar() {
         const scrollY = window.scrollY || document.documentElement.scrollTop;

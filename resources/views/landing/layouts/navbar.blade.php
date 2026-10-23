@@ -1,4 +1,4 @@
-<header id="main-header" class="w-full bg-transparent sticky top-0 z-50">
+<nav id="main-navbar" class="w-full bg-transparent fixed top-0 left-0 right-0 z-50">
 
     <!-- Navbar Container (Animasi smooth menjadi floating pill saat scroll) -->
     <div id="navbar-container" class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
@@ -7,7 +7,7 @@
             <a href="{{ url('/') }}" class="flex items-center gap-2 group">
                 <img src="{{ asset('assets/image/Logo.png') }}" alt="logo">
             </a>
-            <nav class="hidden md:flex items-center gap-8">
+            <div class="hidden md:flex items-center gap-8">
                 <a href="{{ url('/') }}"
                     class="text-sm font-semibold text-slate-900 hover:text-blue-600 transition-colors">Beranda</a>
                 <a href="#lowongan"
@@ -16,7 +16,7 @@
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Perusahaan</a>
                 <a href="#tentang-kami"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Tentang Kami</a>
-            </nav>
+            </div>
 
             <!-- Action Buttons -->
             <div class="hidden md:flex items-center gap-4">
@@ -88,4 +88,4 @@
             </div>
         </div>
     </div>
-</header>
+</nav>
