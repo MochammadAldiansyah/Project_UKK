@@ -1,6 +1,6 @@
 <nav id="main-navbar" class="w-full bg-transparent fixed top-0 left-0 right-0 z-50">
 
-    <!-- Navbar Container (Animasi smooth menjadi floating pill saat scroll) -->
+    <!-- Navbar container -->
     <div id="navbar-container" class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
         <div id="navbar-inner" class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
@@ -32,18 +32,16 @@
                 </a>
             </div>
 
-            <!-- Mobile Hamburger Button -->
+            <!-- Mobile menu button -->
             <div class="flex md:hidden">
                 <button id="mobile-menu-btn" type="button"
                     class="relative w-10 h-10 flex items-center justify-center rounded-xl text-slate-700 hover:text-slate-900 hover:bg-slate-100/80 active:scale-95 transition-all duration-200 focus:outline-none"
                     aria-label="Toggle Menu" aria-expanded="false">
-                    <!-- Icon burger -->
                     <svg id="icon-burger" class="w-6 h-6 absolute transition-all duration-300 transform" fill="none"
                         stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M4 6h16M4 12h16M4 18h16" />
                     </svg>
-                    <!-- Icon close (silang) -->
                     <svg id="icon-close"
                         class="w-6 h-6 absolute opacity-0 scale-75 rotate-90 transition-all duration-300 transform pointer-events-none"
                         fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +53,7 @@
         </div>
     </div>
 
-    <!-- Mobile Navigation Menu Wrapper (Smooth Morphing Dropdown saat Scroll) -->
+    <!-- Mobile navigation dropdown -->
     <div id="mobile-menu-wrapper" class="md:hidden">
         <div id="mobile-menu" class="px-5 pt-3 pb-6 space-y-1.5">
             <a href="{{ url('/') }}"

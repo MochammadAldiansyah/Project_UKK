@@ -1,5 +1,5 @@
 // ==========================================================================
-// Inisialisasi Mobile Burger Menu Dropdown Super Smooth
+// Mobile Navigation Drawer
 // ==========================================================================
 function initMobileMenu() {
     const header = document.getElementById('main-navbar') || document.getElementById('main-header');
@@ -34,13 +34,13 @@ function initMobileMenu() {
         }
     }
 
-    // Toggle menu saat tombol burger diklik
+    // Toggle menu button
     menuBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         toggleMenu();
     });
 
-    // Tutup menu saat salah satu link navigasi diklik
+    // Close menu when navigation link is clicked
     const menuLinks = menuWrapper.querySelectorAll('a');
     menuLinks.forEach(function (link) {
         link.addEventListener('click', function () {
@@ -48,14 +48,14 @@ function initMobileMenu() {
         });
     });
 
-    // Tutup menu saat pengguna mengklik di luar area menu
+    // Close menu on click outside
     document.addEventListener('click', function (e) {
         if (menuWrapper.classList.contains('is-open') && !menuWrapper.contains(e.target) && !menuBtn.contains(e.target)) {
             toggleMenu(false);
         }
     });
 
-    // Tutup otomatis jika ukuran layar di-resize ke desktop (>= 768px)
+    // Close on viewport resize to desktop
     window.addEventListener('resize', function () {
         if (window.innerWidth >= 768 && menuWrapper.classList.contains('is-open')) {
             toggleMenu(false);
@@ -64,15 +64,15 @@ function initMobileMenu() {
 }
 
 // ==========================================================================
-// Inisialisasi Lenis Smooth Scroll
+// Lenis Smooth Scroll
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', function () {
-    // Inisialisasi mobile menu burger
     initMobileMenu();
+
     if (typeof Lenis !== 'undefined') {
         const lenis = new Lenis({
             duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Easing eksponensial lembut
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: 'vertical',
             gestureOrientation: 'vertical',
             smoothWheel: true,
@@ -81,14 +81,14 @@ document.addEventListener('DOMContentLoaded', function () {
             infinite: false,
         });
 
-        // Loop animasi requestAnimationFrame untuk update pergerakan Lenis
+        // Request animation frame loop
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
         }
         requestAnimationFrame(raf);
 
-        // Integrasi smooth scroll saat mengklik anchor link (seperti #lowongan, #perusahaan, dll.)
+        // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
             anchor.addEventListener('click', function (e) {
                 const targetId = this.getAttribute('href');
@@ -105,25 +105,21 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
 
-        // Simpan instance Lenis di window agar dapat diakses global jika diperlukan
         window.lenis = lenis;
     }
 
-    // Inisialisasi animasi floating pill navbar
     initNavbarScroll();
-
-    // Inisialisasi tab ekosistem tiga pilar vokasi
     initEcosystemTabs();
 });
 
 // ==========================================================================
-// Animasi Navbar Mengecil Menjadi Floating Pill Saat Scroll
+// Floating Pill Navbar Scroll Animation
 // ==========================================================================
 function initNavbarScroll() {
     const header = document.getElementById('main-navbar') || document.getElementById('main-header');
     if (!header) return;
 
-    const scrollThreshold = 20; // Jarak scroll (px) sebelum navbar berubah menjadi pill
+    const scrollThreshold = 20;
 
     function updateNavbar() {
         const scrollY = window.scrollY || document.documentElement.scrollTop;
@@ -138,20 +134,17 @@ function initNavbarScroll() {
         }
     }
 
-    // Jalankan cek posisi saat pertama kali load
     updateNavbar();
 
-    // Event listener scroll bawaan browser
     window.addEventListener('scroll', updateNavbar, { passive: true });
 
-    // Sinkronisasi dengan Lenis scroll jika aktif
     if (window.lenis) {
         window.lenis.on('scroll', updateNavbar);
     }
 }
 
 // ==========================================================================
-// Inisialisasi Tab Ekosistem Tiga Pilar Vokasi
+// Ecosystem Section Tabs
 // ==========================================================================
 function initEcosystemTabs() {
     const tabButtons = document.querySelectorAll('[data-tab-target]');
@@ -166,21 +159,17 @@ function initEcosystemTabs() {
 
             if (!targetPanel) return;
 
-            // Reset semua tombol tab ke style inactive
             tabButtons.forEach(btn => {
                 btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-500/20');
                 btn.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-200/60');
             });
 
-            // Set tombol yang diklik menjadi active
             this.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-200/60');
             this.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-500/20');
 
-            // Switch panel dengan transisi halus
             tabPanels.forEach(panel => {
                 if (panel.id === targetId) {
                     panel.classList.remove('hidden');
-                    // Trigger reflow untuk animasi fade-in
                     void panel.offsetWidth;
                     panel.classList.remove('opacity-0', 'translate-y-2');
                     panel.classList.add('opacity-100', 'translate-y-0');

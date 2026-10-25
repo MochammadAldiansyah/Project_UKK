@@ -20,7 +20,7 @@
     <!-- External Custom CSS -->
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
-    <!-- Vite (Hot Module Replacement & Live Reload Otomatis Saat Save Code) -->
+    <!-- Vite Assets -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -37,7 +37,7 @@
         </main>
     </div>
 
-    <!-- Lenis Smooth Scroll Library (CDN) -->
+    <!-- Lenis Smooth Scroll CDN -->
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 
     <!-- Main JavaScript -->
