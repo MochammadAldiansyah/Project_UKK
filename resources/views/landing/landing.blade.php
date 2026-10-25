@@ -469,4 +469,138 @@
             </div>
         </div>
     </section>
+
+    <!-- Section Solusi Terpadu Tiga Pilar Vokasi (Ekosistem Sinergis) -->
+    <section id="ekosistem" class="relative w-full overflow-hidden bg-white py-16 sm:py-20 lg:py-24">
+
+        <!-- Container -->
+        <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px] relative z-10">
+            <!-- Header Section -->
+            <div class="text-center max-w-[760px] mx-auto mb-10 lg:mb-12">
+                <!-- Badge -->
+                <span
+                    class="inline-flex px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-blue-600 bg-[#1F5EFF1A] border border-[#1F5EFF33] uppercase shadow-2xs mb-4">
+                    Ekosistem Sinergis
+                </span>
+
+                <!-- Title -->
+                <h2
+                    class="font-urbanist text-3xl sm:text-4xl lg:text-[44px] font-bold text-[#1E293B] leading-[1.2] tracking-tight">
+                    Solusi Terpadu untuk Tiga Pilar Vokasi
+                </h2>
+
+                <!-- Subtitle -->
+                <p class="text-base sm:text-lg text-slate-500 leading-relaxed mt-4">
+                    Menghilangkan sekat komunikasi antara siswa, sekolah, dan mitra PKL
+                </p>
+            </div>
+
+            <!-- Segment Toggle Buttons (Tabs) -->
+            <div class="flex items-center justify-center mb-10 lg:mb-14">
+                <div class="inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200/80 gap-1 sm:gap-1.5">
+                    <button type="button" data-tab-target="panel-siswa"
+                        class="tab-btn px-5 sm:px-7 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-[#2563EB] text-white shadow-md shadow-blue-500/20 cursor-pointer">
+                        Untuk Siswa
+                    </button>
+                    <button type="button" data-tab-target="panel-sekolah"
+                        class="tab-btn px-5 sm:px-7 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all duration-200 cursor-pointer">
+                        Sekolah & Guru
+                    </button>
+                    <button type="button" data-tab-target="panel-perusahaan"
+                        class="tab-btn px-5 sm:px-7 py-2.5 rounded-xl text-sm font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-200/60 transition-all duration-200 cursor-pointer">
+                        Perusahaan / DUDI
+                    </button>
+                </div>
+            </div>
+
+            <!-- Panel 1: Siswa (Aktif Default Sesuai Figma) -->
+            <div id="panel-siswa" class="tab-panel transition-all duration-300 opacity-100 translate-y-0">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                    <!-- Left Column: 3 Feature Cards -->
+                    <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
+                        <!-- Feature 1: Pengajuan PKL via Online -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/hand.svg') }}" alt="hand_icon"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    Pengajuan PKL via Online
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Kirim portofolio dan surat pengantar sekolah tanpa birokrasi cetak berkas fisik yang
+                                    berbelit-belit.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 2: Jurnal Kegiatan Digital -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/jurnal.svg') }}" alt="jurnal_icon"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    Jurnal Kegiatan Digital
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Unggah dokumentasi harian, foto tugas, dan rangkuman logbook langsung dari
+                                    smartphone.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature 3: VocatiBot (Mentor AI) -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/chatbot.svg') }}" alt="chatbot_icon"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    VocatiBot (Mentor AI)
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Asisten virtual yang siap membimbingmu 24/7 untuk menyusun jurnal harian, dan
+                                    konsultasi etika kerja selama PKL.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Student Card Placeholder with Quote Message -->
+                    <div class="lg:col-span-6 flex">
+                        <div
+                            class="relative w-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-200/70 border border-slate-200/80 p-5 sm:p-7 flex flex-col justify-end shadow-sm group">
+                            <!-- Area Foto Siswa Kosongan (Placeholder Area Sesuai Permintaan User) -->
+                            <img src="{{ asset('assets/image/tumbal.jpeg') }}" alt="Foto Siswa" class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
+                            <!-- Floating Message / Quote Box di Bagian Bawah -->
+                            <div
+                                class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
+                                <span
+                                    class="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2 block">
+                                    Dashboard Siswa
+                                </span>
+                                <p class="text-sm sm:text-base font-medium text-[#171D1C] leading-relaxed italic">
+                                    "Aku diterima magang di unicorn idaman hanya dalam tempo 3 hari setelah apply via
+                                    MagangSMK."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel 2: Sekolah & Guru -->
+
+        </div>
+    </section>
 @endsection

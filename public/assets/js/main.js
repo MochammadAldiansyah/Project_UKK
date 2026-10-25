@@ -111,6 +111,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Inisialisasi animasi floating pill navbar
     initNavbarScroll();
+
+    // Inisialisasi tab ekosistem tiga pilar vokasi
+    initEcosystemTabs();
 });
 
 // ==========================================================================
@@ -146,4 +149,48 @@ function initNavbarScroll() {
         window.lenis.on('scroll', updateNavbar);
     }
 }
+
+// ==========================================================================
+// Inisialisasi Tab Ekosistem Tiga Pilar Vokasi
+// ==========================================================================
+function initEcosystemTabs() {
+    const tabButtons = document.querySelectorAll('[data-tab-target]');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    if (!tabButtons.length || !tabPanels.length) return;
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const targetId = this.getAttribute('data-tab-target');
+            const targetPanel = document.getElementById(targetId);
+
+            if (!targetPanel) return;
+
+            // Reset semua tombol tab ke style inactive
+            tabButtons.forEach(btn => {
+                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+                btn.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-200/60');
+            });
+
+            // Set tombol yang diklik menjadi active
+            this.classList.remove('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-200/60');
+            this.classList.add('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+
+            // Switch panel dengan transisi halus
+            tabPanels.forEach(panel => {
+                if (panel.id === targetId) {
+                    panel.classList.remove('hidden');
+                    // Trigger reflow untuk animasi fade-in
+                    void panel.offsetWidth;
+                    panel.classList.remove('opacity-0', 'translate-y-2');
+                    panel.classList.add('opacity-100', 'translate-y-0');
+                } else {
+                    panel.classList.add('hidden', 'opacity-0', 'translate-y-2');
+                    panel.classList.remove('opacity-100', 'translate-y-0');
+                }
+            });
+        });
+    });
+}
+
 
