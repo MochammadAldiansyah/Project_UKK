@@ -48,8 +48,9 @@
 
             <!-- Hero illustration -->
             <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end z-10 min-w-0">
-                <div class="relative w-full max-w-[500px] sm:max-w-[700px] lg:max-w-none lg:w-[480px] xl:w-[350px] 2xl:w-[370px] flex items-center justify-center lg:justify-end">
-                    <img src="{{ asset('assets/image/hero.svg') }}" alt="Ilustrasi Siswa PKL dalam satu platform"
+                <div
+                    class="relative w-full max-w-[500px] sm:max-w-[700px] lg:max-w-none lg:w-[480px] xl:w-[350px] 2xl:w-[370px] flex items-center justify-center lg:justify-end">
+                    <img src="{{ asset('assets/image/hero-illustration.svg') }}" alt="Ilustrasi Siswa PKL dalam satu platform"
                         width="664" height="594"
                         class="w-full h-auto max-h-[580px] lg:max-h-[640px] object-contain select-none pointer-events-none drop-shadow-sm scale-100 lg:scale-[1.22] xl:scale-[1.30] origin-center lg:origin-right transition-transform duration-300"
                         loading="eager" fetchpriority="high" />
@@ -88,32 +89,33 @@
                 <div class="flex items-center gap-6 shrink-0 pr-6">
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/daihatsu.svg') }}" alt="DAIHATSU" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="HummaTech" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="HummaTech" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/favehotel.svg') }}" alt="favehotels" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="favehotels" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/garudaspark.svg') }}" alt="GARUDA SPARK" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-garudaspark.svg') }}" alt="GARUDA SPARK"
+                            class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/japfa.svg') }}" alt="JAPFA" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/hummatech.svg') }}" alt="Mitra Perusahaan"
+                        <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="Mitra Perusahaan"
                             class="h-full object-contain">
                     </div>
                 </div>
@@ -122,32 +124,33 @@
                 <div class="flex items-center gap-6 shrink-0 pr-6">
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/daihatsu.svg') }}" alt="DAIHATSU" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/favehotel.svg') }}" alt="HummaTech" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="HummaTech" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/garudaspark.svg') }}" alt="favehotels" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-garudaspark.svg') }}" alt="favehotels"
+                            class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/japfa.svg') }}" alt="GARUDA SPARK" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="GARUDA SPARK" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/japfa.svg') }}" alt="JAPFA" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA" class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/dummy.png') }}" alt="Mitra Perusahaan"
+                        <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="Mitra Perusahaan"
                             class="h-full object-contain">
                     </div>
                 </div>
@@ -165,7 +168,8 @@
                     Keunggulan Portal PKL
                 </span>
 
-                <h2 class="font-urbanist text-2xl sm:text-3xl lg:text-[36px] font-bold text-[#1E293B] mt-3 sm:mt-4 leading-tight">
+                <h2
+                    class="font-urbanist text-2xl sm:text-3xl lg:text-[36px] font-bold text-[#1E293B] mt-3 sm:mt-4 leading-tight">
                     Solusi Lengkap Kebutuhan Siswa PKL
                 </h2>
             </div>
@@ -177,7 +181,8 @@
                     class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60">
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                       <img src="{{ asset('assets/image/icon/kacapembesar.svg') }}" alt="kaca pembesar" class="select-none">
+                        <img src="{{ asset('assets/image/icon/feature-information.svg') }}" alt="Informasi Terpusat"
+                            class="select-none">
                     </div>
 
                     <h3 class="text-lg sm:text-xl font-bold text-[#1E293B] mb-2.5">
@@ -194,7 +199,7 @@
                     class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60">
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                       <img src="{{ asset('assets/image/icon/buku.svg') }}" alt="buku" class="select-none">
+                        <img src="{{ asset('assets/image/icon/feature-administration.svg') }}" alt="Administrasi Praktis" class="select-none">
                     </div>
 
                     <h3 class="text-lg sm:text-xl font-bold text-[#1E293B] mb-2.5">
@@ -211,7 +216,7 @@
                     class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60">
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                       <img src="{{ asset('assets/image/icon/kontak.svg') }}" alt="kontak" class="select-none">
+                        <img src="{{ asset('assets/image/icon/feature-activity-log.svg') }}" alt="Log Aktivitas Online" class="select-none">
                     </div>
 
                     <h3 class="text-lg sm:text-xl font-bold text-[#1E293B] mb-2.5">
@@ -261,8 +266,8 @@
                     <a href="#lowongan"
                         class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm rounded-xl shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-200 group cursor-pointer">
                         <span>Lihat Semua Lowongan</span>
-                        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 16 16"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
+                            viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.33337 8H12.6667M12.6667 8L8.66671 4M12.6667 8L8.66671 12" stroke="currentColor"
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
@@ -277,16 +282,20 @@
                     class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-[#DBE1FF] text-blue-600 flex items-center justify-center font-bold text-sm">
-                               <img src="{{ asset('assets/image/icon/code.svg') }}" alt="code_icon" class="select-none">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-[#DBE1FF] text-blue-600 flex items-center justify-center font-bold text-sm">
+                                <img src="{{ asset('assets/image/icon/vacancy-engineering.svg') }}" alt="Frontend Web Developer"
+                                    class="select-none">
                             </div>
 
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
                                 Hybrid • Jakarta
                             </span>
                         </div>
 
-                        <h3 class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
+                        <h3
+                            class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
                             Frontend Web Developer Intern
                         </h3>
                         <p class="text-xs sm:text-sm text-slate-500 mb-4">
@@ -294,10 +303,12 @@
                         </p>
 
                         <div class="flex flex-wrap items-center gap-2 mb-6">
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                            <span
+                                class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
                                 RPL / Multimedia
                             </span>
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                            <span
+                                class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
                                 Tailwind & JS
                             </span>
                         </div>
@@ -305,7 +316,8 @@
 
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                             </svg>
@@ -324,16 +336,20 @@
                     class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/pallet.svg') }}" alt="pallet_icon" class="select-none">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
+                                <img src="{{ asset('assets/image/icon/vacancy-multimedia.svg') }}" alt="Multimedia Content Creator"
+                                    class="select-none">
                             </div>
 
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
                                 WFO • Jakarta
                             </span>
                         </div>
 
-                        <h3 class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
+                        <h3
+                            class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
                             Multimedia Content Creator
                         </h3>
                         <p class="text-xs sm:text-sm text-slate-500 mb-4">
@@ -341,10 +357,12 @@
                         </p>
 
                         <div class="flex flex-wrap items-center gap-2 mb-6">
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                            <span
+                                class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
                                 DKV / Animasi
                             </span>
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                            <span
+                                class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
                                 Premiere & Figma
                             </span>
                         </div>
@@ -352,7 +370,8 @@
 
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                             </svg>
@@ -371,16 +390,20 @@
                     class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
                     <div>
                         <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-[#CCFFD9] text-emerald-600 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/money.svg') }}" alt="money_icon" class="select-none">
+                            <div
+                                class="w-10 h-10 rounded-xl bg-[#CCFFD9] text-emerald-600 flex items-center justify-center">
+                                <img src="{{ asset('assets/image/icon/vacancy-accounting.svg') }}" alt="Staff Administrasi & Akuntansi"
+                                    class="select-none">
                             </div>
 
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
+                            <span
+                                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
                                 WFO • Surabaya
                             </span>
                         </div>
 
-                        <h3 class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
+                        <h3
+                            class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
                             Staff Administrasi & Akuntansi
                         </h3>
                         <p class="text-xs sm:text-sm text-slate-500 mb-4">
@@ -388,10 +411,12 @@
                         </p>
 
                         <div class="flex flex-wrap items-center gap-2 mb-6">
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                            <span
+                                class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
                                 Akuntansi / AKL
                             </span>
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                            <span
+                                class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
                                 Spreadsheet
                             </span>
                         </div>
@@ -399,7 +424,8 @@
 
                     <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
                         <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
                                     d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
                             </svg>
@@ -441,7 +467,7 @@
             <div class="flex items-center justify-center mb-10 lg:mb-14">
                 <div class="inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200/80 gap-1 sm:gap-1.5">
                     <button type="button" data-tab-target="panel-siswa"
-                        class="tab-btn px-5 sm:px-7 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-[#2563EB] text-white shadow-md shadow-blue-500/20 cursor-pointer">
+                        class="tab-btn px-5 sm:px-7 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-blue-600 text-white shadow-md shadow-blue-500/20 cursor-pointer">
                         Untuk Siswa
                     </button>
                     <button type="button" data-tab-target="panel-sekolah"
@@ -465,7 +491,7 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/hand.svg') }}" alt="hand_icon"
+                                <img src="{{ asset('assets/image/icon/eco-student-apply.svg') }}" alt="Pengajuan PKL Online"
                                     class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
@@ -484,7 +510,7 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/jurnal.svg') }}" alt="jurnal_icon"
+                                <img src="{{ asset('assets/image/icon/eco-student-journal.svg') }}" alt="Jurnal Kegiatan Digital"
                                     class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
@@ -503,7 +529,7 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/chatbot.svg') }}" alt="chatbot_icon"
+                                <img src="{{ asset('assets/image/icon/eco-student-chatbot.svg') }}" alt="VocatiBot AI Mentor"
                                     class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
@@ -522,17 +548,183 @@
                     <div class="lg:col-span-6 flex">
                         <div
                             class="relative w-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-200/70 border border-slate-200/80 p-5 sm:p-7 flex flex-col justify-end shadow-sm group">
-                            <img src="{{ asset('assets/image/tumbal.jpeg') }}" alt="Foto Siswa" class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
+                            <img src="{{ asset('assets/image/ecosystem-preview.svg') }}" alt="Foto Siswa"
+                                class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
                             <!-- Quote card -->
                             <div
                                 class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
-                                <span
-                                    class="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2 block">
+                                <span class="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2 block">
                                     Dashboard Siswa
                                 </span>
                                 <p class="text-sm sm:text-base font-medium text-[#171D1C] leading-relaxed italic">
                                     "Aku diterima magang di unicorn idaman hanya dalam tempo 3 hari setelah apply via
-                                    MagangSMK."
+                                    PortalPKL."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab panel: Sekolah & Guru -->
+            <div id="panel-sekolah" class="tab-panel hidden opacity-0 translate-y-2 transition-all duration-300">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                    <!-- Feature list -->
+                    <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
+                        <!-- Feature: Monitoring PKL Siswa -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/eco-school-monitoring.svg') }}" alt="Monitoring PKL Siswa"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    Monitoring PKL Siswa
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Pantau lokasi, status, dan progres seluruh siswa PKL dalam satu dasbor, tanpa kunjungan
+                                    atau rekap manual.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature: Validasi Jurnal & Penilaian Terpadu -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/eco-school-validation.svg') }}" alt="Validasi Jurnal & Penilaian"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    Validasi Jurnal & Penilaian Terpadu
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Verifikasi jurnal harian siswa, beri catatan bimbingan, dan input nilai PKL langsung
+                                    dari satu tempat.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature: Database Mitra Industri -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/eco-school-partnership.svg') }}" alt="Database Mitra Industri"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    Database Mitra Industri
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Bangun relasi industri yang berkelanjutan dengan catatan kerja sama, kontak penting, dan
+                                    penilaian tiap DUDI di satu tempat.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Media card & testimonial quote -->
+                    <div class="lg:col-span-6 flex">
+                        <div
+                            class="relative w-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-200/70 border border-slate-200/80 p-5 sm:p-7 flex flex-col justify-end shadow-sm group">
+                            <img src="{{ asset('assets/image/ecosystem-preview.svg') }}" alt="Foto Sekolah & Guru"
+                                class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
+                            <!-- Quote card -->
+                            <div
+                                class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
+                                <span class="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2 block">
+                                    Dashboard Guru & Pembimbing
+                                </span>
+                                <p class="text-sm sm:text-base font-medium text-[#171D1C] leading-relaxed italic">
+                                    "Pantau absensi, validasi jurnal, dan evaluasi berkala siswa magang kini terpusat
+                                    real-time tanpa perlu rekap manual berkas fisik."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab panel: Perusahaan / DUDI -->
+            <div id="panel-perusahaan" class="tab-panel hidden opacity-0 translate-y-2 transition-all duration-300">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+                    <!-- Feature list -->
+                    <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
+                        <!-- Feature: Akses Talenta Siswa Magang -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/eco-company-talent.svg') }}" alt="Akses Talenta Siswa"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    Akses Talenta Siswa Magang
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                   Temukan kandidat siswa magang dengan keahlian sesuai kebutuhan perusahaan berdasarkan jurusan dan portofolio.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature: Penilaian Digital Praktis-->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/eco-company-evaluation.svg') }}" alt="Penilaian Digital Praktis"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                   Penilaian Digital Praktis
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Isi evaluasi dan nilai siswa langsung dari ponsel atau laptop, tanpa formulir kertas.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Feature: Kontribusi Nyata untuk Pendidikan -->
+                        <div
+                            class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
+                            <div
+                                class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
+                                <img src="{{ asset('assets/image/icon/eco-company-contribution.svg') }}" alt="Kontribusi Nyata Pendidikan"
+                                    class="w-5 h-5 select-none">
+                            </div>
+                            <div class="flex-1">
+                                <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
+                                    Kontribusi Nyata untuk Pendidikan
+                                </h3>
+                                <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
+                                    Bangun citra perusahaan sebagai mitra pendidikan vokasi dengan rekam kerja sama yang terdokumentasi.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Media card & testimonial quote -->
+                    <div class="lg:col-span-6 flex">
+                        <div
+                            class="relative w-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-200/70 border border-slate-200/80 p-5 sm:p-7 flex flex-col justify-end shadow-sm group">
+                            <img src="{{ asset('assets/image/ecosystem-preview.svg') }}" alt="Foto Perusahaan & DUDI"
+                                class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
+                            <!-- Quote card -->
+                            <div
+                                class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
+                                <span class="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2 block">
+                                    Dashboard Mitra Industri
+                                </span>
+                                <p class="text-sm sm:text-base font-medium text-[#171D1C] leading-relaxed italic">
+                                    "Merekrut talenta SMK yang siap kerja dan memantau evaluasi magang kini lebih cepat serta terdata rapi."
                                 </p>
                             </div>
                         </div>

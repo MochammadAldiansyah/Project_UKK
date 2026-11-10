@@ -160,7 +160,7 @@ function initEcosystemTabs() {
             if (!targetPanel) return;
 
             tabButtons.forEach(btn => {
-                btn.classList.remove('bg-blue-600', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+                btn.classList.remove('bg-blue-600', 'bg-[#2563EB]', 'text-white', 'shadow-md', 'shadow-blue-500/20');
                 btn.classList.add('text-slate-600', 'hover:text-slate-900', 'hover:bg-slate-200/60');
             });
 

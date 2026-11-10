@@ -5,7 +5,7 @@
         <div id="navbar-inner" class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="flex items-center gap-2 group">
-                <img src="{{ asset('assets/image/Logo.png') }}" alt="logo">
+                <img src="{{ asset('assets/image/logo.png') }}" alt="Logo Portal PKL">
             </a>
             <div class="hidden md:flex items-center gap-8">
                 <a href="{{ url('/') }}"
