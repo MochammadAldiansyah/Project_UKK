@@ -50,8 +50,8 @@
             <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end z-10 min-w-0">
                 <div
                     class="relative w-full max-w-[500px] sm:max-w-[700px] lg:max-w-none lg:w-[480px] xl:w-[350px] 2xl:w-[370px] flex items-center justify-center lg:justify-end">
-                    <img src="{{ asset('assets/image/hero-illustration.svg') }}" alt="Ilustrasi Siswa PKL dalam satu platform"
-                        width="664" height="594"
+                    <img src="{{ asset('assets/image/hero-illustration.svg') }}"
+                        alt="Ilustrasi Siswa PKL dalam satu platform" width="664" height="594"
                         class="w-full h-auto max-h-[580px] lg:max-h-[640px] object-contain select-none pointer-events-none drop-shadow-sm scale-100 lg:scale-[1.22] xl:scale-[1.30] origin-center lg:origin-right transition-transform duration-300"
                         loading="eager" fetchpriority="high" />
                 </div>
@@ -89,17 +89,20 @@
                 <div class="flex items-center gap-6 shrink-0 pr-6">
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU"
+                            class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="HummaTech" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="HummaTech"
+                            class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="favehotels" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="favehotels"
+                            class="h-full object-contain">
                     </div>
 
                     <div
@@ -110,7 +113,8 @@
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA"
+                            class="h-full object-contain">
                     </div>
 
                     <div
@@ -124,12 +128,14 @@
                 <div class="flex items-center gap-6 shrink-0 pr-6">
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU"
+                            class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="HummaTech" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="HummaTech"
+                            class="h-full object-contain">
                     </div>
 
                     <div
@@ -140,12 +146,14 @@
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="GARUDA SPARK" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="GARUDA SPARK"
+                            class="h-full object-contain">
                     </div>
 
                     <div
                         class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA" class="h-full object-contain">
+                        <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA"
+                            class="h-full object-contain">
                     </div>
 
                     <div
@@ -199,7 +207,8 @@
                     class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60">
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                        <img src="{{ asset('assets/image/icon/feature-administration.svg') }}" alt="Administrasi Praktis" class="select-none">
+                        <img src="{{ asset('assets/image/icon/feature-administration.svg') }}" alt="Administrasi Praktis"
+                            class="select-none">
                     </div>
 
                     <h3 class="text-lg sm:text-xl font-bold text-[#1E293B] mb-2.5">
@@ -216,7 +225,8 @@
                     class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60">
                     <div
                         class="w-14 h-14 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-100 group-hover:text-white transition-all duration-300">
-                        <img src="{{ asset('assets/image/icon/feature-activity-log.svg') }}" alt="Log Aktivitas Online" class="select-none">
+                        <img src="{{ asset('assets/image/icon/feature-activity-log.svg') }}" alt="Log Aktivitas Online"
+                            class="select-none">
                     </div>
 
                     <h3 class="text-lg sm:text-xl font-bold text-[#1E293B] mb-2.5">
@@ -284,8 +294,8 @@
                         <div class="flex items-center justify-between mb-4">
                             <div
                                 class="w-10 h-10 rounded-xl bg-[#DBE1FF] text-blue-600 flex items-center justify-center font-bold text-sm">
-                                <img src="{{ asset('assets/image/icon/vacancy-engineering.svg') }}" alt="Frontend Web Developer"
-                                    class="select-none">
+                                <img src="{{ asset('assets/image/icon/vacancy-engineering.svg') }}"
+                                    alt="Frontend Web Developer" class="select-none">
                             </div>
 
                             <span
@@ -338,8 +348,8 @@
                         <div class="flex items-center justify-between mb-4">
                             <div
                                 class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/vacancy-multimedia.svg') }}" alt="Multimedia Content Creator"
-                                    class="select-none">
+                                <img src="{{ asset('assets/image/icon/vacancy-multimedia.svg') }}"
+                                    alt="Multimedia Content Creator" class="select-none">
                             </div>
 
                             <span
@@ -392,8 +402,8 @@
                         <div class="flex items-center justify-between mb-4">
                             <div
                                 class="w-10 h-10 rounded-xl bg-[#CCFFD9] text-emerald-600 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/vacancy-accounting.svg') }}" alt="Staff Administrasi & Akuntansi"
-                                    class="select-none">
+                                <img src="{{ asset('assets/image/icon/vacancy-accounting.svg') }}"
+                                    alt="Staff Administrasi & Akuntansi" class="select-none">
                             </div>
 
                             <span
@@ -491,8 +501,8 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-student-apply.svg') }}" alt="Pengajuan PKL Online"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-student-apply.svg') }}"
+                                    alt="Pengajuan PKL Online" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -510,8 +520,8 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-student-journal.svg') }}" alt="Jurnal Kegiatan Digital"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-student-journal.svg') }}"
+                                    alt="Jurnal Kegiatan Digital" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -529,8 +539,8 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-student-chatbot.svg') }}" alt="VocatiBot AI Mentor"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-student-chatbot.svg') }}"
+                                    alt="VocatiBot AI Mentor" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -576,8 +586,8 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-school-monitoring.svg') }}" alt="Monitoring PKL Siswa"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-school-monitoring.svg') }}"
+                                    alt="Monitoring PKL Siswa" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -595,8 +605,8 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-school-validation.svg') }}" alt="Validasi Jurnal & Penilaian"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-school-validation.svg') }}"
+                                    alt="Validasi Jurnal & Penilaian" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -614,8 +624,8 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-school-partnership.svg') }}" alt="Database Mitra Industri"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-school-partnership.svg') }}"
+                                    alt="Database Mitra Industri" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -661,15 +671,16 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-company-talent.svg') }}" alt="Akses Talenta Siswa"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-company-talent.svg') }}"
+                                    alt="Akses Talenta Siswa" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
                                     Akses Talenta Siswa Magang
                                 </h3>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                   Temukan kandidat siswa magang dengan keahlian sesuai kebutuhan perusahaan berdasarkan jurusan dan portofolio.
+                                    Temukan kandidat siswa magang dengan keahlian sesuai kebutuhan perusahaan berdasarkan
+                                    jurusan dan portofolio.
                                 </p>
                             </div>
                         </div>
@@ -679,12 +690,12 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-company-evaluation.svg') }}" alt="Penilaian Digital Praktis"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-company-evaluation.svg') }}"
+                                    alt="Penilaian Digital Praktis" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
-                                   Penilaian Digital Praktis
+                                    Penilaian Digital Praktis
                                 </h3>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
                                     Isi evaluasi dan nilai siswa langsung dari ponsel atau laptop, tanpa formulir kertas.
@@ -697,15 +708,16 @@
                             class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                             <div
                                 class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
-                                <img src="{{ asset('assets/image/icon/eco-company-contribution.svg') }}" alt="Kontribusi Nyata Pendidikan"
-                                    class="w-5 h-5 select-none">
+                                <img src="{{ asset('assets/image/icon/eco-company-contribution.svg') }}"
+                                    alt="Kontribusi Nyata Pendidikan" class="w-5 h-5 select-none">
                             </div>
                             <div class="flex-1">
                                 <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
                                     Kontribusi Nyata untuk Pendidikan
                                 </h3>
                                 <p class="text-xs sm:text-sm text-slate-500 leading-relaxed">
-                                    Bangun citra perusahaan sebagai mitra pendidikan vokasi dengan rekam kerja sama yang terdokumentasi.
+                                    Bangun citra perusahaan sebagai mitra pendidikan vokasi dengan rekam kerja sama yang
+                                    terdokumentasi.
                                 </p>
                             </div>
                         </div>
@@ -724,9 +736,190 @@
                                     Dashboard Mitra Industri
                                 </span>
                                 <p class="text-sm sm:text-base font-medium text-[#171D1C] leading-relaxed italic">
-                                    "Merekrut talenta SMK yang siap kerja dan memantau evaluasi magang kini lebih cepat serta terdata rapi."
+                                    "Merekrut talenta SMK yang siap kerja dan memantau evaluasi magang kini lebih cepat
+                                    serta terdata rapi."
                                 </p>
                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials section -->
+    <section id="testimoni" class="relative w-full py-16 sm:py-20 lg:py-24 bg-white">
+        <!-- Navigation anchor -->
+        <div id="tentang-kami" class="absolute -top-24"></div>
+
+        <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
+            <!-- Section header -->
+            <div class="text-center max-w-[760px] mx-auto mb-12 sm:mb-14 lg:mb-16">
+                <span
+                    class="inline-flex px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-blue-600 bg-[#1F5EFF1A] border border-[#1F5EFF33] uppercase shadow-2xs mb-3 sm:mb-4">
+                    Testimoni Pengguna
+                </span>
+
+                <h2
+                    class="font-urbanist text-2xl sm:text-3xl lg:text-[36px] font-bold text-[#1E293B] leading-tight tracking-tight">
+                    Kisah Mereka Yang Melangkah Bersama Kami
+                </h2>
+            </div>
+
+            <!-- Testimonial cards grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
+                <!-- Testimonial card: Rizky Aditya (Siswa) -->
+                <div
+                    class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <!-- Rating stars -->
+                        <div class="flex items-center gap-1.5 mb-5 text-[#2563EB]">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+
+                        <!-- Testimonial quote -->
+                        <p class="text-sm sm:text-base font-plex-serif italic text-slate-600 leading-relaxed mb-6">
+                            &ldquo;Dulu bingung mulai dari mana untuk cari tempat PKL. Lewat PortalPKL, aku bisa kirim
+                            portofolio dan pantau status pengajuan dari HP. Jauh lebih praktis!&rdquo;
+                        </p>
+                    </div>
+
+                    <!-- Author profile -->
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-slate-100">
+                        <div
+                            class="w-11 h-11 rounded-full bg-[#E9EFFD] text-blue-600 flex items-center justify-center font-bold text-sm shrink-0 select-none">
+                            RA
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-bold text-[#1E293B]">
+                                Rizky Aditya
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-0.5">
+                                Siswa RPL • SMKN 26 Jakarta
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial card: Bambang Nugroho, M.Pd. (Guru / Hubin) -->
+                <div
+                    class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <!-- Rating stars -->
+                        <div class="flex items-center gap-1.5 mb-5 text-[#2563EB]">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+
+                        <!-- Testimonial quote -->
+                        <p class="text-sm sm:text-base font-plex-serif italic text-slate-600 leading-relaxed mb-6">
+                            &ldquo;Dengan jurnal digital dan dasbor lokasi, kami lebih mudah memantau kegiatan siswa yang
+                            tersebar di berbagai industri. Rekap jadi lebih rapi dan hemat waktu.&rdquo;
+                        </p>
+                    </div>
+
+                    <!-- Author profile -->
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-slate-100">
+                        <div
+                            class="w-11 h-11 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold text-sm shrink-0 select-none">
+                            BN
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-bold text-[#1E293B]">
+                                Bambang Nugroho, M.Pd.
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-0.5">
+                                Ketua Hubin • SMKN 2 Bandung
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial card: Siti Putri Anggraini (Siswa) -->
+                <div
+                    class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                    <div>
+                        <!-- Rating stars -->
+                        <div class="flex items-center gap-1.5 mb-5 text-[#2563EB]">
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                            <svg class="w-4 h-4 fill-current" viewBox="0 0 20 20">
+                                <path
+                                    d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                            </svg>
+                        </div>
+
+                        <!-- Testimonial quote -->
+                        <p class="text-sm sm:text-base font-plex-serif italic text-slate-600 leading-relaxed mb-6">
+                            &ldquo;Bisa pasang portofolio langsung di profil, jadi perusahaan lebih mudah melihat karyaku.
+                            Proses pengajuannya juga jelas dan tidak berbelit.&rdquo;
+                        </p>
+                    </div>
+
+                    <!-- Author profile -->
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-slate-100">
+                        <div
+                            class="w-11 h-11 rounded-full bg-[#FFEEDF] text-orange-500 flex items-center justify-center font-bold text-sm shrink-0 select-none">
+                            SP
+                        </div>
+                        <div>
+                            <h3 class="text-sm sm:text-base font-bold text-[#1E293B]">
+                                Siti Putri Anggraini
+                            </h3>
+                            <p class="text-xs text-slate-500 mt-0.5">
+                                Siswa DKV • SMKN 1 Surabaya
+                            </p>
                         </div>
                     </div>
                 </div>

@@ -7,6 +7,11 @@
     font-family: 'Urbanist', sans-serif;
 }
 
+.font-plex-serif {
+    font-family: 'IBM Plex Serif', serif;
+
+}
+
 /* Hero Background Decorations */
 .hero-circle-yellow {
     position: absolute;
