@@ -243,8 +243,28 @@
 
         <!-- Main container -->
         <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px] relative z-10">
+            @if(session('success'))
+                <div class="mb-8 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-sm flex items-center justify-between shadow-xs">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-emerald-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                    <button onclick="this.parentElement.remove()" class="text-emerald-600 hover:text-emerald-800 font-bold ml-4 text-lg leading-none cursor-pointer">&times;</button>
+                </div>
+            @endif
+
+            @if(session('error'))
+                <div class="mb-8 p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-800 text-sm flex items-center justify-between shadow-xs">
+                    <div class="flex items-center gap-2">
+                        <svg class="w-5 h-5 text-rose-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                        <span>{{ session('error') }}</span>
+                    </div>
+                    <button onclick="this.parentElement.remove()" class="text-rose-600 hover:text-rose-800 font-bold ml-4 text-lg leading-none cursor-pointer">&times;</button>
+                </div>
+            @endif
+
             <!-- Section header -->
-            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-8">
                 <div>
                     <span
                         class="inline-flex px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-blue-600 bg-blue-50/90 border border-blue-200/70 uppercase shadow-2xs mb-3 sm:mb-4">
@@ -260,7 +280,7 @@
                 <div class="shrink-0">
                     <a href="#lowongan"
                         class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm rounded-xl shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-200 group cursor-pointer">
-                        <span>Lihat Semua Lowongan</span>
+                        <span>Semua Lowongan ({{ $lowongans->count() }})</span>
                         <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 16 16"
                             fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M3.33337 8H12.6667M12.6667 8L8.66671 4M12.6667 8L8.66671 12" stroke="currentColor"
@@ -270,148 +290,99 @@
                 </div>
             </div>
 
-            <!-- Vacancy cards grid -->
+            <!-- Search and Filter Form (Backend Logic) -->
+            <form action="{{ url('/#lowongan') }}" method="GET" class="mb-10 flex flex-col sm:flex-row items-center gap-3">
+                <div class="relative flex-1 w-full">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        placeholder="Cari posisi, keahlian, kota, atau nama perusahaan..."
+                        class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 bg-white text-sm text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 shadow-2xs">
+                    <svg class="w-4 h-4 absolute left-3.5 top-3.5 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                </div>
+
+                <select name="jurusan" onchange="this.form.submit()"
+                    class="w-full sm:w-auto px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 shadow-2xs cursor-pointer">
+                    <option value="all">Semua Jurusan</option>
+                    <option value="RPL" {{ request('jurusan') == 'RPL' ? 'selected' : '' }}>RPL / SIJA</option>
+                    <option value="TKJ" {{ request('jurusan') == 'TKJ' ? 'selected' : '' }}>TKJ</option>
+                    <option value="DKV" {{ request('jurusan') == 'DKV' ? 'selected' : '' }}>DKV / Animasi</option>
+                    <option value="Akuntansi" {{ request('jurusan') == 'Akuntansi' ? 'selected' : '' }}>Akuntansi / Keuangan</option>
+                </select>
+
+                <button type="submit"
+                    class="w-full sm:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white rounded-xl text-sm font-semibold shadow-xs transition-colors cursor-pointer">
+                    Filter
+                </button>
+
+                @if(request()->filled('search') || (request()->filled('jurusan') && request('jurusan') !== 'all'))
+                    <a href="{{ url('/#lowongan') }}" class="text-xs font-medium text-slate-500 hover:text-rose-600 underline whitespace-nowrap">
+                        Reset Filter
+                    </a>
+                @endif
+            </form>
+
+            <!-- Vacancy cards grid (Dinamis dari Database) -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-                <!-- Card: Frontend Web Developer -->
-                <div
-                    class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-[#DBE1FF] text-blue-600 flex items-center justify-center font-bold text-sm">
-                               <img src="{{ asset('assets/image/icon/code.svg') }}" alt="code_icon" class="select-none">
+                @forelse($lowongans as $loker)
+                    <div
+                        class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group">
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-[#DBE1FF] text-blue-600 flex items-center justify-center font-bold text-sm">
+                                    <img src="{{ asset($loker->perusahaan->logo ?? 'assets/image/icon/code.svg') }}" alt="icon" class="w-6 h-6 object-contain select-none">
+                                </div>
+
+                                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
+                                    {{ $loker->tipe_kerja }} • {{ $loker->lokasi }}
+                                </span>
                             </div>
 
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
-                                Hybrid • Jakarta
-                            </span>
+                            <h3 class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
+                                {{ $loker->judul }}
+                            </h3>
+                            <p class="text-xs sm:text-sm text-slate-500 mb-4">
+                                {{ $loker->perusahaan->nama }}
+                            </p>
+
+                            <div class="flex flex-wrap items-center gap-2 mb-6">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                                    {{ $loker->jurusan }}
+                                </span>
+                                @if($loker->keahlian)
+                                    <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
+                                        {{ $loker->keahlian }}
+                                    </span>
+                                @endif
+                            </div>
                         </div>
 
-                        <h3 class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
-                            Frontend Web Developer Intern
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-500 mb-4">
-                            PT Telkom Vokasi Digital
-                        </p>
-
-                        <div class="flex flex-wrap items-center gap-2 mb-6">
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
-                                RPL / Multimedia
-                            </span>
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
-                                Tailwind & JS
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                            </svg>
-                            <span>Sisa Kuota: <strong class="text-slate-700 font-semibold">3 Kursi</strong></span>
-                        </div>
-
-                        <button type="button"
-                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Card: Multimedia Content Creator -->
-                <div
-                    class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/pallet.svg') }}" alt="pallet_icon" class="select-none">
+                        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-1.5 text-xs text-slate-500">
+                                <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
+                                </svg>
+                                <span>Sisa Kuota: <strong class="text-slate-700 font-semibold">{{ $loker->sisa_kuota }} Kursi</strong></span>
                             </div>
 
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
-                                WFO • Jakarta
-                            </span>
-                        </div>
-
-                        <h3 class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
-                            Multimedia Content Creator
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-500 mb-4">
-                            Exo Studio Kreatif
-                        </p>
-
-                        <div class="flex flex-wrap items-center gap-2 mb-6">
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
-                                DKV / Animasi
-                            </span>
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
-                                Premiere & Figma
-                            </span>
+                            <button type="button"
+                                onclick="openDetailModal({{ $loker->id }}, '{{ addslashes($loker->judul) }}', '{{ addslashes($loker->perusahaan->nama) }}', '{{ addslashes($loker->tipe_kerja) }}', '{{ addslashes($loker->lokasi) }}', '{{ addslashes($loker->jurusan) }}', '{{ $loker->sisa_kuota }}', '{{ addslashes($loker->deskripsi) }}', '{{ addslashes($loker->persyaratan) }}')"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
+                                Lihat Detail
+                            </button>
                         </div>
                     </div>
-
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                            </svg>
-                            <span>Sisa Kuota: <strong class="text-slate-700 font-semibold">2 Kursi</strong></span>
-                        </div>
-
-                        <button type="button"
-                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
-                            Lihat Detail
-                        </button>
+                @empty
+                    <div class="col-span-full py-16 text-center bg-slate-50/70 rounded-3xl border border-dashed border-slate-200">
+                        <svg class="w-12 h-12 text-slate-300 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="text-slate-600 font-semibold text-base">Tidak ada lowongan PKL yang sesuai kriteria.</p>
+                        <p class="text-slate-400 text-xs mt-1">Coba gunakan kata kunci pencarian lain atau klik tombol reset filter.</p>
+                        <a href="{{ url('/#lowongan') }}" class="inline-block mt-4 px-4 py-2 bg-white border border-slate-200 hover:border-blue-400 text-blue-600 text-xs font-semibold rounded-xl shadow-2xs transition">
+                            Tampilkan Semua Lowongan
+                        </a>
                     </div>
-                </div>
-
-                <!-- Card: Staff Administrasi & Akuntansi -->
-                <div
-                    class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
-                    <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="w-10 h-10 rounded-xl bg-[#CCFFD9] text-emerald-600 flex items-center justify-center">
-                                <img src="{{ asset('assets/image/icon/money.svg') }}" alt="money_icon" class="select-none">
-                            </div>
-
-                            <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-slate-500 bg-slate-100">
-                                WFO • Surabaya
-                            </span>
-                        </div>
-
-                        <h3 class="text-base sm:text-lg font-bold text-[#1E293B] group-hover:text-blue-600 transition-colors line-clamp-1 mb-1">
-                            Staff Administrasi & Akuntansi
-                        </h3>
-                        <p class="text-xs sm:text-sm text-slate-500 mb-4">
-                            Bank Antartika Jaya
-                        </p>
-
-                        <div class="flex flex-wrap items-center gap-2 mb-6">
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
-                                Akuntansi / AKL
-                            </span>
-                            <span class="px-2.5 py-1 rounded-md text-xs font-medium text-slate-600 bg-slate-100 border border-slate-200/60">
-                                Spreadsheet
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-1.5 text-xs text-slate-500">
-                            <svg class="w-4 h-4 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z" />
-                            </svg>
-                            <span>Sisa Kuota: <strong class="text-slate-700 font-semibold">5 Kursi</strong></span>
-                        </div>
-
-                        <button type="button"
-                            class="px-4 py-2 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-xs font-semibold rounded-lg transition-colors cursor-pointer">
-                            Lihat Detail
-                        </button>
-                    </div>
-                </div>
+                @endforelse
             </div>
         </div>
     </section>
@@ -541,4 +512,169 @@
             </div>
         </div>
     </section>
+
+    <!-- Modal Detail & Pengajuan Lamaran PKL -->
+    <div id="modal-detail" class="fixed inset-0 z-50 hidden overflow-y-auto bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+        <div class="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+            <!-- Modal Header -->
+            <div class="p-6 sm:p-7 border-b border-slate-100 flex items-start justify-between bg-gradient-to-r from-blue-50/50 to-white">
+                <div>
+                    <div class="flex items-center gap-2 mb-2">
+                        <span id="modal-tipe-lokasi" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">
+                            Hybrid • Jakarta
+                        </span>
+                        <span id="modal-kuota" class="px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700">
+                            Sisa: 3 Kursi
+                        </span>
+                    </div>
+                    <h3 id="modal-judul" class="text-xl sm:text-2xl font-bold text-slate-900 leading-snug">
+                        Frontend Web Developer Intern
+                    </h3>
+                    <p id="modal-perusahaan" class="text-sm font-medium text-slate-500 mt-1">
+                        PT Telkom Vokasi Digital
+                    </p>
+                </div>
+                <button type="button" onclick="closeDetailModal()" class="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors cursor-pointer">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6 sm:p-7 max-h-[70vh] overflow-y-auto space-y-6">
+                <!-- Info Jurusan -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Jurusan yang Dicari</h4>
+                    <p id="modal-jurusan" class="text-sm font-semibold text-slate-800 bg-slate-50 p-3 rounded-xl border border-slate-100">
+                        RPL / Multimedia
+                    </p>
+                </div>
+
+                <!-- Deskripsi Pekerjaan -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Deskripsi Pekerjaan</h4>
+                    <p id="modal-deskripsi" class="text-sm text-slate-600 leading-relaxed bg-slate-50/70 p-4 rounded-xl border border-slate-100">
+                        -
+                    </p>
+                </div>
+
+                <!-- Persyaratan -->
+                <div>
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-1.5">Kualifikasi / Persyaratan</h4>
+                    <p id="modal-persyaratan" class="text-sm text-slate-600 leading-relaxed bg-slate-50/70 p-4 rounded-xl border border-slate-100">
+                        -
+                    </p>
+                </div>
+
+                <!-- Bagian Form Pengajuan PKL Siswa -->
+                <div class="pt-6 border-t border-slate-100">
+                    <h4 class="text-base font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                        Formulir Pengajuan PKL Siswa
+                    </h4>
+
+                    @guest
+                        <div class="p-5 rounded-2xl bg-blue-50 border border-blue-100 text-center space-y-3">
+                            <p class="text-sm text-slate-600">
+                                Anda harus masuk atau mendaftar akun siswa terlebih dahulu untuk mengajukan lamaran ke lowongan ini.
+                            </p>
+                            <div class="flex items-center justify-center gap-3">
+                                <a href="{{ route('login') }}" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold rounded-xl shadow-xs transition-colors">
+                                    Login Siswa
+                                </a>
+                                <a href="{{ route('register') }}" class="px-5 py-2.5 bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold rounded-xl transition-colors">
+                                    Daftar Akun
+                                </a>
+                            </div>
+                        </div>
+                    @else
+                        @if(Auth::user()->hasRole('siswa'))
+                            <form action="{{ route('pengajuan.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
+                                @csrf
+                                <input type="hidden" name="lowongan_id" id="modal-form-lowongan-id" value="">
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1">NISN *</label>
+                                        <input type="text" name="nisn" required placeholder="Contoh: 0054321987"
+                                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1">Asal Sekolah *</label>
+                                        <input type="text" name="asal_sekolah" required placeholder="Contoh: SMKN 1 Surabaya"
+                                            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Jurusan / Kelas *</label>
+                                    <input type="text" name="jurusan" required placeholder="Contoh: XII Rekayasa Perangkat Lunak 2"
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1">Upload CV / Resume (PDF, Max 2MB) *</label>
+                                        <input type="file" name="cv_file" required accept=".pdf"
+                                            class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                                    </div>
+
+                                    <div>
+                                        <label class="block text-xs font-semibold text-slate-700 mb-1">Surat Pengantar Sekolah (Opsional, PDF)</label>
+                                        <input type="file" name="surat_pengantar" accept=".pdf"
+                                            class="w-full px-3 py-2 rounded-xl border border-slate-200 text-xs text-slate-500 file:mr-3 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-slate-100 file:text-slate-700 hover:file:bg-slate-200">
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-slate-700 mb-1">Catatan / Motivasi untuk Perusahaan</label>
+                                    <textarea name="catatan" rows="3" placeholder="Tuliskan alasan atau motivasi Anda memilih tempat PKL ini..."
+                                        class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500"></textarea>
+                                </div>
+
+                                <button type="submit"
+                                    class="w-full py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200 cursor-pointer">
+                                    Kirim Pengajuan Lamaran PKL
+                                </button>
+                            </form>
+                        @else
+                            <div class="p-4 rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs">
+                                Akun Anda terdaftar sebagai <strong>{{ Auth::user()->getRoleNames()->first() ?? 'User' }}</strong>. Untuk mengajukan lamaran PKL, silakan gunakan akun Siswa.
+                            </div>
+                        @endif
+                    @endguest
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openDetailModal(id, judul, perusahaan, tipe, lokasi, jurusan, kuota, deskripsi, persyaratan) {
+            document.getElementById('modal-form-lowongan-id').value = id;
+            document.getElementById('modal-judul').textContent = judul;
+            document.getElementById('modal-perusahaan').textContent = perusahaan;
+            document.getElementById('modal-tipe-lokasi').textContent = tipe + ' • ' + lokasi;
+            document.getElementById('modal-kuota').textContent = 'Sisa: ' + kuota + ' Kursi';
+            document.getElementById('modal-jurusan').textContent = jurusan;
+            document.getElementById('modal-deskripsi').textContent = deskripsi || 'Tidak ada deskripsi khusus.';
+            document.getElementById('modal-persyaratan').textContent = persyaratan || 'Tidak ada persyaratan khusus.';
+
+            const modal = document.getElementById('modal-detail');
+            modal.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeDetailModal() {
+            const modal = document.getElementById('modal-detail');
+            modal.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        // Close on ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeDetailModal();
+            }
+        });
+    </script>
 @endsection

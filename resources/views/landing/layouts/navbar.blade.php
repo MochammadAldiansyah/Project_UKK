@@ -20,16 +20,26 @@
 
             <!-- Action Buttons -->
             <div class="hidden md:flex items-center gap-4">
+                @auth
+                    <a href="{{ route('dashboard') }}"
+                        class="text-sm font-semibold text-slate-700 hover:text-blue-600 transition-colors">
+                        Halo, {{ Str::limit(Auth::user()->name, 12) }}
+                    </a>
+                    <a href="{{ route('dashboard') }}"
+                        class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow transition-all duration-200">
+                        Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('register') }}"
+                        class="text-sm font-semibold text-[#2563EB] bg-[#F5F3FF] rounded-lg hover:text-blue-600 transition-colors px-3 py-2">
+                        Daftar
+                    </a>
 
-                <a href="{{ route('register') }}"
-                    class="text-sm font-semibold text-[#2563EB]  bg-[#F5F3FF] rounded-lg hover:text-blue-600 transition-colors px-3 py-2">
-                    Daftar
-                </a>
-
-                <a href="{{ route('login') }}"
-                    class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow transition-all duration-200">
-                    Login
-                </a>
+                    <a href="{{ route('login') }}"
+                        class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow transition-all duration-200">
+                        Login
+                    </a>
+                @endauth
             </div>
 
             <!-- Mobile menu button -->
@@ -74,15 +84,22 @@
             </a>
 
             <div class="menu-item pt-4 border-t border-slate-100/80 flex flex-col gap-2.5">
-                <a href="{{ route('register') }}"
-                    class="w-full text-center py-2.5 text-sm font-semibold text-[#2563EB] hover:bg-blue-50 rounded-xl border border-blue-200/60 bg-[#F5F3FF] transition-colors">
-                    Daftar
-                </a>
+                @auth
+                    <a href="{{ route('dashboard') }}"
+                        class="w-full text-center py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-semibold rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200">
+                        Buka Dashboard ({{ Auth::user()->name }})
+                    </a>
+                @else
+                    <a href="{{ route('register') }}"
+                        class="w-full text-center py-2.5 text-sm font-semibold text-[#2563EB] hover:bg-blue-50 rounded-xl border border-blue-200/60 bg-[#F5F3FF] transition-colors">
+                        Daftar
+                    </a>
 
-                <a href="{{ route('login') }}"
-                    class="w-full text-center py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-semibold rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200">
-                    Login
-                </a>
+                    <a href="{{ route('login') }}"
+                        class="w-full text-center py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white text-sm font-semibold rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200">
+                        Login
+                    </a>
+                @endauth
             </div>
         </div>
     </div>
