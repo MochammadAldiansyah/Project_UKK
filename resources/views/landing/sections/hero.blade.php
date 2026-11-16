@@ -16,7 +16,7 @@
 
         <!-- Hero text content -->
         <div
-            class="w-full lg:w-auto lg:max-w-[540px] xl:max-w-[620px] 2xl:max-w-[703px] lg:h-[351px] flex flex-col justify-between text-left z-10 py-2 lg:py-0 shrink-0">
+            class="w-full lg:w-auto lg:max-w-[540px] xl:max-w-[620px] 2xl:max-w-[703px] lg:h-[351px] flex flex-col justify-between text-left z-10 py-2 lg:py-0 shrink-0 scroll-reveal">
             <div class="space-y-4 sm:space-y-6">
                 <h1
                     class="font-urbanist text-4xl sm:text-[56px] lg:text-[56px] font-bold text-[#333333] leading-[1.2] tracking-normal max-w-[703px]">
@@ -44,7 +44,7 @@
         </div>
 
         <!-- Hero illustration -->
-        <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end z-10 min-w-0">
+        <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end z-10 min-w-0 scroll-reveal-scale delay-150">
             <div
                 class="relative w-full max-w-[500px] sm:max-w-[700px] lg:max-w-none lg:w-[480px] xl:w-[350px] 2xl:w-[370px] flex items-center justify-center lg:justify-end">
                 <img src="{{ asset('assets/image/hero-illustration.svg') }}"

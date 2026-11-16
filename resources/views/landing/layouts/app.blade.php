@@ -37,6 +37,7 @@
             @yield('content')
         </main>
     </div>
+    @include('landing.layouts.footer')
 
     <!-- Lenis Smooth Scroll CDN -->
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>

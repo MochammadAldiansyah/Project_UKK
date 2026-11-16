@@ -3,7 +3,7 @@
     <!-- Main container -->
     <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px] relative z-10">
         <!-- Section header -->
-        <div class="text-center max-w-[760px] mx-auto mb-10 lg:mb-12">
+        <div class="text-center max-w-[760px] mx-auto mb-10 lg:mb-12 scroll-reveal">
             <span
                 class="inline-flex px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-blue-600 bg-[#1F5EFF1A] border border-[#1F5EFF33] uppercase shadow-2xs mb-4">
                 Ekosistem Sinergis
@@ -20,7 +20,7 @@
         </div>
 
         <!-- Tab navigation -->
-        <div class="flex items-center justify-center mb-10 lg:mb-14">
+        <div class="flex items-center justify-center mb-10 lg:mb-14 scroll-reveal delay-100">
             <div class="inline-flex p-1.5 rounded-2xl bg-slate-100 border border-slate-200/80 gap-1 sm:gap-1.5">
                 <button type="button" data-tab-target="panel-siswa"
                     class="tab-btn px-5 sm:px-7 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 bg-blue-600 text-white shadow-md shadow-blue-500/20 cursor-pointer">
@@ -39,7 +39,7 @@
 
         <!-- Tab panel: Siswa -->
         <div id="panel-siswa" class="tab-panel transition-all duration-300 opacity-100 translate-y-0">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch scroll-reveal delay-200">
                 <!-- Feature list -->
                 <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
                     <!-- Feature: Pengajuan Online -->
@@ -48,7 +48,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-student-apply.svg') }}"
-                                alt="Pengajuan PKL Online" class="w-5 h-5 select-none">
+                                alt="Pengajuan PKL Online" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -67,7 +67,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-student-journal.svg') }}"
-                                alt="Jurnal Kegiatan Digital" class="w-5 h-5 select-none">
+                                alt="Jurnal Kegiatan Digital" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -86,7 +86,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-student-chatbot.svg') }}"
-                                alt="VocatiBot AI Mentor" class="w-5 h-5 select-none">
+                                alt="VocatiBot AI Mentor" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -105,7 +105,7 @@
                     <div
                         class="relative w-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-200/70 border border-slate-200/80 p-5 sm:p-7 flex flex-col justify-end shadow-sm group">
                         <img src="{{ asset('assets/image/ecosystem-preview.svg') }}" alt="Foto Siswa"
-                            class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
+                            class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none" loading="lazy" decoding="async">
                         <!-- Quote card -->
                         <div
                             class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
@@ -133,7 +133,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-school-monitoring.svg') }}"
-                                alt="Monitoring PKL Siswa" class="w-5 h-5 select-none">
+                                alt="Monitoring PKL Siswa" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -152,7 +152,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-school-validation.svg') }}"
-                                alt="Validasi Jurnal & Penilaian" class="w-5 h-5 select-none">
+                                alt="Validasi Jurnal & Penilaian" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -171,7 +171,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-school-partnership.svg') }}"
-                                alt="Database Mitra Industri" class="w-5 h-5 select-none">
+                                alt="Database Mitra Industri" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -190,7 +190,7 @@
                     <div
                         class="relative w-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-200/70 border border-slate-200/80 p-5 sm:p-7 flex flex-col justify-end shadow-sm group">
                         <img src="{{ asset('assets/image/ecosystem-preview.svg') }}" alt="Foto Sekolah & Guru"
-                            class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
+                            class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none" loading="lazy" decoding="async">
                         <!-- Quote card -->
                         <div
                             class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
@@ -218,7 +218,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-company-talent.svg') }}"
-                                alt="Akses Talenta Siswa" class="w-5 h-5 select-none">
+                                alt="Akses Talenta Siswa" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -237,7 +237,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-company-evaluation.svg') }}"
-                                alt="Penilaian Digital Praktis" class="w-5 h-5 select-none">
+                                alt="Penilaian Digital Praktis" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -255,7 +255,7 @@
                         <div
                             class="w-12 h-12 rounded-xl bg-[#E9EFFD] flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-200">
                             <img src="{{ asset('assets/image/icon/eco-company-contribution.svg') }}"
-                                alt="Kontribusi Nyata Pendidikan" class="w-5 h-5 select-none">
+                                alt="Kontribusi Nyata Pendidikan" class="w-5 h-5 select-none" loading="lazy" decoding="async">
                         </div>
                         <div class="flex-1">
                             <h3 class="text-base sm:text-lg font-bold text-slate-900 mb-1">
@@ -274,7 +274,22 @@
                     <div
                         class="relative w-full min-h-[360px] sm:min-h-[420px] rounded-3xl overflow-hidden bg-gradient-to-br from-slate-100 via-blue-50/40 to-slate-200/70 border border-slate-200/80 p-5 sm:p-7 flex flex-col justify-end shadow-sm group">
                         <img src="{{ asset('assets/image/ecosystem-preview.svg') }}" alt="Foto Perusahaan & DUDI"
-                            class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none">
+                            class="rounded-2xl w-full h-full object-cover absolute top-0 left-0 select-none" loading="lazy" decoding="async">
+                        <!-- Quote card -->
+                        <div
+                            class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
+                            <span class="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2 block">
+                                Dashboard Mitra Industri
+                            </span>
+                            <p class="text-sm sm:text-base font-medium text-[#171D1C] leading-relaxed italic">
+                                "Merekrut talenta SMK yang siap kerja dan memantau evaluasi magang kini lebih cepat
+                                serta terdata rapi."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                         <!-- Quote card -->
                         <div
                             class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">

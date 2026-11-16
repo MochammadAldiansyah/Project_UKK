@@ -5,9 +5,9 @@
 
     <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px]">
         <!-- Section header -->
-        <div class="text-center max-w-[760px] mx-auto mb-12 sm:mb-14 lg:mb-16">
+        <div class="text-center max-w-[760px] mx-auto mb-12 sm:mb-14 lg:mb-16 scroll-reveal">
             <span
-                class="inline-flex px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-blue-600 bg-[#1F5EFF1A] border border-[#1F5EFF33] uppercase shadow-2xs mb-3 sm:mb-4">
+                class="inline-flex px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-[#2563EB] bg-[#1F5EFF1A] border border-[#1F5EFF33] uppercase shadow-2xs mb-3 sm:mb-4">
                 Testimoni Pengguna
             </span>
 
@@ -21,7 +21,7 @@
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
             <!-- Testimonial card: Rizky Aditya (Siswa) -->
             <div
-                class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group scroll-reveal delay-100">
                 <div>
                     <!-- Rating stars -->
                     <div class="flex items-center gap-1.5 mb-5 text-[#2563EB]">
@@ -73,7 +73,7 @@
 
             <!-- Testimonial card: Bambang Nugroho, M.Pd. (Guru / Hubin) -->
             <div
-                class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group scroll-reveal delay-200">
                 <div>
                     <!-- Rating stars -->
                     <div class="flex items-center gap-1.5 mb-5 text-[#2563EB]">
@@ -125,7 +125,7 @@
 
             <!-- Testimonial card: Siti Putri Anggraini (Siswa) -->
             <div
-                class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group">
+                class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group scroll-reveal delay-300">
                 <div>
                     <!-- Rating stars -->
                     <div class="flex items-center gap-1.5 mb-5 text-[#2563EB]">

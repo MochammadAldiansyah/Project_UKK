@@ -16,7 +16,7 @@
     <!-- Main container -->
     <div class="w-full max-w-[1512px] mx-auto px-4 sm:px-6 lg:px-8 xl:pl-[117px] xl:pr-[115px] relative z-10">
         <!-- Section header -->
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 sm:mb-12 scroll-reveal">
             <div>
                 <span
                     class="inline-flex px-4 py-1.5 rounded-full text-xs font-bold tracking-wider text-blue-600 bg-blue-50/90 border border-blue-200/70 uppercase shadow-2xs mb-3 sm:mb-4">
@@ -46,13 +46,13 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             <!-- Card: Frontend Web Developer -->
             <div
-                class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
+                class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer scroll-reveal delay-100">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <div
                             class="w-10 h-10 rounded-xl bg-[#DBE1FF] text-blue-600 flex items-center justify-center font-bold text-sm">
                             <img src="{{ asset('assets/image/icon/vacancy-engineering.svg') }}"
-                                alt="Frontend Web Developer" class="select-none">
+                                alt="Frontend Web Developer" class="select-none" loading="lazy" decoding="async">
                         </div>
 
                         <span
@@ -100,13 +100,13 @@
 
             <!-- Card: Multimedia Content Creator -->
             <div
-                class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
+                class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer scroll-reveal delay-200">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <div
                             class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
                             <img src="{{ asset('assets/image/icon/vacancy-multimedia.svg') }}"
-                                alt="Multimedia Content Creator" class="select-none">
+                                alt="Multimedia Content Creator" class="select-none" loading="lazy" decoding="async">
                         </div>
 
                         <span
@@ -154,13 +154,13 @@
 
             <!-- Card: Staff Administrasi & Akuntansi -->
             <div
-                class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer">
+                class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer scroll-reveal delay-300">
                 <div>
                     <div class="flex items-center justify-between mb-4">
                         <div
                             class="w-10 h-10 rounded-xl bg-[#CCFFD9] text-emerald-600 flex items-center justify-center">
                             <img src="{{ asset('assets/image/icon/vacancy-accounting.svg') }}"
-                                alt="Staff Administrasi & Akuntansi" class="select-none">
+                                alt="Staff Administrasi & Akuntansi" class="select-none" loading="lazy" decoding="async">
                         </div>
 
                         <span

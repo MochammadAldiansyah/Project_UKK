@@ -110,6 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     initNavbarScroll();
     initEcosystemTabs();
+    initScrollAnimations();
 });
 
 // ==========================================================================
@@ -181,5 +182,36 @@ function initEcosystemTabs() {
         });
     });
 }
+
+// ==========================================================================
+// Scroll-Triggered Entrance Animations (IntersectionObserver)
+// ==========================================================================
+function initScrollAnimations() {
+    const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-scale');
+    if (!revealElements.length) return;
+
+    // Respect reduced-motion preferences
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        revealElements.forEach(el => el.classList.add('is-revealed'));
+        return;
+    }
+
+    const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-revealed');
+                // Unobserve after initial reveal to release resources
+                obs.unobserve(entry.target);
+            }
+        });
+    }, {
+        root: null,
+        rootMargin: '0px 0px -40px 0px',
+        threshold: 0.08
+    });
+
+    revealElements.forEach(el => observer.observe(el));
+}
+
 
 
