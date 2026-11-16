@@ -1,2 +1,2 @@
 [phases.setup]
-nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.xml", "php84Extensions.bcmath", "php84Extensions.curl"]
+nixPkgs = ["php84", "php84Extensions.mbstring", "php84Extensions.xml", "php84Extensions.bcmath", "php84Extensions.curl", "nodejs_20"]
