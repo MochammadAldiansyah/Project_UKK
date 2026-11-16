@@ -4,13 +4,12 @@
     <div
         class="relative w-full bg-[#2563EB] rounded-t-[32px] sm:rounded-t-[40px] lg:rounded-t-[48px] overflow-hidden pt-12 sm:pt-16 lg:pt-[90px] pb-12 sm:pb-16 text-white">
         <!-- Background illustration -->
-        <img src="{{ asset('assets/image/component/footer_ilus.png') }}" alt=""
+        <img src="{{ asset('assets/image/component/footer_illus.svg') }}" alt="footer illustration"
             class="pointer-events-none absolute left-0 bottom-0 max-w-none w-[420px] sm:w-[560px] lg:w-[680px] h-auto object-contain select-none z-0 opacity-90 sm:opacity-100"
             loading="lazy" decoding="async">
 
         <!-- Content container-->
         <div class="w-full max-w-[1294px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- CTA glassmorphism card (Figma: 1294px x 244px, Radius 16px, Border 1.5px) -->
             <div class="relative mb-12 sm:mb-16 lg:mb-20 scroll-reveal-scale">
 
                 <!-- Card container -->
@@ -42,7 +41,7 @@
                 </div>
             </div>
 
-            <!-- Links & social media section (Links mentok kanan) -->
+            <!-- Links & social media section -->
             <div class="flex flex-col md:flex-row items-start justify-between gap-10 scroll-reveal delay-100">
                 <!-- Social media column (Left) -->
                 <div class="shrink-0">
@@ -79,7 +78,7 @@
                     </div>
                 </div>
 
-                <!-- Navigation columns (Right - pushed to far right) -->
+                <!-- Navigation columns -->
                 <div class="flex flex-wrap sm:flex-nowrap gap-10 sm:gap-14 lg:gap-16 xl:gap-20">
                     <!-- Column: Platform -->
                     <div>
@@ -163,7 +162,7 @@
     <!-- Copyright bottom bar -->
     <div class="w-full bg-white py-4 sm:py-5 border-t border-slate-100">
         <div class="w-full max-w-[1294px] mx-auto px-4 sm:px-6 lg:px-8">
-            <p class="text-xs sm:text-sm text-slate-500 text-center sm:text-left">
+            <p class="text-xs sm:text-sm text-[#1E4FBC] text-center sm:text-left">
                 &copy; 2026 Portal PKL All rights reserved &middot; Made by rplsmkantartika1
             </p>
         </div>

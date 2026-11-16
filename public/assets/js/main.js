@@ -1,6 +1,6 @@
-// ==========================================================================
+
 // Mobile Navigation Drawer
-// ==========================================================================
+
 function initMobileMenu() {
     const header = document.getElementById('main-navbar') || document.getElementById('main-header');
     const menuBtn = document.getElementById('mobile-menu-btn');
@@ -63,9 +63,9 @@ function initMobileMenu() {
     });
 }
 
-// ==========================================================================
+
 // Lenis Smooth Scroll
-// ==========================================================================
+
 document.addEventListener('DOMContentLoaded', function () {
     initMobileMenu();
 
@@ -113,9 +113,9 @@ document.addEventListener('DOMContentLoaded', function () {
     initScrollAnimations();
 });
 
-// ==========================================================================
+
 // Floating Pill Navbar Scroll Animation
-// ==========================================================================
+
 function initNavbarScroll() {
     const header = document.getElementById('main-navbar') || document.getElementById('main-header');
     if (!header) return;
@@ -144,9 +144,9 @@ function initNavbarScroll() {
     }
 }
 
-// ==========================================================================
+
 // Ecosystem Section Tabs
-// ==========================================================================
+
 function initEcosystemTabs() {
     const tabButtons = document.querySelectorAll('[data-tab-target]');
     const tabPanels = document.querySelectorAll('.tab-panel');
@@ -183,9 +183,9 @@ function initEcosystemTabs() {
     });
 }
 
-// ==========================================================================
+
 // Scroll-Triggered Entrance Animations (IntersectionObserver)
-// ==========================================================================
+
 function initScrollAnimations() {
     const revealElements = document.querySelectorAll('.scroll-reveal, .scroll-reveal-scale');
     if (!revealElements.length) return;

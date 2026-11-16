@@ -27,37 +27,37 @@
             <div class="flex items-center gap-6 shrink-0 pr-6">
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU"
+                    <img src="{{ asset('assets/image/logo/partner-daihatsu.svg') }}" alt="DAIHATSU"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="HummaTech"
+                    <img src="{{ asset('assets/image/logo/partner-hummatech.svg') }}" alt="HummaTech"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="favehotels"
+                    <img src="{{ asset('assets/image/logo/partner-favehotel.svg') }}" alt="favehotels"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-garudaspark.svg') }}" alt="GARUDA SPARK"
+                    <img src="{{ asset('assets/image/logo/partner-garudaspark.svg') }}" alt="GARUDA SPARK"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA"
+                    <img src="{{ asset('assets/image/logo/partner-japfa.svg') }}" alt="JAPFA"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="Mitra Perusahaan"
+                    <img src="{{ asset('assets/image/logo/partner_jagoan.png') }}" alt="jagoan hosting"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
             </div>
@@ -66,37 +66,31 @@
             <div class="flex items-center gap-6 shrink-0 pr-6">
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-daihatsu.svg') }}" alt="DAIHATSU"
+                    <img src="{{ asset('assets/image/logo/partner_amigroup.png') }}" alt="amigroup"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-favehotel.svg') }}" alt="HummaTech"
+                    <img src="{{ asset('assets/image/logo/partner_maspion.png') }}" alt="maspion"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-garudaspark.svg') }}" alt="favehotels"
+                    <img src="{{ asset('assets/image/logo/partner_oracle.png') }}" alt="oracle"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="GARUDA SPARK"
+                    <img src="{{ asset('assets/image/logo/partner_itbrain.png') }}" alt="itbrain"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
 
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-japfa.svg') }}" alt="JAPFA"
-                        class="h-full object-contain" loading="lazy" decoding="async">
-                </div>
-
-                <div
-                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/partner-hummatech.svg') }}" alt="Mitra Perusahaan"
+                    <img src="{{ asset('assets/image/logo/partner-daihatsu.svg') }}" alt="Daihatsu"
                         class="h-full object-contain" loading="lazy" decoding="async">
                 </div>
             </div>

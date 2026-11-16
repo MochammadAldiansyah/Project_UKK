@@ -33,8 +33,8 @@
                 <a href="#lowongan"
                     class="inline-flex items-center gap-2.5 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm rounded-xl shadow-md shadow-blue-500/20 hover:shadow-lg hover:shadow-blue-500/30 transition-all duration-200 group cursor-pointer">
                     <span>Lihat Semua Lowongan</span>
-                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1"
-                        viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg class="w-4 h-4 transition-transform duration-200 group-hover:translate-x-1" viewBox="0 0 16 16"
+                        fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M3.33337 8H12.6667M12.6667 8L8.66671 4M12.6667 8L8.66671 12" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
@@ -103,8 +103,7 @@
                 class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer scroll-reveal delay-200">
                 <div>
                     <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
+                        <div class="w-10 h-10 rounded-xl bg-[#FFEEDF] text-orange-500 flex items-center justify-center">
                             <img src="{{ asset('assets/image/icon/vacancy-multimedia.svg') }}"
                                 alt="Multimedia Content Creator" class="select-none" loading="lazy" decoding="async">
                         </div>
@@ -160,7 +159,8 @@
                         <div
                             class="w-10 h-10 rounded-xl bg-[#CCFFD9] text-emerald-600 flex items-center justify-center">
                             <img src="{{ asset('assets/image/icon/vacancy-accounting.svg') }}"
-                                alt="Staff Administrasi & Akuntansi" class="select-none" loading="lazy" decoding="async">
+                                alt="Staff Administrasi & Akuntansi" class="select-none" loading="lazy"
+                                decoding="async">
                         </div>
 
                         <span

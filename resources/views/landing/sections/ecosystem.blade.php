@@ -290,17 +290,7 @@
                 </div>
             </div>
         </div>
-                        <!-- Quote card -->
-                        <div
-                            class="relative z-10 p-5 sm:p-6 rounded-2xl bg-[#F0F2F4] backdrop-blur-md border border-white/10 shadow-xl transition-all duration-200 group-hover:bg-slate-100">
-                            <span class="text-xs font-bold tracking-wider text-blue-400 uppercase mb-2 block">
-                                Dashboard Mitra Industri
-                            </span>
-                            <p class="text-sm sm:text-base font-medium text-[#171D1C] leading-relaxed italic">
-                                "Merekrut talenta SMK yang siap kerja dan memantau evaluasi magang kini lebih cepat
-                                serta terdata rapi."
-                            </p>
-                        </div>
+                  
                     </div>
                 </div>
             </div>

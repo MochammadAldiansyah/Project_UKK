@@ -1,6 +1,6 @@
-/* ==========================================================================
+/*
    Project UKK - Custom Styles
-   ========================================================================== */
+   */
 
 /* Typography */
 .font-urbanist {
@@ -44,6 +44,7 @@
     0% {
         transform: translateX(0%);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -67,9 +68,9 @@
     }
 }
 
-/* ==========================================================================
+/*
    Lenis Smooth Scroll
-   ========================================================================== */
+   */
 html.lenis,
 html.lenis body {
     height: auto;
@@ -91,9 +92,7 @@ html.lenis body {
     pointer-events: none;
 }
 
-/* ==========================================================================
-   Floating Pill Navbar
-   ========================================================================== */
+/*  Floating Pill Navbar */
 #main-navbar,
 #main-header {
     background-color: transparent !important;
@@ -108,12 +107,12 @@ html.lenis body {
     border: 1px solid transparent;
     box-shadow: none;
     transition: max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        padding 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #navbar-inner {
@@ -152,9 +151,9 @@ html.lenis body {
     height: 3.75rem;
 }
 
-/* ==========================================================================
+/*
    Mobile Navigation Dropdown
-   ========================================================================== */
+   */
 #mobile-menu-wrapper {
     position: absolute;
     top: 100%;
@@ -171,12 +170,12 @@ html.lenis body {
     pointer-events: none;
     z-index: 20;
     transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                visibility 0.4s,
-                width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        visibility 0.4s,
+        width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        max-width 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        margin-top 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 #mobile-menu-wrapper.is-open {
@@ -187,7 +186,7 @@ html.lenis body {
     pointer-events: auto;
 }
 
-#mobile-menu-wrapper > #mobile-menu {
+#mobile-menu-wrapper>#mobile-menu {
     overflow: hidden;
 }
 
@@ -202,9 +201,9 @@ html.lenis body {
     border-radius: 0 0 1.25rem 1.25rem;
     box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.08);
     transition: border-radius 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Menu item cascade animation */
@@ -212,9 +211,9 @@ html.lenis body {
     opacity: 0;
     transform: translateY(-10px);
     transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                background-color 0.2s ease,
-                color 0.2s ease;
+        transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+        background-color 0.2s ease,
+        color 0.2s ease;
 }
 
 #mobile-menu-wrapper.is-open .menu-item:nth-child(1) {
@@ -262,14 +261,14 @@ html.lenis body {
     box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.12), 0 10px 15px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* ==========================================================================
+/*
    Scroll-Triggered Entrance Animations
-   ========================================================================== */
+   */
 .scroll-reveal {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
@@ -277,7 +276,7 @@ html.lenis body {
     opacity: 0;
     transform: translateY(24px) scale(0.96);
     transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: opacity, transform;
 }
 
@@ -317,6 +316,7 @@ html.lenis body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .scroll-reveal,
     .scroll-reveal-scale {
         opacity: 1 !important;
@@ -324,5 +324,3 @@ html.lenis body {
         transition: none !important;
     }
 }
-
-

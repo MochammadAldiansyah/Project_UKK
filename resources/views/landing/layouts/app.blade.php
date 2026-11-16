@@ -37,7 +37,9 @@
             @yield('content')
         </main>
     </div>
-    @include('landing.layouts.footer')
+   @if (!request()->is('login') && !request()->is('register'))
+        @include('landing.layouts.footer')
+    @endif
 
     <!-- Lenis Smooth Scroll CDN -->
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
