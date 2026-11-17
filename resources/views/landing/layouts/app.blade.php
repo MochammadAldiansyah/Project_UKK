@@ -26,8 +26,9 @@
 
 </head>
 
-<body class="font-sans antialiased bg-white text-slate-800 overflow-x-hidden">
-    <div class="min-h-screen bg-white">
+<body>
+    <div
+        class="{{ request()->is('login') || request()->is('register') ? 'h-full bg-white' : 'min-h-screen bg-white' }}">
         @if (!request()->is('login') && !request()->is('register'))
             @include('landing.layouts.navbar')
         @endif
@@ -37,12 +38,13 @@
             @yield('content')
         </main>
     </div>
-   @if (!request()->is('login') && !request()->is('register'))
+    @if (!request()->is('login') && !request()->is('register'))
         @include('landing.layouts.footer')
     @endif
 
-    <!-- Lenis Smooth Scroll CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+        <!-- Lenis Smooth Scroll CDN -->
+        <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+
 
     <!-- Main JavaScript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>

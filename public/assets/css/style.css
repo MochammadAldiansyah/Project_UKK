@@ -9,7 +9,10 @@
 
 .font-plex-serif {
     font-family: 'IBM Plex Serif', serif;
+}
 
+.font-roboto {
+    font-family: 'Roboto', sans-serif;
 }
 
 /* Hero Background Decorations */
@@ -42,11 +45,11 @@
 /* Partner Logos Marquee */
 @keyframes marqueeScroll {
     0% {
-        transform: translateX(0%);
+        transform: translate3d(0, 0, 0);
     }
 
     100% {
-        transform: translateX(-50%);
+        transform: translate3d(-50%, 0, 0);
     }
 }
 
@@ -54,7 +57,9 @@
     display: flex;
     width: max-content;
     will-change: transform;
-    animation: marqueeScroll 25s linear infinite;
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation: marqueeScroll 35s linear infinite;
 }
 
 .animate-marquee:hover {

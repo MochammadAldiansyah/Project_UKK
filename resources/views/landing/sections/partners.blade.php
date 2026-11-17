@@ -21,77 +21,151 @@
             class="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-28 md:w-44 bg-gradient-to-l from-white to-transparent z-10">
         </div>
 
-        <!-- Marquee track -->
+        <!-- Marquee track container -->
         <div class="animate-marquee flex items-center py-2 select-none">
-            <!-- Logo track: primary -->
+            <!-- Logo track: Primary (10 Partners) -->
             <div class="flex items-center gap-6 shrink-0 pr-6">
+                <!-- Daihatsu -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
                     <img src="{{ asset('assets/image/logo/partner-daihatsu.svg') }}" alt="DAIHATSU"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- HummaTech -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
                     <img src="{{ asset('assets/image/logo/partner-hummatech.svg') }}" alt="HummaTech"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- favehotels -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
                     <img src="{{ asset('assets/image/logo/partner-favehotel.svg') }}" alt="favehotels"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- Garuda Spark -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
                     <img src="{{ asset('assets/image/logo/partner-garudaspark.svg') }}" alt="GARUDA SPARK"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- Japfa -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
                     <img src="{{ asset('assets/image/logo/partner-japfa.svg') }}" alt="JAPFA"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- Jagoan Hosting -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/logo/partner_jagoan.png') }}" alt="jagoan hosting"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                    <img src="{{ asset('assets/image/logo/partner_jagoan.webp') }}" alt="Jagoan Hosting"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- Ami Group -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_amigroup.webp') }}" alt="Ami Group"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- Maspion -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_maspion.webp') }}" alt="Maspion"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- Oracle -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_oracle.webp') }}" alt="Oracle"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- IT Brain -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_itbrain.webp') }}" alt="IT Brain"
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
             </div>
 
-            <!-- Logo track: duplicate (for seamless loop) -->
-            <div class="flex items-center gap-6 shrink-0 pr-6">
+            <!-- Logo track: Duplicate for 100% seamless infinite loop -->
+            <div class="flex items-center gap-6 shrink-0 pr-6" aria-hidden="true">
+                <!-- Daihatsu -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/logo/partner_amigroup.png') }}" alt="amigroup"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                    <img src="{{ asset('assets/image/logo/partner-daihatsu.svg') }}" alt="DAIHATSU"
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- HummaTech -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/logo/partner_maspion.png') }}" alt="maspion"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                    <img src="{{ asset('assets/image/logo/partner-hummatech.svg') }}" alt="HummaTech"
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- favehotels -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/logo/partner_oracle.png') }}" alt="oracle"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                    <img src="{{ asset('assets/image/logo/partner-favehotel.svg') }}" alt="favehotels"
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- Garuda Spark -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/logo/partner_itbrain.png') }}" alt="itbrain"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                    <img src="{{ asset('assets/image/logo/partner-garudaspark.svg') }}" alt="GARUDA SPARK"
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
 
+                <!-- Japfa -->
                 <div
                     class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
-                    <img src="{{ asset('assets/image/logo/partner-daihatsu.svg') }}" alt="Daihatsu"
-                        class="h-full object-contain" loading="lazy" decoding="async">
+                    <img src="{{ asset('assets/image/logo/partner-japfa.svg') }}" alt="JAPFA"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- Jagoan Hosting -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_jagoan.webp') }}" alt="Jagoan Hosting"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- Ami Group -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_amigroup.webp') }}" alt="Ami Group"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- Maspion -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_maspion.webp') }}" alt="Maspion"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- Oracle -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_oracle.webp') }}" alt="Oracle"
+                        class="h-full object-contain pointer-events-none select-none">
+                </div>
+
+                <!-- IT Brain -->
+                <div
+                    class="w-[237px] h-[97px] px-6 py-4 bg-white rounded-2xl border border-slate-200/80 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-center justify-center shrink-0 group/card cursor-pointer">
+                    <img src="{{ asset('assets/image/logo/partner_itbrain.webp') }}" alt="IT Brain"
+                        class="h-full object-contain pointer-events-none select-none">
                 </div>
             </div>
         </div>
