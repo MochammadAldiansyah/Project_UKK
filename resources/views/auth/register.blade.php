@@ -1,123 +1,170 @@
 @extends('landing.layouts.app')
-
 @section('content')
     <div class="relative w-full h-full min-h-screen lg:min-h-0 lg:h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto lg:overflow-hidden">
 
-        <!-- Back to landing -->
-        <a href="{{ url('/') }}" aria-label="Kembali ke beranda"
-            class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 inline-flex items-center justify-center p-2 rounded-xl hover:bg-slate-100 active:bg-slate-200 transition-colors duration-200 z-20">
-            <img src="{{ asset('assets/image/icon/arrow.svg') }}" alt="" width="22" height="20"
-                class="w-[18px] md:w-[22px] h-auto">
-        </a>
+        <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
 
-        <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center">
-
-            <!-- Left column: Illustration showcase -->
-            <div class="hidden lg:flex lg:col-span-6 xl:col-span-7 items-center justify-center h-full max-h-[min(85vh,820px)]">
-                <div class="relative h-full max-h-[min(85vh,820px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
+            <!-- Kolom kiri: Ilustrasi -->
+            <div class="hidden lg:flex items-center justify-center h-full max-h-[min(88vh,850px)]">
+                <div class="relative h-full max-h-[min(88vh,850px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
                     <img src="{{ asset('assets/image/component/regis_ilus.svg') }}"
                         alt="Ilustrasi Registrasi Akun Siswa"
-                        class="h-full w-auto max-h-[min(85vh,820px)] max-w-full object-contain rounded-[24px]"
+                        class="h-full w-auto max-h-[min(88vh,850px)] max-w-full object-contain rounded-[24px]"
                         loading="eager" fetchpriority="high">
                 </div>
             </div>
 
-            <!-- Right column: Registration form -->
-            <div class="lg:col-span-6 xl:col-span-5 flex flex-col justify-center max-w-[420px] xl:max-w-[460px] mx-auto w-full py-2">
-                <!-- Brand logo -->
-                <div class="mb-3 sm:mb-4">
+            <!-- Kolom kanan: Form registrasi -->
+            <div class="flex flex-col justify-center max-w-[420px] xl:max-w-[460px] mx-auto w-full py-2">
+                <!-- Logo brand -->
+                <div class="mb-4 sm:mb-5">
                     <a href="{{ url('/') }}" class="inline-block">
                         <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-7 sm:h-8">
                     </a>
                 </div>
 
-                <!-- Form header -->
+                <!-- Header form -->
                 <div class="mb-4 sm:mb-5">
-                    <h1 class="font-urbanist text-2xl sm:text-3xl font-semibold text-[#1E293B] tracking-tight mb-1">
+                    <h1 class="font-urbanist text-2xl sm:text-[28px] font-semibold text-[#1E293B] mb-1">
                         Buat Akun Baru
                     </h1>
-                    <p class="text-xs sm:text-lg text-slate-500 leading-relaxed">
+                    <p class="text-sm sm:text-lg text-[#313957] leading-relaxed">
                         Selamat datang! Isi data berikut untuk membuat akun Anda.
                     </p>
                 </div>
 
-                <!-- Registration form -->
-                <form method="POST" action="{{ route('register') }}" class="space-y-2.5 sm:space-y-3">
+                <!-- Form registrasi -->
+                <form method="POST" action="{{ route('register') }}" class="space-y-3" novalidate>
                     @csrf
 
-                    <!-- Name input -->
+                    <!-- Input nama -->
                     <div>
-                        <label for="name" class="block text-xs font-semibold text-slate-700 mb-1">
+                        <label for="name" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Nama
                         </label>
-                        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus
-                            autocomplete="name" placeholder="Nama"
-                            class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border @error('name') border-red-400 bg-red-50/30 @else border-slate-200/90 bg-white @enderror text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4F11F0]/20 focus:border-[#4F11F0] transition-all">
+                        <div class="relative">
+                            <input id="name" type="text" name="name" value="{{ old('name') }}" required
+                                autofocus autocomplete="name" placeholder="Nama"
+                                aria-describedby="name-error"
+                                class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('name') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
+                            @error('name')
+                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            @enderror
+                        </div>
                         @error('name')
-                            <p class="text-xs text-red-500 mt-1 font-medium">{{ $message }}</p>
+                            <p id="name-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
+                                <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
-                    <!-- Email input -->
+                    <!-- Input email -->
                     <div>
-                        <label for="email" class="block text-xs font-semibold text-slate-700 mb-1">
+                        <label for="email" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Email
                         </label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                            autocomplete="username" placeholder="Example@email.com"
-                            class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border @error('email') border-red-400 bg-red-50/30 @else border-slate-200/90 bg-white @enderror text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4F11F0]/20 focus:border-[#4F11F0] transition-all">
+                        <div class="relative">
+                            <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                                autocomplete="username" placeholder="Example@gmail.com"
+                                aria-describedby="email-error"
+                                class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('email') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
+                            @error('email')
+                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            @enderror
+                        </div>
                         @error('email')
-                            <p class="text-xs text-red-500 mt-1 font-medium">{{ $message }}</p>
+                            <p id="email-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
+                                <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
-                    <!-- Password input -->
+                    <!-- Input password -->
                     <div>
-                        <label for="password" class="block text-xs font-semibold text-slate-700 mb-1">
+                        <label for="password" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Password
                         </label>
-                        <input id="password" type="password" name="password" required autocomplete="new-password"
-                            placeholder="Password"
-                            class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border @error('password') border-red-400 bg-red-50/30 @else border-slate-200/90 bg-white @enderror text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4F11F0]/20 focus:border-[#4F11F0] transition-all">
+                        <div class="relative">
+                            <input id="password" type="password" name="password" required
+                                autocomplete="new-password" placeholder="Password"
+                                aria-describedby="password-error"
+                                class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('password') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
+                            @error('password')
+                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            @enderror
+                        </div>
                         @error('password')
                             <p class="text-xs text-red-500 mt-1 font-medium">{{ $message }}</p>
                         @enderror
                     </div>
 
-                    <!-- Confirm Password input -->
+                    <!-- Input konfirmasi password -->
                     <div>
-                        <label for="password_confirmation" class="block text-xs font-semibold text-slate-700 mb-1">
+                        <label for="password_confirmation" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Konfirmasi Password
                         </label>
-                        <input id="password_confirmation" type="password" name="password_confirmation" required
-                            autocomplete="new-password" placeholder="Password"
-                            class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border @error('password_confirmation') border-red-400 bg-red-50/30 @else border-slate-200/90 bg-white @enderror text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#4F11F0]/20 focus:border-[#4F11F0] transition-all">
+                        <div class="relative">
+                            <input id="password_confirmation" type="password" name="password_confirmation" required
+                                autocomplete="new-password" placeholder="Password"
+                                aria-describedby="password_confirmation-error"
+                                class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('password_confirmation') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
+                            @error('password_confirmation')
+                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
+                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                            @enderror
+                        </div>
                         @error('password_confirmation')
-                            <p class="text-xs text-red-500 mt-1 font-medium">{{ $message }}</p>
+                            <p id="password_confirmation-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
+                                <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
-                    <!-- Submit button -->
+                    <!-- Tombol submit -->
                     <div class="pt-1">
                         <button type="submit"
-                            class="w-full py-2.5 sm:py-3 px-6 rounded-xl bg-[#4F11F0] hover:bg-[#430cd4] active:bg-[#3809b5] text-white font-bold text-sm text-center shadow-md shadow-[#4F11F0]/25 hover:shadow-lg hover:shadow-[#4F11F0]/35 transition-all duration-200 cursor-pointer">
+                            class="w-full py-2.5 sm:py-3 px-6 rounded-xl bg-[#2563EB] hover:bg-[#316ef3] active:bg-[#3809b5] text-white font-bold text-sm text-center shadow-md shadow-[#2563EB]/25 hover:shadow-lg hover:shadow-[#2563EB]/35 transition-all duration-200 cursor-pointer">
                             Daftar
                         </button>
                     </div>
 
-                    <!-- Divider -->
-                    <div class="relative flex items-center justify-center my-3 sm:my-3.5">
+                    <!-- Pemisah -->
+                    <div class="relative flex items-center justify-center my-1">
                         <div class="border-t border-slate-200 w-full"></div>
-                        <span class="bg-white px-3 text-xs text-slate-400 absolute font-medium select-none">
+                        <span class="px-4 text-xs text-slate-400 absolute font-medium select-none">
                             Or
                         </span>
                     </div>
 
-                    <!-- Google sign in button -->
+                    <!-- Tombol Google -->
                     <div>
                         <a href="{{ route('google.login') }}"
-                            class="w-full py-2 sm:py-2.5 px-4 rounded-xl border border-slate-200/90 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm flex items-center justify-center gap-3 transition-colors shadow-2xs cursor-pointer">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24">
+                            class="w-full py-2 sm:py-2.5 px-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 text-xs sm:text-sm flex items-center justify-center gap-3 transition-colors shadow-xs cursor-pointer">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24">
                                 <path
                                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                                     fill="#4285F4" />
@@ -135,8 +182,8 @@
                         </a>
                     </div>
 
-                    <!-- Login link -->
-                    <p class="text-center text-xs text-slate-500 pt-1.5">
+                    <!-- Link login -->
+                    <p class="text-center text-xs sm:text-sm text-slate-500 pt-1">
                         Sudah punya akun?
                         <a href="{{ route('login') }}"
                             class="font-bold text-[#2563EB] hover:text-[#3e75eb] transition-colors ml-1">

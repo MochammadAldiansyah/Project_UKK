@@ -3,101 +3,125 @@
 @section('content')
     <div class="relative w-full h-full min-h-screen lg:min-h-0 lg:h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto lg:overflow-hidden">
 
-        <!-- Back to landing -->
+        <!-- Tombol kembali ke beranda -->
         <a href="{{ url('/') }}" aria-label="Kembali ke beranda"
             class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 inline-flex items-center justify-center p-2 rounded-xl hover:bg-slate-100 active:bg-slate-200 transition-colors duration-200 z-20">
             <img src="{{ asset('assets/image/icon/arrow.svg') }}" alt="" width="22" height="20"
                 class="w-[18px] md:w-[22px] h-auto">
         </a>
 
-        <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 xl:gap-12 items-center">
+        <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
 
-            <!-- Left column: Login form -->
-            <div class="lg:col-span-6 xl:col-span-5 flex flex-col justify-center max-w-[420px] xl:max-w-[460px] mx-auto w-full py-2">
-                <!-- Brand logo -->
-                <div class="mb-4 sm:mb-5">
+            <!-- Kolom kiri: Form login -->
+            <div class="flex flex-col justify-center max-w-[420px] xl:max-w-[460px] mx-auto w-full py-2">
+                <!-- Logo brand -->
+                <div class="mb-5 sm:mb-6">
                     <a href="{{ url('/') }}" class="inline-block">
                         <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-8 sm:h-9">
                     </a>
                 </div>
 
-                <!-- Form header -->
-                <div class="mb-5 sm:mb-6">
-                    <h1 class="font-urbanist text-2xl sm:text-3xl font-semibold text-[#1E293B] tracking-tight mb-1.5">
+                <!-- Header form -->
+                <div class="mb-6 sm:mb-7">
+                    <h1 class="font-urbanist text-2xl sm:text-[28px] font-semibold text-[#1E293B] mb-1.5">
                         Selamat Datang!
                     </h1>
-                    <p class="text-xs sm:text-lg text-[#313957] leading-relaxed">
+                    <p class="text-sm sm:text-base text-[#313957] leading-relaxed">
                         Yuk, masuk kembali ke akun dan lanjutkan perjalanan PKL Anda.
                     </p>
                 </div>
 
-                <!-- Session status message -->
+                <!-- Pesan status session -->
                 @if (session('status'))
-                    <div class="mb-4 p-3 rounded-xl bg-blue-50 border border-blue-200 text-xs sm:text-sm font-medium text-blue-700">
-                        {{ session('status') }}
+                    <div class="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-2.5">
+                        <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <p class="text-xs sm:text-sm font-medium text-emerald-700">{{ session('status') }}</p>
                     </div>
                 @endif
 
-                <!-- Login form -->
-                <form method="POST" action="{{ route('login') }}" class="space-y-3 sm:space-y-4">
+                <!-- Form login -->
+                <form method="POST" action="{{ route('login') }}" class="space-y-4" novalidate>
                     @csrf
 
-                    <!-- Email input -->
+                    <!-- Input email -->
                     <div>
-                        <label for="email" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
+                        <label for="email" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">
                             Email
                         </label>
-                        <input id="email" type="email" name="email" value="{{ old('email') }}" required autofocus
-                            autocomplete="username" placeholder="Example@email.com"
-                            class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border @error('email') border-red-400 bg-red-50/30 @else border-slate-200/90 bg-white @enderror text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] transition-all">
+                        <div class="relative">
+                            <input id="email" type="email" name="email" value="{{ old('email') }}" required
+                                autofocus autocomplete="username" placeholder="Example@gmail.com"
+                                aria-describedby="email-error"
+                                class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border {{ $errors->has('email') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
+                            @error('email')
+
+                            @enderror
+                        </div>
                         @error('email')
-                            <p class="text-xs text-red-500 mt-1 font-medium">{{ $message }}</p>
+                            <p id="email-error" class="text-xs text-red-500 mt-1.5 font-medium flex items-center gap-1">
+                                <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $message }}
+                            </p>
                         @enderror
                     </div>
 
-                    <!-- Password input -->
+                    <!-- Input password -->
                     <div>
-                        <label for="password" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
+                        <label for="password" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">
                             Password
                         </label>
-                        <input id="password" type="password" name="password" required autocomplete="current-password"
-                            placeholder="Password"
-                            class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border @error('password') border-red-400 bg-red-50/30 @else border-slate-200/90 bg-white @enderror text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-[#2563EB]/20 focus:border-[#2563EB] transition-all">
+                        <div class="relative">
+                            <input id="password" type="password" name="password" required
+                                autocomplete="current-password" placeholder="Password"
+                                aria-describedby="password-error"
+                                class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border {{ $errors->has('password') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
+                            @error('password')
+                            @enderror
+                        </div>
                         @error('password')
-                            <p class="text-xs text-red-500 mt-1 font-medium">{{ $message }}</p>
+                            <p id="password-error" class="text-xs text-red-500 mt-1.5 font-medium flex items-center gap-1">
+                                <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                </svg>
+                                {{ $message }}
+                            </p>
                         @enderror
 
-                        <!-- Forgot password link -->
+                        <!-- Link lupa password -->
                         <div class="flex justify-end mt-1.5">
                             <a href="{{ route('password.request') }}"
-                                class="text-xs font-semibold text-slate-500 hover:text-[#2563EB] transition-colors">
+                                class="text-xs  text-[#2563EB] hover:text-[#316ef3] transition-colors">
                                 Lupa Password?
                             </a>
                         </div>
                     </div>
 
-                    <!-- Submit button -->
+                    <!-- Tombol submit -->
                     <div class="pt-1">
                         <button type="submit"
-                            class="w-full py-3 sm:py-3.5 px-6 rounded-xl bg-[#4F11F0] hover:bg-[#430cd4] active:bg-[#3809b5] text-white font-bold text-sm text-center shadow-md shadow-[#4F11F0]/25 hover:shadow-lg hover:shadow-[#4F11F0]/35 transition-all duration-200 cursor-pointer">
-                            Sign In
+                            class="w-full py-3 sm:py-3.5 px-6 rounded-xl bg-[#2563EB] hover:bg-[#316ef3] active:bg-[#3809b5] text-white font-bold text-sm text-center shadow-md shadow-[#2563EB]/25 hover:shadow-lg hover:shadow-[#2563EB]/35 transition-all duration-200 cursor-pointer">
+                            Masuk
                         </button>
                     </div>
 
-                    <!-- Divider -->
-                    <div class="relative flex items-center justify-center my-4 sm:my-5">
+                    <!-- Pemisah -->
+                    <div class="relative flex items-center justify-center my-1">
                         <div class="border-t border-slate-200 w-full"></div>
-                        <span class="bg-white px-3 text-xs text-slate-400 absolute font-medium select-none">
+                        <span class=" px-4 text-xs text-slate-400 absolute font-medium select-none">
                             Or
                         </span>
                     </div>
 
-                    <!-- Social login buttons -->
-                    <div>
-                        <!-- Google login button -->
+                    <!-- Tombol login sosial -->
+                    <div class="space-y-2.5">
+                        <!-- Google -->
                         <a href="{{ route('google.login') }}"
-                            class="w-full py-2.5 sm:py-3 px-4 rounded-xl border border-slate-200/90 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 font-semibold text-xs sm:text-sm flex items-center justify-center gap-3 transition-colors shadow-2xs cursor-pointer">
-                            <svg class="w-4 h-4" viewBox="0 0 24 24">
+                            class="w-full py-2.5 sm:py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 text-xs sm:text-sm flex items-center justify-center gap-3 transition-colors shadow-xs cursor-pointer">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24">
                                 <path
                                     d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                                     fill="#4285F4" />
@@ -115,7 +139,7 @@
                         </a>
                     </div>
 
-                    <!-- Register link -->
+                    <!-- Link daftar -->
                     <p class="text-center text-xs sm:text-sm text-slate-500 pt-2">
                         Belum punya akun?
                         <a href="{{ route('register') }}"
@@ -126,12 +150,12 @@
                 </form>
             </div>
 
-            <!-- Right column: Illustration showcase -->
-            <div class="hidden lg:flex lg:col-span-6 xl:col-span-7 items-center justify-center h-full max-h-[min(85vh,820px)]">
-                <div class="relative h-full max-h-[min(85vh,820px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
+            <!-- Kolom kanan: Ilustrasi -->
+            <div class="hidden lg:flex items-center justify-center h-full max-h-[min(88vh,850px)]">
+                <div class="relative h-full max-h-[min(88vh,850px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
                     <img src="{{ asset('assets/image/component/login_ilus.svg') }}"
                         alt="Ilustrasi Siswa PKL Vokasi"
-                        class="h-full w-auto max-h-[min(85vh,820px)] max-w-full object-contain rounded-[24px]"
+                        class="h-full w-auto max-h-[min(88vh,850px)] max-w-full object-contain rounded-[24px]"
                         loading="eager" fetchpriority="high">
                 </div>
             </div>
