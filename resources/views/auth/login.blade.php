@@ -5,9 +5,9 @@
 
         <!-- Tombol kembali ke beranda -->
         <a href="{{ url('/') }}" aria-label="Kembali ke beranda"
-            class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 inline-flex items-center justify-center p-2 rounded-xl hover:bg-slate-100 active:bg-slate-200 transition-colors duration-200 z-20">
+            class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 inline-flex items-center justify-center p-2 rounded-xl  z-20">
             <img src="{{ asset('assets/image/icon/arrow.svg') }}" alt="" width="22" height="20"
-                class="w-[18px] md:w-[22px] h-auto">
+                class="w-[18px] md:w-[22px] h-auto hover:-translate-x-0.5 transition-all">
         </a>
 
         <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">

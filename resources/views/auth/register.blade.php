@@ -1,16 +1,18 @@
 @extends('landing.layouts.app')
 @section('content')
-    <div class="relative w-full h-full min-h-screen lg:min-h-0 lg:h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto lg:overflow-hidden">
+    <div
+        class="relative w-full h-full min-h-screen lg:min-h-0 lg:h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto lg:overflow-hidden">
 
-        <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
+        <div
+            class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
 
             <!-- Kolom kiri: Ilustrasi -->
             <div class="hidden lg:flex items-center justify-center h-full max-h-[min(88vh,850px)]">
-                <div class="relative h-full max-h-[min(88vh,850px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
-                    <img src="{{ asset('assets/image/component/regis_ilus.svg') }}"
-                        alt="Ilustrasi Registrasi Akun Siswa"
-                        class="h-full w-auto max-h-[min(88vh,850px)] max-w-full object-contain rounded-[24px]"
-                        loading="eager" fetchpriority="high">
+                <div
+                    class="relative h-full max-h-[min(88vh,850px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
+                    <img src="{{ asset('assets/image/component/regis_ilus.svg') }}" alt="Ilustrasi Registrasi Akun Siswa"
+                        class="h-full w-auto max-h-[min(88vh,850px)] max-w-full object-contain rounded-[24px]" loading="eager"
+                        fetchpriority="high">
                 </div>
             </div>
 
@@ -44,21 +46,18 @@
                         </label>
                         <div class="relative">
                             <input id="name" type="text" name="name" value="{{ old('name') }}" required
-                                autofocus autocomplete="name" placeholder="Nama"
-                                aria-describedby="name-error"
+                                autofocus autocomplete="name" placeholder="Nama" aria-describedby="name-error"
                                 class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('name') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
                             @error('name')
-                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
-                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
+                               
                             @enderror
                         </div>
                         @error('name')
                             <p id="name-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
                                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 {{ $message }}
                             </p>
@@ -72,21 +71,18 @@
                         </label>
                         <div class="relative">
                             <input id="email" type="email" name="email" value="{{ old('email') }}" required
-                                autocomplete="username" placeholder="Example@gmail.com"
-                                aria-describedby="email-error"
+                                autocomplete="username" placeholder="Example@gmail.com" aria-describedby="email-error"
                                 class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('email') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
                             @error('email')
-                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
-                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
+                               
                             @enderror
                         </div>
                         @error('email')
                             <p id="email-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
                                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 {{ $message }}
                             </p>
@@ -99,16 +95,11 @@
                             Password
                         </label>
                         <div class="relative">
-                            <input id="password" type="password" name="password" required
-                                autocomplete="new-password" placeholder="Password"
-                                aria-describedby="password-error"
+                            <input id="password" type="password" name="password" required autocomplete="new-password"
+                                placeholder="Password" aria-describedby="password-error"
                                 class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('password') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
                             @error('password')
-                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
-                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
+                               
                             @enderror
                         </div>
                         @error('password')
@@ -118,7 +109,8 @@
 
                     <!-- Input konfirmasi password -->
                     <div>
-                        <label for="password_confirmation" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
+                        <label for="password_confirmation"
+                            class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Konfirmasi Password
                         </label>
                         <div class="relative">
@@ -127,17 +119,16 @@
                                 aria-describedby="password_confirmation-error"
                                 class="w-full px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl border {{ $errors->has('password_confirmation') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
                             @error('password_confirmation')
-                                <div class="absolute right-3 top-1/2 -translate-y-1/2">
-                                    <svg class="w-4 h-4 text-red-400" fill="currentColor" viewBox="0 0 20 20">
-                                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                    </svg>
-                                </div>
+                               
                             @enderror
                         </div>
                         @error('password_confirmation')
-                            <p id="password_confirmation-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
+                            <p id="password_confirmation-error"
+                                class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
                                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                                        clip-rule="evenodd" />
                                 </svg>
                                 {{ $message }}
                             </p>
