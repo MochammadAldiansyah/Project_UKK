@@ -28,7 +28,7 @@
 
 <body>
     <div>
-        @if (!request()->is('login') && !request()->is('register') && !request()->is('forgot-password') && !request()->is('reset-password*'))
+        @if (!request()->is('login') && !request()->is('register') && !request()->is('forgot-password') && !request()->is('reset-password*') && !request()->is('verify-otp') && !request()->is('new-password*'))
             @include('landing.layouts.navbar')
         @endif
 
@@ -37,7 +37,7 @@
             @yield('content')
         </main>
     </div>
-    @if (!request()->is('login') && !request()->is('register') && !request()->is('forgot-password') && !request()->is('reset-password*'))
+    @if (!request()->is('login') && !request()->is('register') && !request()->is('forgot-password') && !request()->is('reset-password*') && !request()->is('verify-otp') && !request()->is('new-password*'))
         @include('landing.layouts.footer')
     @endif
 
@@ -47,6 +47,7 @@
 
     <!-- Main JavaScript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/auth.js') }}"></script>
 </body>
 
 </html>

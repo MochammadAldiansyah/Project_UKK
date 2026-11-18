@@ -56,7 +56,11 @@
                                 aria-describedby="email-error"
                                 class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border {{ $errors->has('email') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
                             @error('email')
-
+                                <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-red-500">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                    </svg>
+                                </div>
                             @enderror
                         </div>
                         @error('email')
@@ -80,6 +84,11 @@
                                 aria-describedby="password-error"
                                 class="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-xl border {{ $errors->has('password') ? 'border-red-400 bg-red-50/40 ring-1 ring-red-200' : 'border-[#D0D5DD] bg-[#F7FBFF]' }} text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-[#2563EB] transition-all">
                             @error('password')
+                                <div class="absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-red-500">
+                                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                                    </svg>
+                                </div>
                             @enderror
                         </div>
                         @error('password')
@@ -100,6 +109,16 @@
                         </div>
                     </div>
 
+                    <!-- Container warn di bawah area input -->
+                    @if ($errors->has('throttle'))
+                        <p class="auth-rate-limit-warning text-xs text-red-500 my-2 font-medium flex items-center gap-1.5">
+                            <svg class="w-3.5 h-3.5 shrink-0 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                            <span>{{ $errors->first('throttle') }}</span>
+                        </p>
+                    @endif
+
                     <!-- Tombol submit -->
                     <div class="pt-1">
                         <button type="submit"
@@ -112,7 +131,7 @@
                     <div class="relative flex items-center justify-center my-1">
                         <div class="border-t border-slate-200 w-full"></div>
                         <span class=" px-4 text-xs text-slate-400 absolute font-medium select-none">
-                            Or
+                            Atau
                         </span>
                     </div>
 
