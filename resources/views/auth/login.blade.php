@@ -128,9 +128,9 @@
                     </div>
 
                     {{-- Divider --}}
-                    <div class="relative flex items-center justify-center my-1">
-                        <div class="border-t border-slate-200 w-full"></div>
-                        <span class="px-4 text-xs text-slate-400 absolute font-medium select-none bg-white">
+                    <div class="relative flex items-center justify-center !mt-8 !mb-8">
+                        <div class="absolute inset-x-0 top-1/2 border-t border-slate-200"></div>
+                        <span class="relative px-4 text-xs text-slate-400 font-medium select-none bg-white">
                             Atau
                         </span>
                     </div>
