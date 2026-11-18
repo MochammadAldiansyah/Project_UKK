@@ -5,7 +5,7 @@
         <div id="navbar-inner" class="flex items-center justify-between h-20">
             <!-- Brand Logo -->
             <a href="{{ url('/') }}" class="flex items-center gap-2 group">
-                <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Logo Portal PKL">
+                <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Logo Portal PKL" class="select-none">
             </a>
             <div class="hidden md:flex items-center gap-8">
                 <a href="{{ url('/') }}"
@@ -28,7 +28,7 @@
 
                 <a href="{{ route('login') }}"
                     class="inline-flex items-center justify-center px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow transition-all duration-200">
-                    Login
+                    Masuk
                 </a>
             </div>
 

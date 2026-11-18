@@ -7,7 +7,6 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\Validation\ValidationException;
@@ -15,16 +14,14 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
+    /** Show the registration form. */
     public function create(): View
     {
         return view('auth.register');
     }
 
     /**
-     * Handle an incoming registration request.
+     * Handle a registration request.
      *
      * @throws ValidationException
      */
@@ -34,6 +31,15 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ], [
+            'name.required' => 'Nama wajib diisi.',
+            'name.max' => 'Nama maksimal 255 karakter.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah terdaftar, silakan gunakan email lain.',
+            'password.required' => 'Password wajib diisi.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
+            'password.min' => 'Password minimal :min karakter.',
         ]);
 
         $user = User::create([
@@ -44,8 +50,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('login')->with('status', 'Registrasi berhasil! Silakan masuk dengan akun yang telah Anda daftarkan.');
     }
 }

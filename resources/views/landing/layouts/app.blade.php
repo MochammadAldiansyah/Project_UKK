@@ -26,9 +26,9 @@
 
 </head>
 
-<body class="font-sans antialiased bg-white text-slate-800 overflow-x-hidden">
-    <div class="min-h-screen bg-white">
-        @if (!request()->is('login') && !request()->is('register'))
+<body>
+    <div>
+        @if (!request()->is('login') && !request()->is('register') && !request()->is('forgot-password') && !request()->is('reset-password*') && !request()->is('verify-otp') && !request()->is('new-password*'))
             @include('landing.layouts.navbar')
         @endif
 
@@ -37,15 +37,17 @@
             @yield('content')
         </main>
     </div>
-   @if (!request()->is('login') && !request()->is('register'))
+    @if (!request()->is('login') && !request()->is('register') && !request()->is('forgot-password') && !request()->is('reset-password*') && !request()->is('verify-otp') && !request()->is('new-password*'))
         @include('landing.layouts.footer')
     @endif
 
     <!-- Lenis Smooth Scroll CDN -->
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 
+
     <!-- Main JavaScript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/auth.js') }}"></script>
 </body>
 
 </html>

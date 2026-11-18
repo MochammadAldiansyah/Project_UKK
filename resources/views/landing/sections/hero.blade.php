@@ -47,7 +47,7 @@
         <div class="w-full lg:w-auto flex-1 flex items-center justify-center lg:justify-end z-10 min-w-0 scroll-reveal-scale delay-150">
             <div
                 class="relative w-full max-w-[500px] sm:max-w-[700px] lg:max-w-none lg:w-[480px] xl:w-[350px] 2xl:w-[370px] flex items-center justify-center lg:justify-end">
-                <img src="{{ asset('assets/image/hero-illustration.svg') }}"
+                <img src="{{ asset('assets/image/component/hero_illustration.svg') }}"
                     alt="Ilustrasi Siswa PKL dalam satu platform" width="664" height="594"
                     class="w-full h-auto max-h-[580px] lg:max-h-[640px] object-contain select-none pointer-events-none drop-shadow-sm scale-100 lg:scale-[1.22] xl:scale-[1.30] origin-center lg:origin-right transition-transform duration-300"
                     loading="eager" fetchpriority="high" />

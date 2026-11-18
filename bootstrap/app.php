@@ -18,4 +18,14 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*') || $request->expectsJson(),
         );
+
+        // Redirect throttled requests back with an inline warning message
+        $exceptions->render(function (\Illuminate\Http\Exceptions\ThrottleRequestsException $e, Request $request) {
+            if (! $request->expectsJson()) {
+                $seconds = $e->getHeaders()['Retry-After'] ?? 60;
+                return back()
+                    ->withInput()
+                    ->withErrors(['throttle' => "Terlalu banyak permintaan! Harap tunggu {$seconds} detik sebelum mencoba lagi."]);
+            }
+        });
     })->create();
