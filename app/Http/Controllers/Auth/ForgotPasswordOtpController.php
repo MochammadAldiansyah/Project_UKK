@@ -5,81 +5,100 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\View\View;
 
+/**
+ * Handles the OTP-based password recovery flow.
+ *
+ * Steps: 1) Request OTP via email  2) Verify 6-digit code  3) Set new password.
+ */
 class ForgotPasswordOtpController extends Controller
 {
-    // 1. Tampilkan halaman input email
-    public function showForgotForm()
+    /** OTP validity period in minutes. */
+    private const OTP_EXPIRATION_MINUTES = 10;
+
+    /** Session key for the email being reset. */
+    private const SESSION_RESET_EMAIL = 'reset_email';
+
+    /** Session key indicating OTP verification status. */
+    private const SESSION_OTP_VERIFIED = 'otp_verified';
+
+    /** Show the forgot-password form. */
+    public function showForgotForm(): View
     {
         return view('auth.forgot-password');
     }
 
-    // 2. Proses kirim OTP ke email
-    public function sendOtp(Request $request)
+    /** Validate email and send OTP code. */
+    public function sendOtp(Request $request): RedirectResponse
     {
         $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => ['required', 'email', 'exists:users,email'],
         ], [
-            'email.exists' => 'Email tersebut tidak terdaftar di sistem.',
+            'email.required' => 'Email wajib diisi.',
+            'email.email' => 'Format email tidak valid.',
+            'email.exists' => 'Email tersebut tidak terdaftar di sistem kami.',
         ]);
 
         $this->generateAndSendOtp($request->email);
 
         session([
-            'reset_email' => $request->email,
-            'otp_verified' => false,
+            self::SESSION_RESET_EMAIL => $request->email,
+            self::SESSION_OTP_VERIFIED => false,
         ]);
 
         return redirect()->route('otp.verify.form')
-            ->with('status', 'Kode OTP 6 digit telah dikirim ke email kamu.');
+            ->with('status', 'Kode OTP 6 digit telah dikirim ke email Anda.');
     }
 
-    // Fitur tambahan jika di halaman OTP ada tombol "Kirim Ulang Kode"
-    public function resendOtp()
+    /** Resend a new OTP to the email currently in session. */
+    public function resendOtp(): RedirectResponse
     {
-        $email = session('reset_email');
+        $email = session(self::SESSION_RESET_EMAIL);
+
         if (! $email) {
             return redirect()->route('password.request');
         }
 
         $this->generateAndSendOtp($email);
 
-        return back()->with('status', 'Kode OTP baru telah dikirim ulang ke email kamu.');
+        return back()->with('status', 'Kode OTP baru telah berhasil dikirim ulang ke email Anda.');
     }
 
-    // 3. Tampilkan halaman input kode OTP
-    public function showVerifyForm()
+    /** Show the OTP verification form. */
+    public function showVerifyForm(): View|RedirectResponse
     {
-        if (! session('reset_email')) {
+        if (! session(self::SESSION_RESET_EMAIL)) {
             return redirect()->route('password.request');
         }
 
-        // GANTI 'auth.verify-otp' sesuai nama file blade halaman input kode kamu
         return view('auth.verify-code');
     }
 
-    // 4. Proses cek kecocokan kode OTP
-    public function verifyOtp(Request $request)
+    /** Verify the submitted OTP against the stored hash. */
+    public function verifyOtp(Request $request): RedirectResponse
     {
-        $email = session('reset_email');
+        $email = session(self::SESSION_RESET_EMAIL);
+
         if (! $email) {
             return redirect()->route('password.request');
         }
 
-        // Gabungkan otomatis jika di Blade memakai 6 input kotak (name="otp[]")
+        // Normalize OTP if submitted as an array of digits
         $request->merge([
             'otp' => is_array($request->otp) ? implode('', $request->otp) : $request->otp,
         ]);
 
         $request->validate([
-            'otp' => 'required|digits:6',
+            'otp' => ['required', 'digits:6'],
         ], [
             'otp.required' => 'Kode OTP wajib diisi.',
-            'otp.digits' => 'Kode OTP harus 6 digit angka.',
+            'otp.digits' => 'Kode OTP harus berupa 6 digit angka.',
         ]);
 
         $record = DB::table('password_reset_tokens')->where('email', $email)->first();
@@ -88,33 +107,41 @@ class ForgotPasswordOtpController extends Controller
             return back()->withErrors(['otp' => 'Kode OTP salah atau tidak sesuai.']);
         }
 
-        if (Carbon::parse($record->created_at)->addMinutes(10)->isPast()) {
+        $isExpired = Carbon::parse($record->created_at)
+            ->addMinutes(self::OTP_EXPIRATION_MINUTES)
+            ->isPast();
+
+        if ($isExpired) {
             DB::table('password_reset_tokens')->where('email', $email)->delete();
 
-            return back()->withErrors(['otp' => 'Kode OTP sudah kedaluwarsa. Silakan kirim ulang kode.']);
+            return back()->withErrors(['otp' => 'Kode OTP sudah kedaluwarsa. Silakan kirim ulang kode baru.']);
         }
 
-        session(['otp_verified' => true]);
+        session([self::SESSION_OTP_VERIFIED => true]);
 
         return redirect()->route('password.reset.form');
     }
 
-    // 5. Tampilkan halaman buat password baru
-    public function showResetForm()
+    /** Show the new-password form after OTP is verified. */
+    public function showResetForm(): View|RedirectResponse
     {
-        if (! session('reset_email') || ! session('otp_verified')) {
+        $email = session(self::SESSION_RESET_EMAIL);
+        $isVerified = session(self::SESSION_OTP_VERIFIED);
+
+        if (! $email || ! $isVerified) {
             return redirect()->route('password.request');
         }
 
         return view('auth.reset-password');
     }
 
-    // 6. Simpan password baru ke database
-  // 6. Simpan password baru ke database
-    public function resetPassword(Request $request)
+    /** Save the new password and clean up tokens & session. */
+    public function resetPassword(Request $request): RedirectResponse
     {
-        $email = session('reset_email');
-        if (! $email || ! session('otp_verified')) {
+        $email = session(self::SESSION_RESET_EMAIL);
+        $isVerified = session(self::SESSION_OTP_VERIFIED);
+
+        if (! $email || ! $isVerified) {
             return redirect()->route('password.request');
         }
 
@@ -123,32 +150,35 @@ class ForgotPasswordOtpController extends Controller
                 'required',
                 'min:8',
                 'confirmed',
-                'regex:/[A-Z]/',   // Minimal 1 huruf besar
-                'regex:/[0-9]/',   // Minimal 1 angka
-                'regex:/^\S*$/u',  // Tanpa spasi
+                'regex:/[A-Z]/',   // At least 1 uppercase letter
+                'regex:/[0-9]/',   // At least 1 digit
+                'regex:/^\S*$/u',  // No spaces
             ],
         ], [
             'password.required' => 'Password baru wajib diisi.',
-            'password.min' => 'Password minimal 8 karakter.',
+            'password.min' => 'Password minimal terdiri dari 8 karakter.',
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
-            'password.regex' => 'Password harus memiliki minimal 1 huruf besar, 1 angka, dan tanpa spasi.',
+            'password.regex' => 'Password harus mengandung minimal 1 huruf besar, 1 angka, dan tanpa spasi.',
         ]);
 
-        User::where('email', $email)->update([
-            'password' => Hash::make($request->password),
-        ]);
+        DB::transaction(function () use ($email, $request) {
+            User::where('email', $email)->update([
+                'password' => Hash::make($request->password),
+            ]);
 
-        DB::table('password_reset_tokens')->where('email', $email)->delete();
-        session()->forget(['reset_email', 'otp_verified']);
+            DB::table('password_reset_tokens')->where('email', $email)->delete();
+        });
+
+        session()->forget([self::SESSION_RESET_EMAIL, self::SESSION_OTP_VERIFIED]);
 
         return redirect()->route('login')
-            ->with('status', 'Password berhasil diubah! Silakan login.');
+            ->with('status', 'Kata sandi berhasil diperbarui! Silakan masuk dengan kata sandi baru Anda.');
     }
 
-    // Helper generate & kirim email
+    /** Generate a random 6-digit OTP, store its hash, and email it. */
     private function generateAndSendOtp(string $email): void
     {
-        $otp = random_int(100000, 999999);
+        $otp = (string) random_int(100000, 999999);
 
         DB::table('password_reset_tokens')->updateOrInsert(
             ['email' => $email],

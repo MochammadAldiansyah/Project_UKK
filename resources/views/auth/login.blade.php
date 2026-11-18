@@ -3,25 +3,25 @@
 @section('content')
     <div class="relative w-full h-full min-h-screen lg:min-h-0 lg:h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto lg:overflow-hidden">
 
-        <!-- Tombol kembali ke beranda -->
+        {{-- Back to Home --}}
         <a href="{{ url('/') }}" aria-label="Kembali ke beranda"
-            class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 inline-flex items-center justify-center p-2 rounded-xl  z-20">
+            class="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 inline-flex items-center justify-center p-2 rounded-xl z-20">
             <img src="{{ asset('assets/image/icon/arrow.svg') }}" alt="" width="22" height="20"
                 class="w-[18px] md:w-[22px] h-auto hover:-translate-x-0.5 transition-all">
         </a>
 
         <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
 
-            <!-- Kolom kiri: Form login -->
+            {{-- Left Column: Login Form --}}
             <div class="flex flex-col justify-center max-w-[420px] xl:max-w-[460px] mx-auto w-full py-2">
-                <!-- Logo brand -->
+                {{-- Brand Logo --}}
                 <div class="mb-5 sm:mb-6">
                     <a href="{{ url('/') }}" class="inline-block">
                         <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-8 sm:h-9">
                     </a>
                 </div>
 
-                <!-- Header form -->
+                {{-- Form Header --}}
                 <div class="mb-6 sm:mb-7">
                     <h1 class="font-urbanist text-2xl sm:text-[28px] font-semibold text-[#1E293B] mb-1.5">
                         Selamat Datang!
@@ -31,7 +31,7 @@
                     </p>
                 </div>
 
-                <!-- Pesan status session -->
+                {{-- Session Status --}}
                 @if (session('status'))
                     <div class="mb-4 p-3 rounded-xl bg-emerald-50 border border-emerald-200 flex items-start gap-2.5">
                         <svg class="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -41,11 +41,11 @@
                     </div>
                 @endif
 
-                <!-- Form login -->
+                {{-- Login Form --}}
                 <form method="POST" action="{{ route('login') }}" class="space-y-4" novalidate>
                     @csrf
 
-                    <!-- Input email -->
+                    {{-- Email Field --}}
                     <div>
                         <label for="email" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">
                             Email
@@ -73,7 +73,7 @@
                         @enderror
                     </div>
 
-                    <!-- Input password -->
+                    {{-- Password Field --}}
                     <div>
                         <label for="password" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1.5">
                             Password
@@ -100,16 +100,16 @@
                             </p>
                         @enderror
 
-                        <!-- Link lupa password -->
+                        {{-- Forgot Password Link --}}
                         <div class="flex justify-end mt-1.5">
                             <a href="{{ route('password.request') }}"
-                                class="text-xs  text-[#2563EB] hover:text-[#316ef3] transition-colors">
+                                class="text-xs text-[#2563EB] hover:text-[#316ef3] transition-colors">
                                 Lupa Password?
                             </a>
                         </div>
                     </div>
 
-                    <!-- Container warn di bawah area input -->
+                    {{-- Throttle Warning (Inline) --}}
                     @if ($errors->has('throttle'))
                         <p class="auth-rate-limit-warning text-xs text-red-500 my-2 font-medium flex items-center gap-1.5">
                             <svg class="w-3.5 h-3.5 shrink-0 text-red-500" fill="currentColor" viewBox="0 0 20 20">
@@ -119,7 +119,7 @@
                         </p>
                     @endif
 
-                    <!-- Tombol submit -->
+                    {{-- Submit Button --}}
                     <div class="pt-1">
                         <button type="submit"
                             class="w-full py-3 sm:py-3.5 px-6 rounded-xl bg-[#2563EB] hover:bg-[#316ef3] active:bg-[#3809b5] text-white font-bold text-sm text-center shadow-md shadow-[#2563EB]/25 hover:shadow-lg hover:shadow-[#2563EB]/35 transition-all duration-200 cursor-pointer">
@@ -127,17 +127,16 @@
                         </button>
                     </div>
 
-                    <!-- Pemisah -->
+                    {{-- Divider --}}
                     <div class="relative flex items-center justify-center my-1">
                         <div class="border-t border-slate-200 w-full"></div>
-                        <span class=" px-4 text-xs text-slate-400 absolute font-medium select-none">
+                        <span class="px-4 text-xs text-slate-400 absolute font-medium select-none bg-white">
                             Atau
                         </span>
                     </div>
 
-                    <!-- Tombol login sosial -->
+                    {{-- Google OAuth Button --}}
                     <div class="space-y-2.5">
-                        <!-- Google -->
                         <a href="{{ route('google.login') }}"
                             class="w-full py-2.5 sm:py-3 px-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 text-xs sm:text-sm flex items-center justify-center gap-3 transition-colors shadow-xs cursor-pointer">
                             <svg class="w-5 h-5" viewBox="0 0 24 24">
@@ -158,7 +157,7 @@
                         </a>
                     </div>
 
-                    <!-- Link daftar -->
+                    {{-- Register Link --}}
                     <p class="text-center text-xs sm:text-sm text-slate-500 pt-2">
                         Belum punya akun?
                         <a href="{{ route('register') }}"
@@ -169,7 +168,7 @@
                 </form>
             </div>
 
-            <!-- Kolom kanan: Ilustrasi -->
+            {{-- Right Column: Illustration --}}
             <div class="hidden lg:flex items-center justify-center h-full max-h-[min(88vh,850px)]">
                 <div class="relative h-full max-h-[min(88vh,850px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
                     <img src="{{ asset('assets/image/component/login_ilus.svg') }}"

@@ -1,437 +1,506 @@
 /**
- * Script Otentikasi & Validasi Interaktif (Vanilla JS)
- * Portal PKL SMK
- *
- * Fitur:
- * 1. Rate Limiter tombol dengan Countdown Timer real-time
- * 2. Pesan peringatan (warning) merah standar validasi saat Too Many Requests
- * 3. Sinkronisasi dengan pesan error rate limit dari server (Laravel throttle)
- * 4. Toggle visibilitas password (intip kata sandi)
- * 5. Indikator syarat password secara real-time
- * 6. Hitung mundur (cooldown) kirim ulang kode OTP
+ * @file auth.js
+ * @description Auth form interactions: rate limiting, validation, password toggle, OTP cooldown.
  */
 
-document.addEventListener('DOMContentLoaded', function () {
-    initAuthRateLimiter();
-    checkServerThrottleErrors();
-    initPasswordToggles();
-    initPasswordCriteriaChecker();
-    initOtpResendCountdown();
-});
+(() => {
+    'use strict';
 
-/**
- * 1. Rate Limiter Tombol Submit & Cooldown Countdown
- */
-function initAuthRateLimiter() {
-    const forms = document.querySelectorAll('form:not(#resend-otp-form)');
+    /** @readonly Module configuration constants. */
+    const CONFIG = {
+        STORAGE_KEY_COOLDOWN_PREFIX: 'auth_cooldown_',
+        STORAGE_KEY_OTP_RESEND: 'otp_resend_cooldown_end',
+        MAX_RAPID_CLICKS: 3,
+        RAPID_CLICK_WINDOW_MS: 10000,
+        CLIENT_PENALTY_SECONDS: 15,
+        OTP_RESEND_DURATION_SECONDS: 60,
+        SUBMIT_TIMEOUT_MS: 6000,
+    };
 
-    forms.forEach(form => {
-        const submitBtn = form.querySelector('button[type="submit"]');
-        if (!submitBtn) return;
+    /** Initialize all handlers when DOM is ready. */
+    document.addEventListener('DOMContentLoaded', () => {
+        initRateLimiter();
+        syncServerThrottleErrors();
+        initPasswordVisibilityToggles();
+        initPasswordCriteriaChecker();
+        initOtpResendCooldown();
+    });
 
-        // Simpan teks asli tombol jika belum disimpan
-        if (!submitBtn.dataset.originalText) {
-            submitBtn.dataset.originalText = submitBtn.innerText.trim();
-        }
+    // =========================================================================
+    // 1. RATE LIMITER & SUBMIT BUTTON COOLDOWN
+    // =========================================================================
 
-        const pathKey = 'auth_cooldown_' + window.location.pathname;
+    /** Set up spam-click protection and submit cooldown for all forms. */
+    function initRateLimiter() {
+        const forms = document.querySelectorAll('form:not(#resend-otp-form)');
 
-        // Cek apakah ada cooldown tersimpan dari sesi sebelumnya
-        const savedCooldown = sessionStorage.getItem(pathKey);
-        if (savedCooldown) {
-            const remaining = Math.ceil((parseInt(savedCooldown, 10) - Date.now()) / 1000);
-            if (remaining > 0) {
-                showRateLimitWarning(form, remaining);
-                startRateLimiterCountdown(form, submitBtn, remaining, pathKey);
-            } else {
-                sessionStorage.removeItem(pathKey);
+        forms.forEach((form) => {
+            const submitBtn = form.querySelector('button[type="submit"]');
+            if (!submitBtn) return;
+
+            // Store original button text for later restoration
+            if (!submitBtn.dataset.originalText) {
+                submitBtn.dataset.originalText = submitBtn.innerText.trim();
             }
-        }
 
-        // Tracking frekuensi klik cepat di client-side
+            const pathKey = CONFIG.STORAGE_KEY_COOLDOWN_PREFIX + window.location.pathname;
+
+            // Restore active cooldown from sessionStorage
+            const savedExpiry = sessionStorage.getItem(pathKey);
+            if (savedExpiry) {
+                const remainingSeconds = Math.ceil((parseInt(savedExpiry, 10) - Date.now()) / 1000);
+                if (remainingSeconds > 0) {
+                    renderRateLimitWarning(form, remainingSeconds);
+                    startSubmitCooldown(form, submitBtn, remainingSeconds, pathKey);
+                } else {
+                    sessionStorage.removeItem(pathKey);
+                }
+            }
+
+            // Bind validation and spam detection to the form
+            bindFormValidation(form, submitBtn, pathKey);
+        });
+    }
+
+    /**
+     * Attach input validation and spam-submit detection to a form.
+     * @param {HTMLFormElement} form
+     * @param {HTMLButtonElement} submitBtn
+     * @param {string} pathKey
+     */
+    function bindFormValidation(form, submitBtn, pathKey) {
         let clickTimestamps = [];
+        const requiredInputs = form.querySelectorAll('input[required]');
 
-        form.addEventListener('submit', function (e) {
+        // Clear error state on input
+        requiredInputs.forEach((input) => {
+            input.addEventListener('input', () => {
+                if (input.value.trim()) {
+                    clearFieldValidationState(input);
+                }
+            });
+        });
+
+        form.addEventListener('submit', (e) => {
             const now = Date.now();
 
-            // Bersihkan klik yang sudah lebih dari 10 detik lalu
-            clickTimestamps = clickTimestamps.filter(t => now - t < 10000);
+            // Filter clicks within the tolerance window
+            clickTimestamps = clickTimestamps.filter((time) => now - time < CONFIG.RAPID_CLICK_WINDOW_MS);
             clickTimestamps.push(now);
 
-            // Jika user klik lebih dari 3 kali berturut-turut dalam 10 detik -> aktifkan rate limit
-            if (clickTimestamps.length >= 3) {
+            // Detect spam submissions (threshold exceeded)
+            if (clickTimestamps.length >= CONFIG.MAX_RAPID_CLICKS) {
                 e.preventDefault();
-                const penaltySeconds = 15;
-                sessionStorage.setItem(pathKey, now + (penaltySeconds * 1000));
-                showRateLimitWarning(form, penaltySeconds);
-                startRateLimiterCountdown(form, submitBtn, penaltySeconds, pathKey);
+                const penaltySeconds = CONFIG.CLIENT_PENALTY_SECONDS;
+                sessionStorage.setItem(pathKey, now + penaltySeconds * 1000);
+
+                renderRateLimitWarning(form, penaltySeconds);
+                startSubmitCooldown(form, submitBtn, penaltySeconds, pathKey);
                 return false;
             }
 
-            // Validasi input kosong sebelum submit
-            const requiredInputs = form.querySelectorAll('input[required]');
-            let hasEmpty = false;
-
-            requiredInputs.forEach(input => {
-                const inputWrapper = input.closest('.relative') || input.parentElement;
-                const fieldContainer = inputWrapper.parentElement;
-                let existingError = fieldContainer.querySelector('.field-client-error');
-
+            // Validate all required fields
+            let hasEmptyFields = false;
+            requiredInputs.forEach((input) => {
                 if (!input.value.trim()) {
-                    hasEmpty = true;
-                    input.classList.add('border-red-400', 'bg-red-50/40', 'ring-1', 'ring-red-200');
-
-                    // Ambil nama field dari label atau name/placeholder
-                    const label = fieldContainer.querySelector('label');
-                    let fieldName = label ? label.innerText.replace('*', '').trim() : '';
-                    if (!fieldName) {
-                        const nameAttr = input.name || input.id;
-                        if (nameAttr === 'email') fieldName = 'Email';
-                        else if (nameAttr === 'password') fieldName = 'Password';
-                        else if (nameAttr === 'password_confirmation') fieldName = 'Konfirmasi Password';
-                        else if (nameAttr === 'name') fieldName = 'Nama';
-                        else if (nameAttr === 'otp') fieldName = 'Kode Verifikasi';
-                        else fieldName = 'Kolom';
-                    }
-
-                    // Tampilkan pesan error teks merah di bawah input persis seperti referensi GetSkill
-                    if (!existingError) {
-                        existingError = document.createElement('p');
-                        existingError.className = 'field-client-error text-xs text-red-500 mt-1.5 font-medium flex items-center gap-1';
-                        existingError.innerHTML = `
-                            <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-                            </svg>
-                            <span>${fieldName} Wajib Diisi!</span>
-                        `;
-                        inputWrapper.insertAdjacentElement('afterend', existingError);
-                    }
-
-                    // Tampilkan ikon peringatan merah (!) di dalam sisi kanan input
-                    let errorIcon = inputWrapper.querySelector('.input-error-icon');
-                    if (!errorIcon) {
-                        errorIcon = document.createElement('div');
-                        errorIcon.className = 'input-error-icon absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-red-500';
-                        const toggleBtn = inputWrapper.querySelector('#toggle-password-btn, #toggle-confirm-btn');
-                        if (toggleBtn) {
-                            errorIcon.className = 'input-error-icon absolute inset-y-0 right-8 pr-1.5 flex items-center pointer-events-none text-red-500';
-                        }
-                        errorIcon.innerHTML = `
-                            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
-                            </svg>
-                        `;
-                        inputWrapper.appendChild(errorIcon);
-                    }
+                    hasEmptyFields = true;
+                    applyFieldValidationError(input);
                 } else {
-                    input.classList.remove('border-red-400', 'bg-red-50/40', 'ring-1', 'ring-red-200');
-                    if (existingError) existingError.remove();
-                    const errorIcon = inputWrapper.querySelector('.input-error-icon');
-                    if (errorIcon) errorIcon.remove();
+                    clearFieldValidationState(input);
                 }
-
-                // Event listener saat user mengetik -> bersihkan error secara real-time
-                input.addEventListener('input', function onInputClean() {
-                    if (input.value.trim()) {
-                        input.classList.remove('border-red-400', 'bg-red-50/40', 'ring-1', 'ring-red-200');
-                        const err = fieldContainer.querySelector('.field-client-error');
-                        if (err) err.remove();
-                        const serverErr = fieldContainer.querySelector('[id$="-error"]');
-                        if (serverErr) serverErr.remove();
-                        const errIcon = inputWrapper.querySelector('.input-error-icon');
-                        if (errIcon) errIcon.remove();
-                    }
-                });
             });
 
-            if (hasEmpty) {
+            if (hasEmptyFields) {
                 e.preventDefault();
                 return false;
             }
 
-            // Saat form valid dan di-submit, beri proteksi double click
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-75', 'cursor-not-allowed', 'pointer-events-none');
-            const originalText = submitBtn.dataset.originalText || 'Kirim';
-            submitBtn.innerHTML = `
-                <span class="inline-flex items-center justify-center gap-2">
-                    <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
-                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    <span>Memproses...</span>
-                </span>
-            `;
-
-            // Reset setelah 6 detik jika halaman tidak redirect (misal koneksi lambat)
-            setTimeout(() => {
-                if (submitBtn.disabled && submitBtn.innerText.includes('Memproses')) {
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-75', 'cursor-not-allowed', 'pointer-events-none');
-                    submitBtn.innerText = originalText;
-                }
-            }, 6000);
+            // Lock button to prevent double submission
+            applyButtonProcessingState(submitBtn);
         });
-    });
-}
-
-/**
- * 2. Cek pesan error throttle dari response server saat halaman dimuat
- */
-function checkServerThrottleErrors() {
-    // Ambil semua elemen teks error di halaman
-    const errorElements = document.querySelectorAll('.bg-red-50, [id$="-error"], .text-red-500, .text-red-600, ul li');
-    let throttleSeconds = null;
-    let targetForm = null;
-
-    errorElements.forEach(el => {
-        const text = el.textContent || '';
-        // Cari angka detik di kalimat error ("tunggu X detik" / "dalam X detik" / "X seconds")
-        const match = text.match(/(?:tunggu|dalam)\s+(\d+)\s*(?:detik|second)/i);
-        if (match) {
-            throttleSeconds = parseInt(match[1], 10);
-            targetForm = el.closest('form') || document.querySelector('form');
-        }
-    });
-
-    if (throttleSeconds && throttleSeconds > 0) {
-        if (!targetForm) targetForm = document.querySelector('form');
-        if (targetForm) {
-            const submitBtn = targetForm.querySelector('button[type="submit"]');
-            if (submitBtn) {
-                const pathKey = 'auth_cooldown_' + window.location.pathname;
-                sessionStorage.setItem(pathKey, Date.now() + (throttleSeconds * 1000));
-                showRateLimitWarning(targetForm, throttleSeconds);
-                startRateLimiterCountdown(targetForm, submitBtn, throttleSeconds, pathKey);
-            }
-        }
     }
-}
 
-/**
- * 3. Tampilkan pesan warning Too Many Requests (inline text merah, tanpa box container)
- */
-function showRateLimitWarning(form, seconds) {
-    if (!form) return;
+    /**
+     * Apply error styling and inline warning to an input field.
+     * @param {HTMLInputElement} input
+     */
+    function applyFieldValidationError(input) {
+        const inputWrapper = input.closest('.relative') || input.parentElement;
+        const fieldContainer = inputWrapper.parentElement;
 
-    let warningP = form.querySelector('.auth-rate-limit-warning');
+        input.classList.add('border-red-400', 'bg-red-50/40', 'ring-1', 'ring-red-200');
 
-    if (!warningP) {
-        warningP = document.createElement('p');
-        warningP.className = 'auth-rate-limit-warning text-xs text-red-500 my-2 font-medium flex items-center gap-1.5 transition-all';
-        warningP.innerHTML = `
-            <svg class="w-3.5 h-3.5 shrink-0 text-red-500" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
-            </svg>
-            <span>Terlalu banyak permintaan! Harap tunggu <strong class="rate-limit-countdown-num underline">${seconds}</strong> detik sebelum mencoba lagi.</span>
-        `;
-        const submitBtnWrapper = form.querySelector('button[type="submit"]')?.closest('div');
-        if (submitBtnWrapper) {
-            form.insertBefore(warningP, submitBtnWrapper);
-        } else {
-            form.appendChild(warningP);
+        // Resolve field label for the error message
+        const label = fieldContainer.querySelector('label');
+        let fieldLabel = label ? label.innerText.replace('*', '').trim() : '';
+
+        if (!fieldLabel) {
+            const inputIdentifier = input.name || input.id;
+            const labelMap = {
+                email: 'Email',
+                password: 'Password',
+                password_confirmation: 'Konfirmasi Password',
+                name: 'Nama Lengkap',
+                otp: 'Kode Verifikasi',
+            };
+            fieldLabel = labelMap[inputIdentifier] || 'Kolom ini';
         }
-    } else {
-        const numSpan = warningP.querySelector('.rate-limit-countdown-num');
-        if (numSpan) numSpan.innerText = seconds;
-        warningP.classList.remove('hidden');
-    }
-}
 
-/**
- * 4. Jalankan hitung mundur rate limiter pada tombol & perbarui pesan warning
- */
-function startRateLimiterCountdown(form, submitBtn, durationSeconds, storageKey) {
-    if (!submitBtn) return;
-
-    if (!submitBtn.dataset.originalText) {
-        submitBtn.dataset.originalText = submitBtn.innerText.trim();
-    }
-    const originalText = submitBtn.dataset.originalText;
-
-    // Nonaktifkan tombol
-    submitBtn.disabled = true;
-    submitBtn.classList.add('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
-
-    let remaining = durationSeconds;
-
-    function updateButtonAndBanner() {
-        // Update teks tombol dengan countdown
-        submitBtn.innerHTML = `
-            <span class="inline-flex items-center justify-center gap-1.5">
-                <svg class="w-4 h-4 text-white/90 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+        // Show inline error text below the input
+        let errorParagraph = fieldContainer.querySelector('.field-client-error');
+        if (!errorParagraph) {
+            errorParagraph = document.createElement('p');
+            errorParagraph.className = 'field-client-error text-xs text-red-500 mt-1.5 font-medium flex items-center gap-1';
+            errorParagraph.innerHTML = `
+                <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                 </svg>
-                <span>Coba lagi dalam <strong>${remaining}s</strong></span>
+                <span>${fieldLabel} Wajib Diisi!</span>
+            `;
+            inputWrapper.insertAdjacentElement('afterend', errorParagraph);
+        }
+
+        // Add warning icon inside the input
+        let warningIcon = inputWrapper.querySelector('.input-error-icon');
+        if (!warningIcon) {
+            warningIcon = document.createElement('div');
+            const hasToggleBtn = inputWrapper.querySelector('#toggle-password-btn, #toggle-confirm-btn');
+            warningIcon.className = hasToggleBtn
+                ? 'input-error-icon absolute inset-y-0 right-8 pr-1.5 flex items-center pointer-events-none text-red-500'
+                : 'input-error-icon absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-red-500';
+
+            warningIcon.innerHTML = `
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
+                </svg>
+            `;
+            inputWrapper.appendChild(warningIcon);
+        }
+    }
+
+    /**
+     * Clear error indicators after user corrects the input.
+     * @param {HTMLInputElement} input
+     */
+    function clearFieldValidationState(input) {
+        const inputWrapper = input.closest('.relative') || input.parentElement;
+        const fieldContainer = inputWrapper.parentElement;
+
+        input.classList.remove('border-red-400', 'bg-red-50/40', 'ring-1', 'ring-red-200');
+
+        const clientError = fieldContainer.querySelector('.field-client-error');
+        if (clientError) clientError.remove();
+
+        const serverError = fieldContainer.querySelector('[id$="-error"]');
+        if (serverError) serverError.remove();
+
+        const warningIcon = inputWrapper.querySelector('.input-error-icon');
+        if (warningIcon) warningIcon.remove();
+    }
+
+    /**
+     * Set button to a processing/loading state.
+     * @param {HTMLButtonElement} submitBtn
+     */
+    function applyButtonProcessingState(submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-75', 'cursor-not-allowed', 'pointer-events-none');
+
+        const originalText = submitBtn.dataset.originalText || 'Kirim';
+        submitBtn.innerHTML = `
+            <span class="inline-flex items-center justify-center gap-2">
+                <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Memproses...</span>
             </span>
         `;
 
-        // Update angka di warning text
-        const warningP = form.querySelector('.auth-rate-limit-warning');
-        if (warningP) {
-            const numSpan = warningP.querySelector('.rate-limit-countdown-num');
-            if (numSpan) numSpan.innerText = remaining;
-        }
-    }
-
-    updateButtonAndBanner();
-
-    if (submitBtn._countdownInterval) {
-        clearInterval(submitBtn._countdownInterval);
-    }
-
-    submitBtn._countdownInterval = setInterval(() => {
-        remaining--;
-
-        if (remaining > 0) {
-            updateButtonAndBanner();
-        } else {
-            // Waktu habis: aktifkan kembali tombol
-            clearInterval(submitBtn._countdownInterval);
-            submitBtn._countdownInterval = null;
-
-            if (storageKey) sessionStorage.removeItem(storageKey);
-
-            submitBtn.disabled = false;
-            submitBtn.classList.remove('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
-            submitBtn.innerText = originalText;
-
-            // Hapus pesan warning rate limit
-            const warningP = form.querySelector('.auth-rate-limit-warning');
-            if (warningP) {
-                warningP.remove();
+        // Auto-restore if connection is slow
+        setTimeout(() => {
+            if (submitBtn.disabled && submitBtn.innerText.includes('Memproses')) {
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed', 'pointer-events-none');
+                submitBtn.innerText = originalText;
             }
-        }
-    }, 1000);
-}
+        }, CONFIG.SUBMIT_TIMEOUT_MS);
+    }
 
-/**
- * 6. Toggle Visibilitas Password
- */
-function initPasswordToggles() {
-    function setupToggle(btnId, inputId, eyeId, eyeSlashId) {
-        const btn = document.getElementById(btnId);
-        const input = document.getElementById(inputId);
-        const eye = document.getElementById(eyeId);
-        const eyeSlash = document.getElementById(eyeSlashId);
+    // =========================================================================
+    // 2. SERVER THROTTLE SYNC (LARAVEL 429)
+    // =========================================================================
 
-        if (!btn || !input) return;
+    /** Detect and sync server-side throttle (HTTP 429) cooldown. */
+    function syncServerThrottleErrors() {
+        const errorNodes = document.querySelectorAll('.auth-rate-limit-warning, .text-red-500, .text-red-600, [id$="-error"]');
+        let throttleSeconds = null;
+        let targetForm = null;
 
-        btn.addEventListener('click', function () {
-            const isPassword = input.type === 'password';
-            input.type = isPassword ? 'text' : 'password';
-            if (eye && eyeSlash) {
-                eye.classList.toggle('hidden', isPassword);
-                eyeSlash.classList.toggle('hidden', !isPassword);
+        errorNodes.forEach((node) => {
+            const message = node.textContent || '';
+            const match = message.match(/(?:tunggu|dalam)\s+(\d+)\s*(?:detik|second)/i);
+            if (match) {
+                throttleSeconds = parseInt(match[1], 10);
+                targetForm = node.closest('form') || document.querySelector('form');
             }
         });
-    }
 
-    setupToggle('toggle-password-btn', 'password', 'eye-icon-password', 'eye-slash-icon-password');
-    setupToggle('toggle-confirm-btn', 'password_confirmation', 'eye-icon-confirm', 'eye-slash-icon-confirm');
-}
+        if (throttleSeconds && throttleSeconds > 0) {
+            targetForm = targetForm || document.querySelector('form');
+            if (!targetForm) return;
 
-/**
- * 7. Indikator Syarat Password Real-time
- */
-function initPasswordCriteriaChecker() {
-    const passwordInput = document.getElementById('password');
-    const reqLength = document.getElementById('req-length');
-    const reqUppercase = document.getElementById('req-uppercase');
-    const reqNumber = document.getElementById('req-number');
-    const reqNospace = document.getElementById('req-nospace');
-
-    if (!passwordInput || !reqLength) return;
-
-    function updateRequirement(element, isValid) {
-        if (!element) return;
-        const icon = element.querySelector('.req-icon');
-        const text = element.querySelector('.req-text');
-
-        if (isValid) {
-            if (icon) {
-                icon.className = 'req-icon w-3.5 h-3.5 rounded-full bg-emerald-500 border border-emerald-500 flex items-center justify-center shrink-0 text-white';
-                icon.innerHTML = '<svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>';
+            const submitBtn = targetForm.querySelector('button[type="submit"]');
+            if (submitBtn) {
+                const pathKey = CONFIG.STORAGE_KEY_COOLDOWN_PREFIX + window.location.pathname;
+                sessionStorage.setItem(pathKey, Date.now() + throttleSeconds * 1000);
+                renderRateLimitWarning(targetForm, throttleSeconds);
+                startSubmitCooldown(targetForm, submitBtn, throttleSeconds, pathKey);
             }
-            if (text) text.className = 'req-text text-emerald-600 font-medium';
-        } else {
-            if (icon) {
-                icon.className = 'req-icon w-3.5 h-3.5 rounded-full border border-slate-300 flex items-center justify-center shrink-0';
-                icon.innerHTML = '';
-            }
-            if (text) text.className = 'req-text text-slate-500';
         }
     }
 
-    passwordInput.addEventListener('input', function () {
-        const val = passwordInput.value;
-        const hasLength = val.length >= 8;
-        const hasUppercase = /[A-Z]/.test(val);
-        const hasNumber = /[0-9]/.test(val);
-        const hasNoSpace = val.length > 0 && !/\s/.test(val);
+    /**
+     * Render rate-limit warning text above the submit button.
+     * @param {HTMLFormElement} form
+     * @param {number} seconds
+     */
+    function renderRateLimitWarning(form, seconds) {
+        if (!form) return;
 
-        updateRequirement(reqLength, hasLength);
-        updateRequirement(reqUppercase, hasUppercase);
-        updateRequirement(reqNumber, hasNumber);
-        updateRequirement(reqNospace, hasNoSpace);
-    });
-}
+        let warningElement = form.querySelector('.auth-rate-limit-warning');
 
-/**
- * 8. Hitung Mundur Kirim Ulang OTP
- */
-function initOtpResendCountdown() {
-    const resendBtn = document.getElementById('resend-otp-btn');
-    const resendForm = document.getElementById('resend-otp-form');
+        if (!warningElement) {
+            warningElement = document.createElement('p');
+            warningElement.className = 'auth-rate-limit-warning text-xs text-red-500 my-2 font-medium flex items-center gap-1.5 transition-all';
+            warningElement.innerHTML = `
+                <svg class="w-3.5 h-3.5 shrink-0 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                <span>Terlalu banyak permintaan! Harap tunggu <strong class="rate-limit-countdown-num underline">${seconds}</strong> detik sebelum mencoba lagi.</span>
+            `;
 
-    if (!resendBtn) return;
-
-    const storageKey = 'otp_resend_cooldown_end';
-    let countdownInterval = null;
-
-    function startCooldown(seconds) {
-        const endTime = Date.now() + (seconds * 1000);
-        localStorage.setItem(storageKey, endTime);
-        renderCountdown(endTime);
+            const submitWrapper = form.querySelector('button[type="submit"]')?.closest('div');
+            if (submitWrapper) {
+                form.insertBefore(warningElement, submitWrapper);
+            } else {
+                form.appendChild(warningElement);
+            }
+        } else {
+            const numberSpan = warningElement.querySelector('.rate-limit-countdown-num');
+            if (numberSpan) numberSpan.innerText = seconds;
+            warningElement.classList.remove('hidden');
+        }
     }
 
-    function renderCountdown(endTime) {
-        if (countdownInterval) clearInterval(countdownInterval);
+    /**
+     * Run a countdown on the submit button and update the warning text.
+     * @param {HTMLFormElement} form
+     * @param {HTMLButtonElement} submitBtn
+     * @param {number} durationSeconds
+     * @param {string} storageKey
+     */
+    function startSubmitCooldown(form, submitBtn, durationSeconds, storageKey) {
+        if (!submitBtn) return;
 
-        countdownInterval = setInterval(() => {
-            const remaining = Math.max(0, Math.ceil((endTime - Date.now()) / 1000));
+        const originalText = submitBtn.dataset.originalText || submitBtn.innerText.trim();
+
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
+
+        let remaining = durationSeconds;
+
+        const updateDisplay = () => {
+            submitBtn.innerHTML = `
+                <span class="inline-flex items-center justify-center gap-1.5">
+                    <svg class="w-4 h-4 text-white/90 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Coba lagi dalam <strong>${remaining}s</strong></span>
+                </span>
+            `;
+
+            const warningElement = form.querySelector('.auth-rate-limit-warning');
+            if (warningElement) {
+                const numberSpan = warningElement.querySelector('.rate-limit-countdown-num');
+                if (numberSpan) numberSpan.innerText = remaining;
+            }
+        };
+
+        updateDisplay();
+
+        if (submitBtn._countdownTimer) {
+            clearInterval(submitBtn._countdownTimer);
+        }
+
+        submitBtn._countdownTimer = setInterval(() => {
+            remaining--;
 
             if (remaining > 0) {
-                resendBtn.classList.add('pointer-events-none', 'text-slate-400');
-                resendBtn.classList.remove('text-[#EF4444]', 'hover:text-[#DC2626]');
-                resendBtn.innerText = `Kirim Ulang (${remaining}s)`;
+                updateDisplay();
             } else {
-                clearInterval(countdownInterval);
-                localStorage.removeItem(storageKey);
-                resendBtn.classList.remove('pointer-events-none', 'text-slate-400');
-                resendBtn.classList.add('text-[#EF4444]', 'hover:text-[#DC2626]');
-                resendBtn.innerText = 'Kirim Ulang';
+                clearInterval(submitBtn._countdownTimer);
+                submitBtn._countdownTimer = null;
+
+                if (storageKey) sessionStorage.removeItem(storageKey);
+
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-60', 'cursor-not-allowed', 'pointer-events-none');
+                submitBtn.innerText = originalText;
+
+                const warningElement = form.querySelector('.auth-rate-limit-warning');
+                if (warningElement) warningElement.remove();
             }
         }, 1000);
     }
 
-    const savedEndTime = localStorage.getItem(storageKey);
-    if (savedEndTime && parseInt(savedEndTime, 10) > Date.now()) {
-        renderCountdown(parseInt(savedEndTime, 10));
+    // =========================================================================
+    // 3. PASSWORD VISIBILITY TOGGLE
+    // =========================================================================
+
+    /** Initialize show/hide password toggle buttons. */
+    function initPasswordVisibilityToggles() {
+        /**
+         * @param {string} buttonId
+         * @param {string} inputId
+         * @param {string} eyeIconId
+         * @param {string} eyeSlashIconId
+         */
+        const registerToggle = (buttonId, inputId, eyeIconId, eyeSlashIconId) => {
+            const toggleButton = document.getElementById(buttonId);
+            const targetInput = document.getElementById(inputId);
+            const eyeIcon = document.getElementById(eyeIconId);
+            const eyeSlashIcon = document.getElementById(eyeSlashIconId);
+
+            if (!toggleButton || !targetInput) return;
+
+            toggleButton.addEventListener('click', () => {
+                const isCurrentlyPassword = targetInput.type === 'password';
+                targetInput.type = isCurrentlyPassword ? 'text' : 'password';
+
+                if (eyeIcon && eyeSlashIcon) {
+                    eyeIcon.classList.toggle('hidden', isCurrentlyPassword);
+                    eyeSlashIcon.classList.toggle('hidden', !isCurrentlyPassword);
+                }
+            });
+        };
+
+        registerToggle('toggle-password-btn', 'password', 'eye-icon-password', 'eye-slash-icon-password');
+        registerToggle('toggle-confirm-btn', 'password_confirmation', 'eye-icon-confirm', 'eye-slash-icon-confirm');
     }
 
-    resendBtn.addEventListener('click', function (e) {
-        const savedEndTime = localStorage.getItem(storageKey);
-        if (savedEndTime && parseInt(savedEndTime, 10) > Date.now()) {
-            e.preventDefault();
-            return;
+    // =========================================================================
+    // 4. REAL-TIME PASSWORD STRENGTH CHECKER
+    // =========================================================================
+
+    /** Check new password against security criteria in real time. */
+    function initPasswordCriteriaChecker() {
+        const passwordInput = document.getElementById('password');
+        const criteriaNodes = {
+            length: document.getElementById('req-length'),
+            uppercase: document.getElementById('req-uppercase'),
+            number: document.getElementById('req-number'),
+            nospace: document.getElementById('req-nospace'),
+        };
+
+        if (!passwordInput || !criteriaNodes.length) return;
+
+        /**
+         * Update the visual state of a single criterion.
+         * @param {HTMLElement|null} element
+         * @param {boolean} isSatisfied
+         */
+        const updateCriterionState = (element, isSatisfied) => {
+            if (!element) return;
+            const iconNode = element.querySelector('.req-icon');
+            const textNode = element.querySelector('.req-text');
+
+            if (isSatisfied) {
+                if (iconNode) {
+                    iconNode.className = 'req-icon w-3.5 h-3.5 rounded-full bg-emerald-500 border border-emerald-500 flex items-center justify-center shrink-0 text-white';
+                    iconNode.innerHTML = `
+                        <svg class="w-2.5 h-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    `;
+                }
+                if (textNode) textNode.className = 'req-text text-emerald-600 font-medium';
+            } else {
+                if (iconNode) {
+                    iconNode.className = 'req-icon w-3.5 h-3.5 rounded-full border border-slate-300 flex items-center justify-center shrink-0';
+                    iconNode.innerHTML = '';
+                }
+                if (textNode) textNode.className = 'req-text text-slate-500';
+            }
+        };
+
+        passwordInput.addEventListener('input', () => {
+            const value = passwordInput.value;
+
+            updateCriterionState(criteriaNodes.length, value.length >= 8);
+            updateCriterionState(criteriaNodes.uppercase, /[A-Z]/.test(value));
+            updateCriterionState(criteriaNodes.number, /[0-9]/.test(value));
+            updateCriterionState(criteriaNodes.nospace, value.length > 0 && !/\s/.test(value));
+        });
+    }
+
+    // =========================================================================
+    // 5. OTP RESEND COOLDOWN
+    // =========================================================================
+
+    /** Manage cooldown timer for the OTP resend button. */
+    function initOtpResendCooldown() {
+        const resendButton = document.getElementById('resend-otp-btn');
+        const resendForm = document.getElementById('resend-otp-form');
+
+        if (!resendButton) return;
+
+        let countdownTimer = null;
+
+        /**
+         * Update the resend button countdown display.
+         * @param {number} expiryTimestamp
+         */
+        const updateResendCountdown = (expiryTimestamp) => {
+            if (countdownTimer) clearInterval(countdownTimer);
+
+            countdownTimer = setInterval(() => {
+                const remainingSeconds = Math.max(0, Math.ceil((expiryTimestamp - Date.now()) / 1000));
+
+                if (remainingSeconds > 0) {
+                    resendButton.classList.add('pointer-events-none', 'text-slate-400');
+                    resendButton.classList.remove('text-[#EF4444]', 'hover:text-[#DC2626]');
+                    resendButton.innerText = `Kirim Ulang (${remainingSeconds}s)`;
+                } else {
+                    clearInterval(countdownTimer);
+                    localStorage.removeItem(CONFIG.STORAGE_KEY_OTP_RESEND);
+                    resendButton.classList.remove('pointer-events-none', 'text-slate-400');
+                    resendButton.classList.add('text-[#EF4444]', 'hover:text-[#DC2626]');
+                    resendButton.innerText = 'Kirim Ulang';
+                }
+            }, 1000);
+        };
+
+        // Restore saved cooldown on page refresh
+        const savedExpiry = localStorage.getItem(CONFIG.STORAGE_KEY_OTP_RESEND);
+        if (savedExpiry && parseInt(savedExpiry, 10) > Date.now()) {
+            updateResendCountdown(parseInt(savedExpiry, 10));
         }
 
-        startCooldown(60);
+        resendButton.addEventListener('click', (e) => {
+            const currentExpiry = localStorage.getItem(CONFIG.STORAGE_KEY_OTP_RESEND);
+            if (currentExpiry && parseInt(currentExpiry, 10) > Date.now()) {
+                e.preventDefault();
+                return;
+            }
 
-        if (resendForm) {
-            e.preventDefault();
-            resendForm.submit();
-        }
-    });
-}
+            const newExpiry = Date.now() + CONFIG.OTP_RESEND_DURATION_SECONDS * 1000;
+            localStorage.setItem(CONFIG.STORAGE_KEY_OTP_RESEND, newExpiry);
+
+            if (resendForm) {
+                e.preventDefault();
+                resendForm.submit();
+            }
+        });
+    }
+})();

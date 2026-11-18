@@ -1,45 +1,43 @@
 @extends('landing.layouts.app')
+
 @section('content')
-    <div
-        class="relative w-full h-full min-h-screen lg:min-h-0 lg:h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto lg:overflow-hidden">
+    <div class="relative w-full h-full min-h-screen lg:min-h-0 lg:h-screen bg-white flex items-center justify-center p-4 sm:p-6 lg:p-8 xl:p-12 overflow-y-auto lg:overflow-hidden">
 
-        <div
-            class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
+        <div class="w-full max-w-[1512px] h-full max-h-[880px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-12 items-center">
 
-            <!-- Kolom kiri: Ilustrasi -->
+            {{-- Left Column: Illustration --}}
             <div class="hidden lg:flex items-center justify-center h-full max-h-[min(88vh,850px)]">
-                <div
-                    class="relative h-full max-h-[min(88vh,850px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
+                <div class="relative h-full max-h-[min(88vh,850px)] rounded-[24px] overflow-hidden flex items-center justify-center select-none pointer-events-none">
                     <img src="{{ asset('assets/image/component/regis_ilus.svg') }}" alt="Ilustrasi Registrasi Akun Siswa"
                         class="h-full w-auto max-h-[min(88vh,850px)] max-w-full object-contain rounded-[24px]" loading="eager"
                         fetchpriority="high">
                 </div>
             </div>
 
-            <!-- Kolom kanan: Form registrasi -->
+            {{-- Right Column: Registration Form --}}
             <div class="flex flex-col justify-center max-w-[420px] xl:max-w-[460px] mx-auto w-full py-2">
-                <!-- Logo brand -->
+                {{-- Brand Logo --}}
                 <div class="mb-4 sm:mb-5">
                     <a href="{{ url('/') }}" class="inline-block">
                         <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-7 sm:h-8">
                     </a>
                 </div>
 
-                <!-- Header form -->
+                {{-- Form Header --}}
                 <div class="mb-4 sm:mb-5">
                     <h1 class="font-urbanist text-2xl sm:text-[28px] font-semibold text-[#1E293B] mb-1">
                         Buat Akun Baru
                     </h1>
-                    <p class="text-sm sm:text-lg text-[#313957] leading-relaxed">
+                    <p class="text-sm sm:text-base text-[#313957] leading-relaxed">
                         Selamat datang! Isi data berikut untuk membuat akun Anda.
                     </p>
                 </div>
 
-                <!-- Form registrasi -->
+                {{-- Registration Form --}}
                 <form method="POST" action="{{ route('register') }}" class="space-y-3" novalidate>
                     @csrf
 
-                    <!-- Input nama -->
+                    {{-- Name Field --}}
                     <div>
                         <label for="name" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Nama
@@ -59,16 +57,14 @@
                         @error('name')
                             <p id="name-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
                                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                                 </svg>
                                 {{ $message }}
                             </p>
                         @enderror
                     </div>
 
-                    <!-- Input email -->
+                    {{-- Email Field --}}
                     <div>
                         <label for="email" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Email
@@ -88,16 +84,14 @@
                         @error('email')
                             <p id="email-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
                                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                                 </svg>
                                 {{ $message }}
                             </p>
                         @enderror
                     </div>
 
-                    <!-- Input password -->
+                    {{-- Password Field --}}
                     <div>
                         <label for="password" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Password
@@ -117,19 +111,16 @@
                         @error('password')
                             <p class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
                                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                                 </svg>
                                 {{ $message }}
                             </p>
                         @enderror
                     </div>
 
-                    <!-- Input konfirmasi password -->
+                    {{-- Confirm Password Field --}}
                     <div>
-                        <label for="password_confirmation"
-                            class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
+                        <label for="password_confirmation" class="block text-xs sm:text-sm font-semibold text-slate-700 mb-1">
                             Konfirmasi Password
                         </label>
                         <div class="relative">
@@ -146,19 +137,16 @@
                             @enderror
                         </div>
                         @error('password_confirmation')
-                            <p id="password_confirmation-error"
-                                class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
+                            <p id="password_confirmation-error" class="text-xs text-red-500 mt-1 font-medium flex items-center gap-1">
                                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
-                                        clip-rule="evenodd" />
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
                                 </svg>
                                 {{ $message }}
                             </p>
                         @enderror
                     </div>
 
-                    <!-- Container warn di bawah area input -->
+                    {{-- Throttle Warning (Inline) --}}
                     @if ($errors->has('throttle'))
                         <p class="auth-rate-limit-warning text-xs text-red-500 my-2 font-medium flex items-center gap-1.5">
                             <svg class="w-3.5 h-3.5 shrink-0 text-red-500" fill="currentColor" viewBox="0 0 20 20">
@@ -168,7 +156,7 @@
                         </p>
                     @endif
 
-                    <!-- Tombol submit -->
+                    {{-- Submit Button --}}
                     <div class="pt-1">
                         <button type="submit"
                             class="w-full py-2.5 sm:py-3 px-6 rounded-xl bg-[#2563EB] hover:bg-[#316ef3] active:bg-[#3809b5] text-white font-bold text-sm text-center shadow-md shadow-[#2563EB]/25 hover:shadow-lg hover:shadow-[#2563EB]/35 transition-all duration-200 cursor-pointer">
@@ -176,15 +164,15 @@
                         </button>
                     </div>
 
-                    <!-- Pemisah -->
+                    {{-- Divider --}}
                     <div class="relative flex items-center justify-center my-1">
                         <div class="border-t border-slate-200 w-full"></div>
-                        <span class="px-4 text-xs text-slate-400 absolute font-medium select-none">
+                        <span class="px-4 text-xs text-slate-400 absolute font-medium select-none bg-white">
                             Atau
                         </span>
                     </div>
 
-                    <!-- Tombol Google -->
+                    {{-- Google OAuth Button --}}
                     <div>
                         <a href="{{ route('google.login') }}"
                             class="w-full py-2 sm:py-2.5 px-4 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 active:bg-slate-100 text-slate-700 text-xs sm:text-sm flex items-center justify-center gap-3 transition-colors shadow-xs cursor-pointer">
@@ -206,7 +194,7 @@
                         </a>
                     </div>
 
-                    <!-- Link login -->
+                    {{-- Login Link --}}
                     <p class="text-center text-xs sm:text-sm text-slate-500 pt-1">
                         Sudah punya akun?
                         <a href="{{ route('login') }}"
