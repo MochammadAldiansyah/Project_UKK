@@ -4,6 +4,8 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\EmailVerificationPromptController;
+use App\Http\Controllers\Auth\ForgotPasswordOtpController;
+use App\Http\Controllers\Auth\GoogleAuthController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -15,24 +17,22 @@ Route::middleware('guest')->group(function () {
     Route::get('register', [RegisteredUserController::class, 'create'])
         ->name('register');
 
-    Route::post('register', [RegisteredUserController::class, 'store']);
+    Route::post('register', [RegisteredUserController::class, 'store'])
+        ->middleware('throttle:6,1');
 
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
         ->name('login');
 
-    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+    Route::post('login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware('throttle:6,1');
 
-    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])
-        ->name('password.request');
+    Route::get('verify-code', function () {
+        return view('auth.verify-code');
+    })->name('password.verify.code');
 
-    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])
-        ->name('password.email');
-
-    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])
-        ->name('password.reset');
-
-    Route::post('reset-password', [NewPasswordController::class, 'store'])
-        ->name('password.store');
+    Route::get('new-password', function () {
+        return view('auth.reset-password', ['request' => request()]);
+    })->name('password.new');
 });
 
 Route::middleware('auth')->group(function () {
@@ -57,3 +57,18 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+Route::get('/auth/google/redirect', [GoogleAuthController::class, 'redirect'])->name('google.login');
+Route::get('/auth/google/callback', [GoogleAuthController::class, 'callback']);
+
+// Tahap 1: Lupa Password (Input Email)
+Route::get('forgot-password', [ForgotPasswordOtpController::class, 'showForgotForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordOtpController::class, 'sendOtp'])->name('password.email')->middleware('throttle:6,1');
+
+// Tahap 2: Verifikasi Kode OTP
+Route::get('verify-otp', [ForgotPasswordOtpController::class, 'showVerifyForm'])->name('otp.verify.form');
+Route::post('verify-otp', [ForgotPasswordOtpController::class, 'verifyOtp'])->name('otp.verify')->middleware('throttle:6,1');
+Route::post('resend-otp', [ForgotPasswordOtpController::class, 'resendOtp'])->name('otp.resend')->middleware('throttle:3,1');
+
+// Tahap 3: Buat Password Baru
+Route::get('reset-password', [ForgotPasswordOtpController::class, 'showResetForm'])->name('password.reset.form');
+Route::post('reset-password', [ForgotPasswordOtpController::class, 'resetPassword'])->name('password.update')->middleware('throttle:6,1');
