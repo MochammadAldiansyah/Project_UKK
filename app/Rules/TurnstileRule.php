@@ -45,7 +45,7 @@ class TurnstileRule implements ValidationRule
             return;
         }
 
-        $secretKey = config('services.turnstile.secret');
+        $secretKey = trim((string) config('services.turnstile.secret'));
 
         // Jika secret key belum dikonfigurasi di file environment (.env)
         if (empty($secretKey)) {
@@ -54,14 +54,23 @@ class TurnstileRule implements ValidationRule
         }
 
         try {
+            $payload = [
+                'secret' => $secretKey,
+                'response' => $value,
+            ];
+
+            // Hanya sertakan remoteip jika merupakan IP publik yang valid
+            // Mengirimkan IP lokal/LAN (192.168.x.x, 10.x.x.x, 127.0.0.1) ke Cloudflare
+            // dapat menyebabkan penolakan verifikasi karena ketidaksesuaian IP client vs router.
+            $clientIp = request()->ip();
+            if ($clientIp && filter_var($clientIp, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
+                $payload['remoteip'] = $clientIp;
+            }
+
             // Melakukan request verifikasi ke API Cloudflare Turnstile
             $response = Http::asForm()
                 ->timeout(10)
-                ->post(self::SITEVERIFY_URL, [
-                    'secret' => $secretKey,
-                    'response' => $value,
-                    'remoteip' => request()->ip(),
-                ]);
+                ->post(self::SITEVERIFY_URL, $payload);
 
             // Cek apakah response HTTP sukses dan parameter success bernilai true
             if (! $response->successful() || ! (bool) $response->json('success', false)) {
