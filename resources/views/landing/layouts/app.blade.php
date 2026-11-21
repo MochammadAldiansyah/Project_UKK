@@ -48,6 +48,8 @@
     <!-- Main JavaScript -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/auth.js') }}"></script>
+
+    @stack('scripts')
 </body>
 
 </html>

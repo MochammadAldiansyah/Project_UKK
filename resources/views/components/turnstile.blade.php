@@ -1,0 +1,43 @@
+{{--
+  Komponen Cloudflare Turnstile CAPTCHA
+  
+  Props:
+  - theme: 'light' (default), 'dark', atau 'auto'
+  - size: 'normal' (default), 'compact', atau 'flexible'
+  - action: label aksi opsional untuk analitik Cloudflare
+--}}
+@props([
+    'theme' => 'light',
+    'size' => 'normal',
+    'action' => null,
+])
+
+@php
+    $siteKey = config('services.turnstile.key');
+@endphp
+
+@if ($siteKey)
+    <div class="my-3 flex flex-col items-center sm:items-start">
+        {{-- Widget Container Cloudflare Turnstile --}}
+        <div class="cf-turnstile"
+             data-sitekey="{{ $siteKey }}"
+             data-theme="{{ $theme }}"
+             data-size="{{ $size }}"
+             @if ($action) data-action="{{ $action }}" @endif></div>
+
+        {{-- Menampilkan pesan error validasi jika verifikasi captcha gagal --}}
+        @error('cf-turnstile-response')
+            <p class="text-xs text-red-500 mt-1.5 font-medium flex items-center gap-1">
+                <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                </svg>
+                <span>{{ $message }}</span>
+            </p>
+        @enderror
+    </div>
+
+    {{-- Script API resmi Cloudflare Turnstile --}}
+    @push('scripts')
+        <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    @endpush
+@endif

@@ -109,6 +109,9 @@
                         </div>
                     </div>
 
+                    {{-- Cloudflare Turnstile CAPTCHA --}}
+                    <x-turnstile action="login" />
+
                     {{-- Throttle Warning (Inline) --}}
                     @if ($errors->has('throttle'))
                         <p class="auth-rate-limit-warning text-xs text-red-500 my-2 font-medium flex items-center gap-1.5">
