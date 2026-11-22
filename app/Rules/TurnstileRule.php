@@ -8,6 +8,7 @@ use Closure;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Translation\PotentiallyTranslatedString;
 
 /**
  * Class TurnstileRule
@@ -15,8 +16,6 @@ use Illuminate\Support\Facades\Log;
  * Rule validasi kustom untuk memverifikasi token respon Cloudflare Turnstile.
  * Rule ini mengirimkan request verifikasi server-to-server ke endpoint resmi
  * Cloudflare Turnstile Siteverify API.
- *
- * @package App\Rules
  */
 class TurnstileRule implements ValidationRule
 {
@@ -28,9 +27,9 @@ class TurnstileRule implements ValidationRule
     /**
      * Jalankan validasi rule Turnstile.
      *
-     * @param  string  $attribute Nama input form ('cf-turnstile-response')
-     * @param  mixed  $value Nilai token respon yang dihasilkan oleh widget Turnstile
-     * @param  \Closure(string, ?string=): \Illuminate\Translation\PotentiallyTranslatedString  $fail Callback pesan error
+     * @param  string  $attribute  Nama input form ('cf-turnstile-response')
+     * @param  mixed  $value  Nilai token respon yang dihasilkan oleh widget Turnstile
+     * @param  Closure(string, ?string=): PotentiallyTranslatedString  $fail  Callback pesan error
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -42,6 +41,7 @@ class TurnstileRule implements ValidationRule
         // Pastikan token respon berupa string dan tidak kosong
         if (empty($value) || ! is_string($value)) {
             $fail('Harap selesaikan verifikasi captcha.');
+
             return;
         }
 
@@ -50,6 +50,7 @@ class TurnstileRule implements ValidationRule
         // Jika secret key belum dikonfigurasi di file environment (.env)
         if (empty($secretKey)) {
             Log::warning('Cloudflare Turnstile: Secret key belum dikonfigurasi pada file .env.');
+
             return;
         }
 
