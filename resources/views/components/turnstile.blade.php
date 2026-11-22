@@ -13,7 +13,7 @@
 ])
 
 @php
-    $siteKey = config('services.turnstile.key');
+    $siteKey = trim((string) config('services.turnstile.key'));
 @endphp
 
 @if ($siteKey)
