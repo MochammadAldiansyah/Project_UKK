@@ -11,45 +11,56 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Translation\PotentiallyTranslatedString;
 
 /**
- * Class TurnstileRule
+ * Validates a Cloudflare Turnstile response token.
  *
- * Rule validasi kustom untuk memverifikasi token respon Cloudflare Turnstile.
- * Rule ini mengirimkan request verifikasi server-to-server ke endpoint resmi
+ * Sends a server-to-server verification request to the official
  * Cloudflare Turnstile Siteverify API.
  */
 class TurnstileRule implements ValidationRule
 {
     /**
-     * Endpoint API resmi Cloudflare Turnstile untuk verifikasi token.
+     * Official Cloudflare Turnstile token verification endpoint.
      */
     private const SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
 
     /**
-     * Jalankan validasi rule Turnstile.
+     * Run the Turnstile validation rule.
      *
-     * @param  string  $attribute  Nama input form ('cf-turnstile-response')
-     * @param  mixed  $value  Nilai token respon yang dihasilkan oleh widget Turnstile
-     * @param  Closure(string, ?string=): PotentiallyTranslatedString  $fail  Callback pesan error
+     * @param  string  $attribute  Form input name ('cf-turnstile-response')
+     * @param  mixed  $value  Response token produced by the Turnstile widget
+     * @param  Closure(string, ?string=): PotentiallyTranslatedString  $fail  Validation failure callback
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        // Izinkan bypass pada environment testing jika nilai token kosong
+        // Allow an empty token to pass in the testing environment
         if (app()->environment('testing') && empty($value)) {
             return;
         }
 
-        // Pastikan token respon berupa string dan tidak kosong
-        if (empty($value) || ! is_string($value)) {
-            $fail('Harap selesaikan verifikasi captcha.');
+        $secretKey = trim((string) config('services.turnstile.secret'));
+        $siteKey = trim((string) config('services.turnstile.key'));
+
+        // Check configuration before the token. Both keys are required:
+        // - Without a secret key, verification cannot run at all. This rule used
+        //   to return early (fail-open), so a deploy missing TURNSTILE_SECRET_KEY
+        //   silently disabled captcha protection and bots could log in freely.
+        // - Without a site key, the <x-turnstile> component renders no widget, so
+        //   users are always rejected with "complete the captcha" while no captcha
+        //   exists to complete (deadlock).
+        if (empty($secretKey) || empty($siteKey)) {
+            Log::warning('Cloudflare Turnstile: Konfigurasi tidak lengkap pada file .env.', [
+                'secret_key_set' => ! empty($secretKey),
+                'site_key_set' => ! empty($siteKey),
+            ]);
+
+            $fail('Verifikasi captcha tidak tersedia. Hubungi administrator.');
 
             return;
         }
 
-        $secretKey = trim((string) config('services.turnstile.secret'));
-
-        // Jika secret key belum dikonfigurasi di file environment (.env)
-        if (empty($secretKey)) {
-            Log::warning('Cloudflare Turnstile: Secret key belum dikonfigurasi pada file .env.');
+        // The token must be a non-empty string
+        if (empty($value) || ! is_string($value)) {
+            $fail('Harap selesaikan verifikasi captcha.');
 
             return;
         }
@@ -60,20 +71,20 @@ class TurnstileRule implements ValidationRule
                 'response' => $value,
             ];
 
-            // Hanya sertakan remoteip jika merupakan IP publik yang valid
-            // Mengirimkan IP lokal/LAN (192.168.x.x, 10.x.x.x, 127.0.0.1) ke Cloudflare
-            // dapat menyebabkan penolakan verifikasi karena ketidaksesuaian IP client vs router.
+            // Only include remoteip when it is a valid public IP.
+            // Sending a local/LAN IP (192.168.x.x, 10.x.x.x, 127.0.0.1) to Cloudflare
+            // can fail verification because the client IP does not match the router's.
             $clientIp = request()->ip();
             if ($clientIp && filter_var($clientIp, FILTER_VALIDATE_IP, FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE)) {
                 $payload['remoteip'] = $clientIp;
             }
 
-            // Melakukan request verifikasi ke API Cloudflare Turnstile
+            // Send the verification request to the Cloudflare Turnstile API
             $response = Http::asForm()
                 ->timeout(10)
                 ->post(self::SITEVERIFY_URL, $payload);
 
-            // Cek apakah response HTTP sukses dan parameter success bernilai true
+            // Require a successful HTTP response with success set to true
             if (! $response->successful() || ! (bool) $response->json('success', false)) {
                 $errorCodes = $response->json('error-codes', []);
 

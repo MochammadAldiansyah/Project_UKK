@@ -37,12 +37,12 @@
             </div>
         </div>
 
-        <!-- Tab panel: Siswa -->
+        <!-- Tab panel: Student -->
         <div id="panel-siswa" class="tab-panel transition-all duration-300 opacity-100 translate-y-0">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch scroll-reveal delay-200">
                 <!-- Feature list -->
                 <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
-                    <!-- Feature: Pengajuan Online -->
+                    <!-- Feature: Online application -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div
@@ -61,7 +61,7 @@
                         </div>
                     </div>
 
-                    <!-- Feature: Jurnal Digital -->
+                    <!-- Feature: Digital journal -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div
@@ -122,12 +122,12 @@
             </div>
         </div>
 
-        <!-- Tab panel: Sekolah & Guru -->
+        <!-- Tab panel: School & Teacher -->
         <div id="panel-sekolah" class="tab-panel hidden opacity-0 translate-y-2 transition-all duration-300">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
                 <!-- Feature list -->
                 <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
-                    <!-- Feature: Monitoring PKL Siswa -->
+                    <!-- Feature: Student internship monitoring -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div
@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                    <!-- Feature: Validasi Jurnal & Penilaian Terpadu -->
+                    <!-- Feature: Journal validation & integrated assessment -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div
@@ -165,7 +165,7 @@
                         </div>
                     </div>
 
-                    <!-- Feature: Database Mitra Industri -->
+                    <!-- Feature: Industry partner database -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div
@@ -207,12 +207,12 @@
             </div>
         </div>
 
-        <!-- Tab panel: Perusahaan / DUDI -->
+        <!-- Tab panel: Company -->
         <div id="panel-perusahaan" class="tab-panel hidden opacity-0 translate-y-2 transition-all duration-300">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
                 <!-- Feature list -->
                 <div class="lg:col-span-6 flex flex-col justify-between gap-4 sm:gap-5">
-                    <!-- Feature: Akses Talenta Siswa Magang -->
+                    <!-- Feature: Intern talent access -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div
@@ -231,7 +231,7 @@
                         </div>
                     </div>
 
-                    <!-- Feature: Penilaian Digital Praktis-->
+                    <!-- Feature: Digital assessment -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div
@@ -249,7 +249,7 @@
                         </div>
                     </div>
 
-                    <!-- Feature: Kontribusi Nyata untuk Pendidikan -->
+                    <!-- Feature: Contribution to education -->
                     <div
                         class="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:shadow-md hover:border-blue-300 transition-all duration-200 flex items-start gap-4 sm:gap-5 group cursor-default">
                         <div

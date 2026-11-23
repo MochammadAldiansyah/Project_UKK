@@ -19,7 +19,7 @@
 
         <!-- Testimonial cards grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto items-stretch">
-            <!-- Testimonial card: Rizky Aditya (Siswa) -->
+            <!-- Testimonial card: Rizky Aditya (Student) -->
             <div
                 class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group scroll-reveal delay-100">
                 <div>
@@ -71,7 +71,7 @@
                 </div>
             </div>
 
-            <!-- Testimonial card: Bambang Nugroho, M.Pd. (Guru / Hubin) -->
+            <!-- Testimonial card: Bambang Nugroho, M.Pd. (Teacher / Industry Liaison) -->
             <div
                 class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group scroll-reveal delay-200">
                 <div>
@@ -123,7 +123,7 @@
                 </div>
             </div>
 
-            <!-- Testimonial card: Siti Putri Anggraini (Siswa) -->
+            <!-- Testimonial card: Siti Putri Anggraini (Student) -->
             <div
                 class="bg-white rounded-3xl p-7 sm:p-8 border border-slate-200/90 shadow-xs hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group scroll-reveal delay-300">
                 <div>

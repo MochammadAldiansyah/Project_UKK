@@ -9,7 +9,7 @@
                 {{-- Brand Logo --}}
                 <div class="mb-5 sm:mb-6">
                     <a href="{{ url('/') }}" class="inline-block">
-                        <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-8 sm:h-9">
+                        <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-8 select-none sm:h-9">
                     </a>
                 </div>
 

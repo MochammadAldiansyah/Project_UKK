@@ -1,10 +1,10 @@
 {{--
-  Komponen Cloudflare Turnstile CAPTCHA
-  
+  Cloudflare Turnstile CAPTCHA component
+
   Props:
-  - theme: 'light' (default), 'dark', atau 'auto'
-  - size: 'normal' (default), 'compact', atau 'flexible'
-  - action: label aksi opsional untuk analitik Cloudflare
+  - theme: 'light' (default), 'dark', or 'auto'
+  - size: 'normal' (default), 'compact', or 'flexible'
+  - action: optional action label for Cloudflare analytics
 --}}
 @props([
     'theme' => 'light',
@@ -18,14 +18,14 @@
 
 @if ($siteKey)
     <div class="my-3 flex flex-col items-center sm:items-start">
-        {{-- Widget Container Cloudflare Turnstile --}}
+        {{-- Cloudflare Turnstile widget container --}}
         <div class="cf-turnstile"
              data-sitekey="{{ $siteKey }}"
              data-theme="{{ $theme }}"
              data-size="{{ $size }}"
              @if ($action) data-action="{{ $action }}" @endif></div>
 
-        {{-- Menampilkan pesan error validasi jika verifikasi captcha gagal --}}
+        {{-- Validation error shown when captcha verification fails --}}
         @error('cf-turnstile-response')
             <p class="text-xs text-red-500 mt-1.5 font-medium flex items-center gap-1">
                 <svg class="w-3 h-3 shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -36,7 +36,7 @@
         @enderror
     </div>
 
-    {{-- Script API resmi Cloudflare Turnstile --}}
+    {{-- Official Cloudflare Turnstile API script --}}
     @push('scripts')
         <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     @endpush

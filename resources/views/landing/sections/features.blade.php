@@ -16,7 +16,7 @@
 
         <!-- Feature cards grid -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-5xl mx-auto">
-            <!-- Feature: Informasi Terpusat -->
+            <!-- Feature: Centralized information -->
             <div
                 class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60 scroll-reveal delay-100">
                 <div
@@ -34,7 +34,7 @@
                 </p>
             </div>
 
-            <!-- Feature: Administrasi Praktis -->
+            <!-- Feature: Practical administration -->
             <div
                 class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60 scroll-reveal delay-200">
                 <div
@@ -52,7 +52,7 @@
                 </p>
             </div>
 
-            <!-- Feature: Log Aktivitas Online -->
+            <!-- Feature: Online activity log -->
             <div
                 class="bg-white rounded-3xl p-8 sm:p-9 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col items-center text-center group border border-slate-100/60 scroll-reveal delay-300">
                 <div

@@ -9,37 +9,37 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
-    // 1. Mengarahkan user ke halaman pilih akun Google
+    // Redirect the user to the Google account chooser
     public function redirect()
     {
         return Socialite::driver('google')->redirect();
     }
 
-    // 2. Menerima data balikan dari Google setelah user klik Lanjutkan
+    // Handle the callback returned by Google after the user continues
     public function callback()
     {
         try {
             $googleUser = Socialite::driver('google')->user();
 
-            // Cek apakah email sudah ada di database (misal akun guru/perusahaan/siswa lama)
+            // Check whether the email already exists (e.g. an existing teacher/company/student account)
             $user = User::where('email', $googleUser->getEmail())->first();
 
             if ($user) {
-                // Jika email sudah terdaftar, cukup tautkan google_id-nya (role tetap aman)
+                // Existing account: only link the google_id so the role stays intact
                 $user->update(['google_id' => $googleUser->getId()]);
             } else {
-                // Jika email benar-benar baru, otomatis daftarkan sebagai role 'siswa'
+                // Brand new email: register automatically with the 'siswa' role
                 $user = User::create([
                     'name' => $googleUser->getName(),
                     'email' => $googleUser->getEmail(),
                     'google_id' => $googleUser->getId(),
-                    'role' => 'siswa', // Sesuaikan nama kolom role di DB kamu
+                    'role' => 'siswa',
                 ]);
             }
 
             Auth::login($user);
 
-            // Arahkan ke dashboard masing-masing role
+            // Redirect to the dashboard for each role
             return match ($user->role) {
                 'admin' => redirect('/admin/dashboard'),
                 'sekolah' => redirect('/sekolah/dashboard'),

@@ -19,7 +19,7 @@
                 {{-- Brand Logo --}}
                 <div class="mb-4 sm:mb-5">
                     <a href="{{ url('/') }}" class="inline-block">
-                        <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-7 sm:h-8">
+                        <img src="{{ asset('assets/image/logo/logo.svg') }}" alt="Portal PKL" class="h-7 select-none sm:h-8">
                     </a>
                 </div>
 
@@ -146,6 +146,9 @@
                         @enderror
                     </div>
 
+                    {{-- Cloudflare Turnstile CAPTCHA --}}
+                    <x-turnstile action="register" />
+
                     {{-- Throttle Warning (Inline) --}}
                     @if ($errors->has('throttle'))
                         <p class="auth-rate-limit-warning text-xs text-red-500 my-2 font-medium flex items-center gap-1.5">
@@ -155,6 +158,8 @@
                             <span>{{ $errors->first('throttle') }}</span>
                         </p>
                     @endif
+
+                    
 
                     {{-- Submit Button --}}
                     <div class="pt-1">

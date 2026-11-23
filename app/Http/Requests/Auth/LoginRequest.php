@@ -39,7 +39,7 @@ class LoginRequest extends FormRequest
     }
 
     /**
-     * Pesan validasi kustom dalam bahasa Indonesia.
+     * Custom validation messages.
      */
     public function messages(): array
     {
