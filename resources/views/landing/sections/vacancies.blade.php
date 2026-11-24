@@ -151,7 +151,7 @@
                 </div>
             </div>
 
-            <!-- Card: Staff Administrasi & Akuntansi -->
+            <!-- Card: Administrative & Accounting Staff -->
             <div
                 class="bg-white rounded-2xl border border-slate-200/90 p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200 flex flex-col justify-between group cursor-pointer scroll-reveal delay-300">
                 <div>
