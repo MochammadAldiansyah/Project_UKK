@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Rules\TurnstileRule;
+use App\Rules\RecaptchaRule;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -32,9 +32,9 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'cf-turnstile-response' => [
+            'g-recaptcha-response' => [
                 app()->environment('testing') ? 'nullable' : 'required',
-                new TurnstileRule(),
+                new RecaptchaRule(),
             ],
         ], [
             'name.required' => 'Nama wajib diisi.',
@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
             'password.required' => 'Password wajib diisi.',
             'password.confirmed' => 'Konfirmasi password tidak cocok.',
             'password.min' => 'Password minimal :min karakter.',
-            'cf-turnstile-response.required' => 'Harap selesaikan verifikasi captcha.',
+            'g-recaptcha-response.required' => 'Harap selesaikan verifikasi captcha.',
         ]);
 
         $user = User::create([

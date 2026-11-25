@@ -72,8 +72,8 @@
                         @enderror
                     </div>
 
-                    {{-- Cloudflare Turnstile CAPTCHA --}}
-                    <x-turnstile action="forgot-password" />
+                    {{-- google recaptcha CAPTCHA --}}
+                    <x-recaptcha />
 
                     {{-- Throttle Warning (Inline) --}}
                     @if ($errors->has('throttle'))

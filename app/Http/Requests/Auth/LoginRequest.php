@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Requests\Auth;
-
-use App\Rules\TurnstileRule;
+use App\Rules\RecaptchaRule;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
@@ -26,17 +25,15 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, ValidationRule|array<mixed>|string>
      */
-    public function rules(): array
-    {
-        return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
-            'cf-turnstile-response' => [
-                app()->environment('testing') ? 'nullable' : 'required',
-                new TurnstileRule(),
-            ],
-        ];
-    }
+   public function rules(): array
+   {
+    return [
+        'email' => ['required', 'string', 'email'],
+        'password' => ['required', 'string'],
+        'g-recaptcha-response' => ['required', new RecaptchaRule()],
+
+    ];
+   }
 
     /**
      * Custom validation messages.
@@ -47,7 +44,7 @@ class LoginRequest extends FormRequest
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
             'password.required' => 'Password wajib diisi.',
-            'cf-turnstile-response.required' => 'Harap selesaikan verifikasi captcha.',
+            'g-recaptcha-response.required' => 'Harap selesaikan verifikasi captcha.',
         ];
     }
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Rules\TurnstileRule;
+use App\Rules\RecaptchaRule;
 use Carbon\Carbon;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -40,15 +40,15 @@ class ForgotPasswordOtpController extends Controller
     {
         $request->validate([
             'email' => ['required', 'email', 'exists:users,email'],
-            'cf-turnstile-response' => [
+            'g-recaptcha-response' => [
                 app()->environment('testing') ? 'nullable' : 'required',
-                new TurnstileRule(),
+                new RecaptchaRule(),
             ],
         ], [
             'email.required' => 'Email wajib diisi.',
             'email.email' => 'Format email tidak valid.',
             'email.exists' => 'Email tersebut tidak terdaftar di sistem kami.',
-            'cf-turnstile-response.required' => 'Harap selesaikan verifikasi captcha.',
+            'g-recaptcha-response.required' => 'Harap selesaikan verifikasi captcha.',
         ]);
 
         $this->generateAndSendOtp($request->email);
