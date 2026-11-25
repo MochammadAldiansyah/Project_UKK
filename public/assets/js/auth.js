@@ -75,9 +75,7 @@
         // Clear error state on input
         requiredInputs.forEach((input) => {
             input.addEventListener('input', () => {
-                if (input.value.trim()) {
-                    clearFieldValidationState(input);
-                }
+                clearFieldValidationState(input);
             });
         });
 
@@ -130,6 +128,30 @@
 
         input.classList.add('border-red-400', 'bg-red-50/40', 'ring-1', 'ring-red-200');
 
+        // script for toggle password visibility
+        function togglePassword(inputId, button) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+
+    const isHidden = input.type === 'password';
+    input.type = isHidden ? 'text' : 'password';
+
+    const eyeIcon = button.querySelector('.icon-eye');
+    const eyeOffIcon = button.querySelector('.icon-eye-off');
+
+    if (eyeIcon && eyeOffIcon) {
+        eyeIcon.classList.toggle('hidden', isHidden);
+        eyeOffIcon.classList.toggle('hidden', !isHidden);
+    }
+}
+
+
+        // Hide password toggle button when validation warning appears
+        const toggleBtn = inputWrapper.querySelector('.password-toggle-btn, [onclick*="togglePassword"], #toggle-password-btn, #toggle-confirm-btn');
+        if (toggleBtn) {
+            toggleBtn.classList.add('hidden');
+        }
+
         // Resolve field label for the error message
         const label = fieldContainer.querySelector('label');
         let fieldLabel = label ? label.innerText.replace('*', '').trim() : '';
@@ -160,21 +182,19 @@
             inputWrapper.insertAdjacentElement('afterend', errorParagraph);
         }
 
-        // Add warning icon inside the input
+        // Add warning icon inside the input (at right-0 pr-3.5 since toggle is hidden)
         let warningIcon = inputWrapper.querySelector('.input-error-icon');
         if (!warningIcon) {
             warningIcon = document.createElement('div');
-            const hasToggleBtn = inputWrapper.querySelector('#toggle-password-btn, #toggle-confirm-btn');
-            warningIcon.className = hasToggleBtn
-                ? 'input-error-icon absolute inset-y-0 right-8 pr-1.5 flex items-center pointer-events-none text-red-500'
-                : 'input-error-icon absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-red-500';
-
+            warningIcon.className = 'input-error-icon absolute inset-y-0 right-0 pr-3.5 flex items-center pointer-events-none text-red-500';
             warningIcon.innerHTML = `
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
                 </svg>
             `;
             inputWrapper.appendChild(warningIcon);
+        } else {
+            warningIcon.classList.remove('hidden');
         }
     }
 
@@ -194,8 +214,14 @@
         const serverError = fieldContainer.querySelector('[id$="-error"]');
         if (serverError) serverError.remove();
 
-        const warningIcon = inputWrapper.querySelector('.input-error-icon');
-        if (warningIcon) warningIcon.remove();
+        const warningIcons = inputWrapper.querySelectorAll('.input-error-icon');
+        warningIcons.forEach((icon) => icon.remove());
+
+        // Restore password toggle button when warning is cleared
+        const toggleBtn = inputWrapper.querySelector('.password-toggle-btn, [onclick*="togglePassword"], #toggle-password-btn, #toggle-confirm-btn');
+        if (toggleBtn) {
+            toggleBtn.classList.remove('hidden');
+        }
     }
 
     /**
